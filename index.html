@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل وتحدي الأوتاكو 🏆</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --correct: #22c55e;
+      --wrong: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+      direction: rtl;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 520px;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid #334155;
+    }
+
+    .hidden { display: none !important; }
+
+    .main-title { text-align: center; font-size: 1.8rem; color: #38bdf8; margin-bottom: 20px; }
+
+    .section-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      color: #facc15;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .btn-start {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-start:hover { background: var(--accent-hover); }
+
+    .recommendation-card {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed #334155;
+    }
+
+    .rec-name { color: #38bdf8; font-size: 1.4rem; margin-bottom: 6px; }
+    .genre-badge { display: inline-block; background: #334155; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 12px; color: #cbd5e1; }
+    .warning-box { color: #fca5a5; font-size: 0.85rem; line-height: 1.5; background: #450a0a; padding: 10px; border-radius: 8px; border-right: 4px solid #ef4444; text-align: right; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; max-height: 250px; overflow-y: auto; margin-top: 14px; }
+    .anime-btn { background: #334155; border: none; color: var(--text); padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; text-align: center; }
+    .anime-btn:hover { background: #475569; }
+
+    .header-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .difficulty-badge { font-size: 0.8rem; font-weight: bold; padding: 6px 12px; border-radius: 20px; background: #334155; }
+    .timer { font-size: 1rem; font-weight: bold; color: #f59e0b; background: #451a03; padding: 4px 10px; border-radius: 8px; border: 1px solid #78350f; }
+
+    .question-text { font-size: 1.15rem; margin-bottom: 20px; line-height: 1.5; text-align: right; }
+    .options-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .option-btn { background: #334155; border: 2px solid transparent; color: var(--text); padding: 12px 14px; border-radius: 8px; cursor: pointer; text-align: right; font-size: 0.95rem; }
+    .option-btn.correct { background-color: var(--correct) !important; color: #fff; }
+    .option-btn.wrong { background-color: var(--wrong) !important; color: #fff; }
+
+    .result-card { text-align: center; padding: 10px 0; }
+    .result-title { font-size: 1.6rem; color: #facc15; margin-bottom: 12px; }
+    .result-msg { font-size: 1rem; line-height: 1.5; margin-bottom: 20px; }
+    .action-btn { background: var(--accent); color: white; border: none; padding: 10px 18px; font-weight: bold; border-radius: 8px; cursor: pointer; margin: 4px; }
+    .share-btn { background: #0284c7; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="selection-screen">
+      <h1 class="main-title">دليل وتحدي الأوتاكو 🏆</h1>
+      
+      <div class="section-card">
+        <h2 class="section-title">أنمي يستحق المشاهدة</h2>
+        <button class="btn-start" onclick="recommendRandomAnime()">ابدأ</button>
+
+        <div id="recommendation-card" class="recommendation-card hidden">
+          <h3 id="rec-title" class="rec-name">اسم الأنمي</h3>
+          <span id="rec-genre" class="genre-badge">التصنيف</span>
+          <div class="warning-box">
+            ⚠️ <strong>تنبيه هام:</strong> يحتوي هذا الأنمي على لقطات يُنصح بتخطيها وغض البصر عنها، مع التزام المعايير الأخلاقية والعقدية.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h2 class="section-title">تحدي الأوتاكو</h2>
+        <button class="btn-start" onclick="showAnimeGrid()">ابدأ</button>
+
+        <div id="anime-grid-container" class="hidden">
+          <div class="grid" id="anime-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-screen" class="hidden">
+      <div class="header-info">
+        <span id="difficulty-tag" class="difficulty-badge">🟢 مستوى: مبتدئ</span>
+        <span id="timer" class="timer">30s</span>
+      </div>
+      <h2 id="question-text" class="question-text">جاري تحميل السؤال...</h2>
+      <div id="options-container" class="options-list"></div>
+    </div>
+
+    <div id="result-screen" class="hidden">
+      <div class="result-card">
+        <h1 id="result-title" class="result-title">إنجاز أسطوري! 🎉</h1>
+        <p id="result-msg" class="result-msg"></p>
+        <button class="action-btn share-btn" onclick="shareChallenge()">📤 شارك التحدي</button>
+        <button class="action-btn" onclick="resetToHome()">🔄 القائمة الرئيسية</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // قائمة الأنميات المعتمدة للترشيح (24 أنمي)
+    const animeData = [
+      { name: "Attack on Titan", genre: "أكشن / غموض" },
+      { name: "Fullmetal Alchemist: Brotherhood", genre: "مغامرات / خيال" },
+      { name: "Dragon Ball Z", genre: "قتال / شونين" },
+      { name: "World Trigger", genre: "خيال علمي / استراتيجية" },
+      { name: "Mob Psycho 100", genre: "قوى خارقة / كوميدي" },
+      { name: "Vinland Saga", genre: "تاريخي / دراما" },
+      { name: "Kingdom", genre: "حروب / استراتيجي" },
+      { name: "Dororo", genre: "ساموراي / شياطين" },
+      { name: "Golden Kamuy", genre: "مغامرات / تاريخي" },
+      { name: "The Heroic Legend of Arslan", genre: "حروب / مغامرات" },
+      { name: "Seraph of the End", genre: "مصاصي دماء / أكشن" },
+      { name: "Radiant", genre: "سحر / مغامرات" },
+      { name: "Sabikui Bisco", genre: "مستقبلي / المغامرة" },
+      { name: "Toriko", genre: "مغامرات / طعام وحوش" },
+      { name: "Deca-Dence", genre: "خيال علمي / بقاء" },
+      { name: "Psycho-Pass", genre: "تحقيق / مستقبل" },
+      { name: "Blue Lock", genre: "رياضة / تنافس" },
+      { name: "Ranking of Kings", genre: "مغامرات / خيال" },
+      { name: "Haikyuu!!", genre: "رياضة / حماس" },
+      { name: "Ace of Diamond", genre: "رياضة / بيسبول" },
+      { name: "Major", genre: "رياضة / بيسبول" },
+      { name: "Kaiju No. 8", genre: "وحوش / أكشن" },
+      { name: "Legend of the Galactic Heroes: Die Neue These", genre: "فضاء / استراتيجية" },
+      { name: "Kuroko's Basketball", genre: "رياضة / كرة سلة" },
+      { name: "Space Brothers", genre: "فضاء / دراما واقعية" }
+    ];
+
+    const difficultyLevels = [
+      "🟢 مستوى 1: سهل جداً",
+      "🟢 مستوى 2: سهل",
+      "🟡 مستوى 3: متوسط خفيف",
+      "🟡 مستوى 4: متوسط",
+      "🟠 مستوى 5: فوق المتوسط",
+      "🟠 مستوى 6: متقدم",
+      "🔴 مستوى 7: صعب",
+      "🔴 مستوى 8: صعب جداً",
+      "💀 مستوى 9: للذين تابعوا بتركيز 100%",
+      "⚡ مستوى 10: تحدي الملوك"
+    ];
+
+    const winMessages = [
+      "أحسنت! ذاكرتك حديدية وتفاصيل الأنمي في رأسك بالكامل! أنت أوتاكو حقيقي 🏆🔥",
+      "مستحيل! لقد تخطيت أعتى الأسئلة بنجاح.. أحسنت يا بطل! 👑⚡",
+      "إجابة كاملة 10/10! أحسنت! لقد أثبت أنك تختم الأنمي من الضربة الأولى! 🎯🚀"
+    ];
+
+    // بنك الأسئلة الحقيقي للأنميات الـ 10 المحددة (متصاعد الصعوبة)
+    const questionsBank = {
+      "Attack on Titan": [
+        { q: "ما اسم الجدار الأول الذي دمره العملاق الضخم؟", options: ["جدار روز", "جدار ماريا", "جدار سينا"], a: 1 },
+        { q: "ما الجهاز المستخدم للتحرك بسرعة والقتال ضد العمالقة؟", options: ["الأجنحة الآلية", "معدات المناورة ثلاثية الأبعاد", "النفاثات"], a: 1 },
+        { q: "ما هي المهنة الأصلية لـ غريشا والد إيرين؟", options: ["تاجر", "طبيب", "جندي"], a: 1 },
+        { q: "من القائد الذي ابتكر تشكيلة استكشاف المسافات الطويلة؟", options: ["ليفاي", "إيروين سميث", "هانجي"], a: 1 },
+        { q: "ما اسم العملاق الخاص بـ زييك ييغر؟", options: ["العملاق الفك", "العملاق الوحش", "العملاق العربة"], a: 1 },
+        { q: "من أخذ ليفاي وعلمه أساليب البقاء والقتال في صغره؟", options: ["إيروين", "كيني أكرمان", "غريشا"], a: 1 },
+        { q: "كم سنة يفترض أن يعيشها واريث العملاق بعد امتلاكه؟", options: ["10 سنوات", "13 سنة", "15 سنة"], a: 1 },
+        { q: "ما الاسم الحقيقي لشقيقة هيستوريا غير الشرعية؟", options: ["فريدا رايس", "أورما رايس", "كارلا"], a: 0 },
+        { q: "ما الاسم المستعار للعميل المتسلل (البومة) في مارلي؟", options: ["إيرين كروغر", "زييك", "توم كسافر"], a: 0 },
+        { q: "ما اسم الميناء الذي انطلقت منه حملة مارلي نحو الجزيرة؟", options: ["ميناء مارلي الشمالي", "ميناء البوابات", "ميناء باراديس"], a: 0 }
+      ],
+      "Vinland Saga": [
+        { q: "ما اسم بطل أنمي Vinland Saga؟", options: ["ثورفين", "أشيلاد", "ثورس"], a: 0 },
+        { q: "ما السلاح الرئيسي الذي يستخدمه ثورفين في القتال؟", options: ["السيف الطويل", "الخنجران", "الفأس المزدوج"], a: 1 },
+        { q: "من القائد الذي قتل والد ثورفين في الكمين؟", options: ["أشيلاد", "ثوركيل", "كانيوت"], a: 0 },
+        { q: "ما اسم الأمير الدانمركي الخجول الذي يحميه أشيلاد؟", options: ["هارالد", "كانيوت", "سفين"], a: 1 },
+        { q: "ما هي أصول أشيلاد من طرف والدته؟", options: ["ويلزي (من نسل الملك آرتشر)", "دانمركي", "إنجليزي"], a: 0 },
+        { q: "كيف مات الملك سفين ملك الدانمارك؟", options: ["قتله ثورفين", "قطع أشيلاد رأسه", "مات بالمرض"], a: 1 },
+        { q: "ما اسم المزرعة التي عمل فيها ثورفين كعبد في الموسم الثاني؟", options: ["مزرعة كيتيل", "مزرعة ثوركيل", "قرية جومسبرج"], a: 0 },
+        { q: "ما الاسم الحقيقي لـ أشيلاد الذي كشفه قبل موته؟", options: ["لوسيوس آرتوريوس كاستوس", "أولاف", "ثورفين أورم"], a: 0 },
+        { q: "ما اسم الفتاة الماهرة في القوس والنشاب وتلاحق ثورفين للانتقام؟", options: ["هيلد", "جودريد", "إيلفا"], a: 0 },
+        { q: "ما العبارة الشهيرة التي قالها ثورس لثورفين قبل موته؟", options: ["ليس لديك أي أعداء", "القوة في السيف فقط", "انتقم لي بأي ثمن"], a: 0 }
+      ],
+      "Kingdom": [
+        { q: "ما اسم بطل الأنمي الذي يحلم بأن يصبح أعظم جنرال؟", options: ["شين", "هيو", "سي"], a: 0 },
+        { q: "ما اسم الملك الشاب الذي يصادق شين لتوحيد الصين؟", options: ["إي سي", "موبو", "ريوفوي"], a: 0 },
+        { q: "ما اسم الفرقة العسكرية التي يقودها شين؟", options: ["فرقة هيشين", "فرقة الملوك", "فرقة النسر"], a: 0 },
+        { q: "من هو العقل المدبر والاستراتيجي الأكبر لدولة زاو؟", options: ["ريبوكو", "هوكين", "شينكاي"], a: 0 },
+        { q: "ما اسم الجنرال الأسطوري الملقب بـ طائر تشين السماوي؟", options: ["أوكي", "موبو", "تشوتو"], a: 0 },
+        { q: "ما اسم الحصن/الممر الاستراتيجي الذي دافعت عنه تشين ضد الائتلاف؟", options: ["ممر كانكو", "ممر ساي", "ممر بايو"], a: 0 },
+        { q: "ما المدينة التي قاد فيها الملك سي الأهالي بنفسه للدفاع عنها؟", options: ["مدينة ساي", "مدينة كانكو", "مدينة زيانغ"], a: 0 },
+        { q: "ما السلاح الضخم الذي أورثه الجنرال أوكي لشين قبل موته؟", options: ["رمح أوكي الثقيل", "درعه الذهبي", "سيفه الخفيف"], a: 0 },
+        { q: "ما اسم عشيرة القتلة السرية التي تنتمي إليها كيو كاي؟", options: ["عشيرة الشيو", "عشيرة الظلال", "عشيرة الجبل"], a: 0 },
+        { q: "كم عدد الجنرالات الكبار الأسطوريين القدماء لدولة تشين؟", options: ["6 جنرالات", "5 جنرالات", "7 جنرالات"], a: 0 }
+      ],
+      "Fullmetal Alchemist: Brotherhood": [
+        { q: "ما اسم البطل المعروف بـ كيميائي الفولاذ؟", options: ["إدوارد إيلريك", "ألفونس إيلريك", "روي موستانغ"], a: 0 },
+        { q: "ما الذي خسرته شخصية ألفونس بالكامل في المحاولة الفاشلة؟", options: ["ذراعه", "جسده بالكامل", "ساقه"], a: 1 },
+        { q: "ما هو القانون الأساسي والأول للكيمياء في الأنمي؟", options: ["التبادل المتساوي", "التحول الخالد", "حفظ المادة"], a: 0 },
+        { q: "ما الشيء الأسطوري الذي يطمح إدوارد للحصول عليه لترميم جسديهما؟", options: ["حجر الفلاسفة", "حجر الطاقة", "إكسير الحياة"], a: 0 },
+        { q: "ما الميزة الخاصة التي يقدمها كيميائي النار روي موستانغ؟", options: ["إطلاق النار بشرارة قفازه", "استدعاء التنانين", "تحويل الحجارة لنار"], a: 0 },
+        { q: "ما اسم البلدة الشمالية المتجمدة المتخصصة في القلاع الدفاعية؟", options: ["بريجز", "دوبليث", "ريزيمبول"], a: 0 },
+        { q: "من هو الشخص الذي يمثل أول هومونكولوس (الأب/Father)؟", options: ["القزم داخل القارورة", "إنفي", "غلاطوني"], a: 0 },
+        { q: "ما اسم الهومونكولوس المختبئ برتبة قائد الجيش (الملك برادلي)؟", options: ["الغضب (Wrath)", "الجشع (Greed)", "الكبرياء (Pride)"], a: 0 },
+        { q: "ما هو الشيء الذي وضعه إدوارد قرباناً ليعيد جسد ألفونس كاملاً؟", options: ["بوابة الكيمياء الخاصة به", "ذراعه الآلية", "عمره"], a: 0 },
+        { q: "ما الاسم الحقيقي لوالد إدوارد وألفونس؟", options: ["فان هوهنهايم", "سكار", "مايلز"], a: 0 }
+      ],
+      "Dragon Ball Z": [
+        { q: "ما هو اسم العرق القتالي الذي ينتمي إليه غوكو؟", options: ["السايان", "الناميك", "الفريزا"], a: 0 },
+        { q: "ما اسم شقيق غوكو الذي وصل للأرض في بداية DBZ؟", options: ["راديتز", "فيجيتا", "نابا"], a: 0 },
+        { q: "من هو المدرب الذي علم غوكو تقنية الكايوكين وكرة الطاقة (كاميهاميها/جينكي داما)؟", options: ["الكايو الشمالي", "روشي", "كارين"], a: 0 },
+        { q: "ما التحول الذي وصل إليه غوكو لأول مرة بعد مقتل كوريرين أمام فريزا؟", options: ["السوبر سايان 1", "السوبر سايان 2", "السوبر سايان 3"], a: 0 },
+        { q: "من الذي قضي على الشرير سيل (Cell) في نهائيات ألعاب سيل؟", options: ["غوهان", "غوكو", "فيجيتا"], a: 0 },
+        { q: "ما اسم التقنية التي يستخدم فيها غوكو الاندماج بالرقص مع فيجيتا؟", options: ["غوجيتا", "فيجيتو", "غوتينكس"], a: 0 },
+        { q: "ما اسم الأداة المغناطيسية التي تتبع كرات الدراغون بول؟", options: ["دراغون رادار", "السكاOuter", "كبسولة"], a: 0 },
+        { q: "من أين يستمد ماجين بو قدرته على تحويل الخصوم إلى حلوى؟", options: ["شعاع السحر من قرنه", "يديه", "عينيه"], a: 0 },
+        { q: "ما اسم الكوكب الأصلي لغوكو وفيجيتا قبل تدميره؟", options: ["كوكب فيجيتا", "كوكب ناميك", "كوكب ميثال"], a: 0 },
+        { q: "ما هي الأمنية الأخيرة التي تحققت للدفاع ضد ماجين بو الأصلي؟", options: ["استعادة طاقة غوكو بالكامل", "إعادة بناء الأرض", "إحياء الجميع"], a: 0 }
+      ],
+      "Dororo": [
+        { q: "كم عدد أعضاء أجساد هياكيمارو التي أخذتها الشياطين؟", options: ["48 (أو 12 في النسخة الجديدة)", "10", "20"], a: 0 },
+        { q: "ما اسم اللص الصغير الذي يرافق هياكيمارو في رحلته؟", options: ["دورورو", "تاهومارو", "جيوكاي"], a: 0 },
+        { q: "من هو والد هياكيمارو الذي ضحى بابنه للشياطين من أجل ازدهار أرضه؟", options: ["كاجيميتسو دايمو", "تاهومارو", "بيوا بوشي"], a: 0 },
+        { q: "ما السلاح المخفي داخل يدي هياكيمارو الاصطناعيتين؟", options: ["سيفان حادان", "مسدسات", "سلاسل"], a: 0 },
+        { q: "من هو الطبيب الذي صنع أطراف هياكيمارو الاصطناعية ورباه؟", options: ["جيوكاي", "بيوا", "ساروتوبي"], a: 0 },
+        { q: "ما اسم شقيق هياكيمارو الأصغر الذي واجهه لاحقاً؟", options: ["تاهومارو", "كاجيميتسو", "ميودو"], a: 0 },
+        { q: "كيف يستطيع هياكيمارو رؤية الأشياء رغم فقدانه لبصره؟", options: ["رؤية أرواح وطاقات الكائنات (الأورا)", "السمع الفائق", "حاسة الشم"], a: 0 },
+        { q: "ما السر الذي تخفيه دورورو على ظهرها؟", options: ["خريطة لكنز والديها", "ختم شيطاني", "اسم والدها"], a: 0 },
+        { q: "ما هو الجزء الأخير الذي استعاده هياكيمارو بعد هزم آخر شيطان؟", options: ["عنياه (بصره)", "قلبه", "دماغه"], a: 0 },
+        { q: "ما اسم العازف الأعمى الذي يعزف على البيوا ويساعدهما بالمعلومات؟", options: ["بيوا بوشي", "جيوكاي", "إيتاشي"], a: 0 }
+      ],
+      "Blue Lock": [
+        { q: "ما هو المركز الكروي الوحيد الذي يبحث عنه مشروع بلو لوك؟", options: ["المهاجم الصريح (Maha'jam)", "حارس المرمى", "خط الوسط"], a: 0 },
+        { q: "ما اسم بطل القصة الرئيسي صاحب عيون الرؤية الشاملة؟", options: ["أيساغي يوتشي", "باشيرا", "ناغي"], a: 0 },
+        { q: "من هو المدرب والمسؤول الأول عن مشروع بلو لوك؟", options: ["إيغين جينباتشي", "أنري", "إيتوشي ساين"], a: 0 },
+        { q: "ما اسم اللاعب العبقري الموهوب ذو الشعر الأبيض الذي اكتشفه ريو؟", options: ["سشيرو ناغي", "باشيرا", "كونيغامي"], a: 0 },
+        { q: "ما هي الميزة والمهارة الخارقة الخاصة بـ أيساغي على الرقعة؟", options: ["الرؤية المكانية والاستشعار (Spatial Awareness)", "السرعة الخاطفة", "القوة البدنية"], a: 0 },
+        { q: "ما اسم الشقيق الأكبر للاعب إيتوشي رين والملقب بالعبقري؟", options: ["إيتوشي ساى", "شيدو", "كاراسو"], a: 0 },
+        { q: "ما السلاح المميز للاعب كونيغامي رينسكي؟", options: ["التسديد القوي بالقدم اليسرى من مسافة بعيدة", "المرواغة", "القفز العالي"], a: 0 },
+        { q: "ما اسم اللاعب المعتمد كلياً على السرعة الخاطفة في الركض؟", options: ["تشيغيري هيوما", "بارو", "أوتو"], a: 0 },
+        { q: "ما اللقب الذي يطلق على اللاعب بارو شويي لقسوته وأسلوبه الفردي؟", options: ["الملك (The King)", "التايجار", "الإمبراطور"], a: 0 },
+        { q: "ما اسم التحدي الذي يخوضه أعضاء بلو لوك ضد المنتخب الياباني؟", options: ["مباراة بلو لوك ضد منتخب اليابان U-20", "كأس العالم", "دوري الأبطال"], a: 0 }
+      ],
+      "Haikyuu!!": [
+        { q: "ما هي الرياضة الأساسية التي يدور حولها أنمي Haikyuu!!؟", options: ["الكرة الطائرة", "كرة السلة", "كرة القدم"], a: 0 },
+        { q: "ما اسم بطل القصة القصير الطموح اللقب بـ العصفور؟", options: ["هيناتاโชيو", "كاغياما", "تسوكيشيما"], a: 0 },
+        { q: "ما اسم الممرر العبقري الملقب بـ ملك الملعب وصديق هيناتا؟", options: ["كاغياما توبيو", "أويكوا", "نيشينويا"], a: 0 },
+        { q: "ما اسم الفريق والمدرسة التي يلعب لها هيناتا وكاغياما؟", options: ["ثانوية كاراسونو (Karasuno)", "أوبا جوساي", "شيراتوريزاوا"], a: 0 },
+        { q: "ما اسم الليبرو (المدافع الحر) الأسطوري في فريق كاراسونو؟", options: ["نيشينويا يو", "تاناكا", "أزوماني"], a: 0 },
+        { q: "ما اسم الفريق الخصم اللدود تاريخياً لكاراسونو والمعروفين بـ القطط؟", options: ["نكومي (Nekoma)", "فوكوروداني", "إيناريزاكي"], a: 0 },
+        { q: "ما اسم قائد فريق أوبا جوساي وصاحب الإرسالات الساحقة؟", options: ["أويوا تورو", "أوشيجيما", "بوكوتو"], a: 0 },
+        { q: "ما اسم الضارب المدمّر والعملاق القوي في ثانوية شيراتوريزاوا؟", options: ["أوشيجيما واكوتشي", "بوكوتو", "كوروو"], a: 0 },
+        { q: "ما الهجوم السريع المميز الذي ابتكره هيناتا وكاغياما معاً؟", options: ["الهجوم السريع الخاطف (Freak Quick)", "الإرسال الساحق", "الحائط الصد الثنائي"], a: 0 },
+        { q: "ما اللقب الذي يُطلق على المواجهة التاريخية بين كاراسونو ونكوما؟", options: ["معركة القمامة (Battle at the Garbage Dump)", "معركة العمالقة", "صراع القطط والغراب"], a: 0 }
+      ],
+      "Kaiju No. 8": [
+        { q: "ما اسم البطل الرئيسي الذي يتناول كايجو بالخطأ؟", options: ["كافكا هيبينو", "رينتشيرو", "مينامي"], a: 0 },
+        { q: "ما هي المهنة الأصلية لكافكا قبل الانضمام لقوات الدفاع؟", options: ["تنظيف وبقايا جثث الكايجو", "طبيب", "شرطي"], a: 0 },
+        { q: "ما اسم صديقة طفولة كافكا التي أصبحت قائدة الفرقة الثالثة؟", options: ["مينا أشيرو", "كيكورو سينوميا", "كونومي"], a: 0 },
+        { q: "ما اسم الفتاة الموهوبة ابنة مدير قوات الدفاع ذات القوة العالية؟", options: ["كيكورو سينوميا", "مينا", "أكاري"], a: 0 },
+        { q: "ما رقم الكايجو القوي الذي تحول إليه كافكا وتطارده الدولة؟", options: ["الكايجو رقم 8", "الكايجو رقم 9", "الكايجو رقم 10"], a: 0 },
+        { q: "ما اسم الشاب الذي اكتشف سر كافكا وانضم معه لقوات الدفاع؟", options: ["رين إيتشيكاوا", "أوشيما", "إيهارارا"], a: 0 },
+        { q: "ما السلاح الخاص المميز للقائدة مينا أشيرو؟", options: ["مدفع القنص الثقيل العملاق", "السيف المزدوج", "الفأس 300"], a: 0 },
+        { q: "ما اسم الكايجو الذكي الذي يستطيع التحدث وصنع كايجو آخرين؟", options: ["الكايجو رقم 9", "الكايجو رقم 8", "الكايجو رقم 2"], a: 0 },
+        { q: "كم تبلغ نسبة انبعاث قوة البدلة الدفاعية لكافكا قبل تحوله؟", options: ["1%", "50%", "85%"], a: 0 },
+        { q: "ما اسم الأداة التي يقاس بها تحول الطاقة والقوة لدى مقاتلي الدفاع؟", options: ["قوة الانبعاث (Unleashed Fortitude)", "مقياس السكاOuter", "مستوى الكايجو"], a: 0 }
+      ],
+      "Kuroko's Basketball": [
+        { q: "ما هو اللقب الأسطوري للجيل الخارق المكون من 5 لاعبين؟", options: ["جيل المعجزات (Generation of Miracles)", "جيل الملوك", "الخمسة الأقوياء"], a: 0 },
+        { q: "ما اسم اللاعب السادس الخفي بطل القصة؟", options: ["كوروكو تيتسويا", "كاغامي تايغا", "أوميني"], a: 0 },
+        { q: "ما المهارة الأساسية المميزة لكوروكو داخل الملعب؟", options: ["التمرير السريع وتغيير اتجاه الكرة لعدم ملاحظته", "التسديد الثلاثي", "القفز العالي"], a: 0 },
+        { q: "ما اسم اللاعب القادم من أمريكا وصاحب القفزات الخارقة وشريك كوروكو؟", options: ["كاغامي تايغا", "كيسي", "ميدوريما"], a: 0 },
+        { q: "ما اسم المدرسة والثانوية التي انضم إليها كوروكو وكاغامي؟", options: ["ثانوية سيرين (Seirin)", "ثانوية توهو", "ثانوية راكوزان"], a: 0 },
+        { q: "ما مهارة ميدوريما شينتارو الاستثنائية؟", options: ["التسديد من أي مكان في الملعب بدقة 100%", "السرعة", "النسخ"], a: 0 },
+        { q: "ما اسم اللاعب القادر على نسخ أي مهارة يراها فوراً؟", options: ["كيسي ريوتا", "أكاشي", "موراساكيبارا"], a: 0 },
+        { q: "ما اسم قائد جيل المعجزات صاحب عين الإمبراطور؟", options: ["أكاشي سيجورو", "أوميني", "إيزوكي"], a: 0 },
+        { q: "ما اسم هداف جيل المعجزات المطلق واللاعب الشارع غير المنضبط؟", options: ["أوميني دايكي", "ميدوريما", "كيوشي"], a: 0 },
+        { q: "ما هي الحالة الذهنية القصوى التي يدخلها اللاعب لتقديم 100% من أداءه؟", options: ["منطقة النطاق (The Zone)", "العين المفتوحة", "الحالة المطلقة"], a: 0 }
+      ]
+    };
+
+    let selectedAnime = "";
+    let currentLevel = 0;
+    let timerInterval = null;
+    let timeLeft = 30;
+
+    function recommendRandomAnime() {
+      const random = animeData[Math.floor(Math.random() * animeData.length)];
+      document.getElementById("rec-title").innerText = random.name;
+      document.getElementById("rec-genre").innerText = `التصنيف: ${random.genre}`;
+      document.getElementById("recommendation-card").classList.remove("hidden");
+    }
+
+    function showAnimeGrid() {
+      const grid = document.getElementById("anime-grid");
+      grid.innerHTML = "";
+      // إظهار الأنميات الـ 10 المحددة للتحدي فقط
+      Object.keys(questionsBank).forEach(name => {
+        const btn = document.createElement("button");
+        btn.className = "anime-btn";
+        btn.innerText = name;
+        btn.onclick = () => startGame(name);
+        grid.appendChild(btn);
+      });
+      document.getElementById("anime-grid-container").classList.remove("hidden");
+    }
+
+    function startGame(animeName) {
+      selectedAnime = animeName;
+      currentLevel = 0;
+      document.getElementById("selection-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.add("hidden");
+      document.getElementById("game-screen").classList.remove("hidden");
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      if (currentLevel >= 10) { showWinScreen(); return; }
+
+      document.getElementById("difficulty-tag").innerText = difficultyLevels[currentLevel];
+      resetTimer();
+
+      const qData = questionsBank[selectedAnime][currentLevel];
+
+      document.getElementById("question-text").innerText = qData.q;
+      const optionsContainer = document.getElementById("options-container");
+      optionsContainer.innerHTML = "";
+
+      qData.options.forEach((optText, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerText = optText;
+        btn.onclick = () => selectAnswer(btn, index === qData.a);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(btn, isCorrect) {
+      clearInterval(timerInterval);
+      const buttons = document.querySelectorAll(".option-btn");
+      buttons.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.add("correct");
+        setTimeout(() => { currentLevel++; loadQuestion(); }, 1000);
+      } else {
+        btn.classList.add("wrong");
+        setTimeout(() => { alert("إجابة خاطئة! حاول مرة أخرى."); resetToHome(); }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timeLeft = 30;
+      const timerEl = document.getElementById("timer");
+      timerEl.innerText = `${timeLeft}s`;
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.innerText = `${timeLeft}s`;
+        if (timeLeft <= 0) { clearInterval(timerInterval); alert("انتهى الوقت!"); resetToHome(); }
+      }, 1000);
+    }
+
+    function showWinScreen() {
+      document.getElementById("game-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.remove("hidden");
+      const randomMsg = winMessages[Math.floor(Math.random() * winMessages.length)];
+      document.getElementById("result-msg").innerText = randomMsg;
+      if (typeof confetti === "function") { confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } }); }
+    }
+
+    function shareChallenge() {
+      const text = `حققت 10/10 في تحدي أنمي ${selectedAnime}! 🏆 هل تستطيع التغلب علي؟`;
+      if (navigator.share) { navigator.share({ title: 'تحدي الأوتاكو', text: text }); }
+      else { alert("تم نسخ نص التحدي!"); }
+    }
+
+    function resetToHome() {
+      clearInterval(timerInterval);
+      document.getElementById("game-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.add("hidden");
+      document.getElementById("selection-screen").classList.remove("hidden");
+      document.getElementById("recommendation-card").classList.add("hidden");
+      document.getElementById("anime-grid-container").classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
