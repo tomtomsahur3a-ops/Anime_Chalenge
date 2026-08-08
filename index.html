@@ -13,9 +13,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طريق النور - البداية الجديدة</title>
-    <!-- استيراد خطوط عربية مزخرفة وعصرية من جوجل -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>طريق النور - التحرر من إدمان الإباحية</title>
+    <!-- خطوط عربية مزخرفة وعصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -31,70 +31,81 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto;
             padding: 20px;
         }
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             color: #6d28d9;
             font-weight: 900;
             text-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         header p {
             font-size: 1.1rem;
             color: #4c1d95;
             font-weight: 600;
         }
-        .card {
+        /* إخفاء وإظهار الأقسام */
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        /* البطاقات والزر الرئيسي */
+        .menu-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(139, 92, 246, 0.25);
+            border-color: #8b5cf6;
+            background: #fbf9ff;
+        }
+        .menu-card h3 {
+            color: #5b21b6;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .menu-card span {
+            font-size: 1.5rem;
+            color: #8b5cf6;
+        }
+        /* المحتوى الداخلي للقسم */
+        .content-card {
             background: #ffffff;
             border-radius: 20px;
             padding: 25px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
             border: 2px solid rgba(139, 92, 246, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.25);
-            border-color: #8b5cf6;
-        }
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 15px;
-        }
-        .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: #5b21b6;
-            font-weight: 700;
-        }
-        .quran-text {
-            font-family: 'Amiri', serif;
+        .content-card h2 {
             font-size: 1.5rem;
-            color: #6d28d9;
-            background: #f5f3ff;
-            padding: 15px;
-            border-radius: 10px;
+            color: #5b21b6;
+            margin-bottom: 15px;
             text-align: center;
-            margin: 15px 0;
-            border: 1px dashed #8b5cf6;
         }
-        .card p, .card li {
+        .content-card p, .content-card li {
             font-size: 1.05rem;
             color: #334155;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         ul {
             list-style-type: none;
@@ -102,31 +113,98 @@
         ul li {
             position: relative;
             padding-right: 25px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         ul li::before {
             content: "✨";
             position: absolute;
             right: 0;
         }
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-            color: #ffffff;
-            padding: 12px 25px;
+        /* شبكة الصور التوضيحية المتعددة داخل القسم */
+        .images-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .images-grid img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .images-grid img.full {
+            grid-column: span 2;
+            height: 180px;
+        }
+        /* زر الرجوع للخلف */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #6d28d9;
+            color: #fff;
+            padding: 10px 20px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            transition: background 0.3s ease;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+            transition: background 0.3s;
         }
-        .btn:hover {
-            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        .back-btn:hover {
+            background: #5b21b6;
+        }
+        .quran-box {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: #6d28d9;
+            background: #f5f3ff;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 15px 0;
+            border: 1px dashed #8b5cf6;
+        }
+        /* عداد التحدي */
+        .streak-box {
+            text-align: center;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+        .streak-box h2 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .counter-number {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        .action-btn {
+            background: #ffffff;
+            color: #6d28d9;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .action-btn:active {
+            transform: scale(0.95);
         }
         .footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 0.95rem;
             color: #6d28d9;
             font-weight: 600;
@@ -136,49 +214,201 @@
 <body>
 
     <div class="container">
-        <!-- رأس الموقع -->
+        <!-- رأس الموقع الثابت -->
         <header>
             <h1>طريق النور</h1>
-            <p>املأ حياتك إشراقاً وبداية جديدة نقية</p>
+            <p>ملاذك الآمن للتحرر من إدمان الإباحية والبدء من جديد</p>
         </header>
 
-        <!-- خانة الاستقبال (صدمة الأمل) -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="شروق الأمل">
-            <h2>هل جئت صدفة إلى هنا؟</h2>
-            <p>لا.. بل لأن الله يريدك أن تعود إليه. اصبر ولا تقنط، فمهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
-        </div>
-
-        <!-- خانة مرآة الواقع (الأضرار) -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80" alt="تركيز ووعي">
-            <h2>لماذا تترك هذه العادة وتستعيد حياتك؟</h2>
-            <ul>
-                <li><strong>ضياع التركيز والدراسة:</strong> عقلك يستعيد طاقته وقدرته الجبارة على الحفظ والاستيعاب.</li>
-                <li><strong>فقدان الثقة:</strong> تتخلص من شعور الدونية وتولد من جديد بشخصية قوية واثقة.</li>
-                <li><strong>الظلمة الداخلية:</strong> يتبدل انقباض الصدر إلى راحة نفسية وسكينة لا توصف.</li>
-            </ul>
-        </div>
-
-        <!-- خانة الحلول والقرآن -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1584467735811-62867bcb1615?auto=format&fit=crop&w=600&q=80" alt="قرآن ونور">
-            <h2>الحل الفوري لتقطع سلسلة الإدمان:</h2>
-            <div class="quran-text">
-                { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَى لَهُمْ }
+        <!-- الصفحة الرئيسية (القائمة والأسئلة والأزرار) -->
+        <div id="main-menu" class="section active">
+            
+            <!-- الزر الأول: صدمة الأمل -->
+            <div class="menu-card" onclick="showSection('welcome-section')">
+                <div>
+                    <h3>✨ رسالة البداية والأمل</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">لماذا أنت هنا اليوم؟ اقرأ واطمئن</p>
+                </div>
+                <span>←</span>
             </div>
-            <ul>
-                <li><strong>قاعدة الأماكن المكشوفة:</strong> ممنوع نهائياً استخدام الهاتف وحدك في الغرفة أو الحمام. اجلس دائماً بين أهلك.</li>
-                <li><strong>حظر أوقات الخطر:</strong> الهاتف محظور فور استيقاظك، ومحظور قبل النوم بساعة كاملة.</li>
-            </ul>
-            <a href="#solutions" class="btn">ابدأ رحلة التعافي الآن</a>
+
+            <!-- الزر الثاني: مخاطر الإباحية -->
+            <div class="menu-card" onclick="showSection('dangers-section')">
+                <div>
+                    <h3>⚠️ مخاطر وأضرار الإباحية الصريحة</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">كيف تدمر عقلك ودراستك وحياتك؟</p>
+                </div>
+                <span>←</span>
+            </div>
+
+            <!-- الزر الثالث: الحلول العملية -->
+            <div class="menu-card" onclick="showSection('solutions-section')">
+                <div>
+                    <h3>🛡️ الحلول العملية والشرعية لقطع الإدمان</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">خطوات صارمة وعلاج قرآني للنجاة</p>
+                </div>
+                <span>←</span>
+            </div>
+
+            <!-- الزر الرابع: عداد سلسلة الإقلاع -->
+            <div class="menu-card" onclick="showSection('streak-section')">
+                <div>
+                    <h3>🚀 سلسلة تحدي الإقلاع والتحفيز اليومي</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">ابدأ عداد أيام النقاء وصمد أمام الشهوة</p>
+                </div>
+                <span>←</span>
+            </div>
+
         </div>
 
-        <!-- التذييل -->
+        <!-- 1. قسم رسالة البداية والأمل -->
+        <div id="welcome-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <div class="content-card">
+                <h2>هل جئت صدفة إلى هنا؟</h2>
+                
+                <!-- صور توضيحية متعددة -->
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="أمل وفجر">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80" alt="هدوء وطبيعة">
+                </div>
+
+                <p>لا.. بل لأن الله فيك خير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
+                <p>مهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
+                
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=600&q=80" class="full" alt="بداية جديدة ونقاء">
+                </div>
+                <p><strong>تذكر دائماً:</strong> لم يفت الأوان بعد لتغير حياتك وتكون الشخص الذي يرضاه الله.</p>
+            </div>
+        </div>
+
+        <!-- 2. قسم مخاطر الإباحية -->
+        <div id="dangers-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <div class="content-card">
+                <h2>مخاطر الإباحية الصريحة على حياتك</h2>
+                
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80" alt="تشتت عقلي">
+                    <img src="https://images.unsplash.com/photo-1508873696983-2df5c920ac1c?auto=format&fit=crop&w=400&q=80" alt="عزلة وتعب">
+                </div>
+
+                <ul>
+                    <li><strong>تدمير التركيز والذاكرة:</strong> عقلك يفقد قدرته على الاستيعاب العميق والتفوق الدراسي بسبب كثرة التشتت.</li>
+                    <li><strong>فقدان الثقة بالنفس:</strong> تتولد لديك مشاعر الدونية وضعف الشخصية واجتناب الناس.</li>
+                    <li><strong>الظلمة وانقباض الصدر:</strong> البعد التام عن راحة البال وحلاوة الإيمان والطاعة.</li>
+                    <li><strong>إتلاف خلايا الدماغ العصبية:</strong> بسبب الإفراط في إفراز هرمون الدوبامين بطريقة غير طبيعية.</li>
+                </ul>
+
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" class="full" alt="استعادة الوعي">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. قسم الحلول العملية -->
+        <div id="solutions-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <div class="content-card">
+                <h2>الحل الفوري لقطع الإدمان</h2>
+                
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1584467735811-62867bcb1615?auto=format&fit=crop&w=400&q=80" alt="قرآن كريم">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="رياضة وصحة">
+                </div>
+
+                <div class="quran-box">
+                    { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَى لَهُمْ }
+                </div>
+
+                <ul>
+                    <li><strong>قاعدة الأماكن المكشوفة:</strong> ممنوع منعاً باتاً استخدام الهاتف وحدك في الغرفة المغلقة أو الحمام. اجلس دائماً بين أهلك وأصدقائك.</li>
+                    <li><strong>حظر أوقات الخطر:</strong> الهاتف محظور فور استيقاظك من النوم، ومحظور قبل النوم بساعة كاملة.</li>
+                    <li><strong>تعلق بسورة النور:</strong> اجعل لك ورداً يومياً من تدبر آيات غض البصر لتكون حصناً لقلبك.</li>
+                </ul>
+
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" class="full" alt="حياة صحية ونظيفة">
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. قسم عداد سلسلة الإقلاع -->
+        <div id="streak-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            
+            <div class="streak-box">
+                <h2>عداد أيام النقاء والتعافي</h2>
+                <p>أنت صامد منذ:</p>
+                <div class="counter-number" id="days-count">0</div>
+                <p>يماً مباركاً بلا إباحية!</p>
+                <button class="action-btn" onclick="resetStreak()">إعادة تعيين العداد (بدء توبة جديدة)</button>
+            </div>
+
+            <div class="content-card">
+                <h2>رسالة تشجيعية لك اليوم:</h2>
+                
+                <div class="images-grid">
+                    <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80" class="full" alt="نجاح وإصرار">
+                </div>
+
+                <p id="daily-quote" style="text-align: center; font-weight: bold; color: #6d28d9;"></p>
+                <p style="text-align: center; margin-top: 10px;">استمر يا بطل، الصعوبة في الأيام الأولى فقط، ثم ستحس بحلاوة الحرية والنقاء! الله معك ولا يضيع أجر من جاهد نفسه.</p>
+            </div>
+        </div>
+
+        <!-- التذييل الثابت -->
         <div class="footer">
-            <p>✨ تذكر دائماً: لم يفت الأوان بعد لتكون الشخص الذي ترضاه ويضرض عنه ربك ✨</p>
+            <p>✨ اصنع التغيير بنفسك.. لا يفت الأوان أبداً ✨</p>
         </div>
     </div>
 
+    <!-- كود JavaScript للتحكم بالصفحات والعداد -->
+    <script>
+        // دالة التنقل بين الأقسام
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // نظام عداد الأيام (يُحفظ في المتصفح تلقائياً)
+        function initStreak() {
+            let startDate = localStorage.getItem('cleanStartDate');
+            if (!startDate) {
+                startDate = new Date().getTime();
+                localStorage.setItem('cleanStartDate', startDate);
+            }
+            
+            let now = new Date().getTime();
+            let diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+            if(diffDays < 0) diffDays = 0;
+            
+            document.getElementById('days-count').innerText = diffDays;
+
+            // رسائل تحفيزية متجددة
+            const quotes = [
+                "«الجهاد الحقيقي هو جهاد النفس الأمارة بالسوء، واصل الصمود!»",
+                "«كل ثانية تقاوم فيها الشهوة تكتب في حسناتك وترفع قدرك.»",
+                "«تخفيف تعلقك بالهاتف هو بوابتك الأولى للسلام النفسي.»",
+                "«الله يرى صدق محاولتك، فلا تستسلم أبداً مهما أخطأت وتب!»"
+            ];
+            let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('daily-quote').innerText = randomQuote;
+        }
+
+        function resetStreak() {
+            if(confirm("هل أنت متأكد من إعادة تعيين العداد والبدء من جديد؟ توب إلى الله وانطلق بقوة!")) {
+                localStorage.setItem('cleanStartDate', new Date().getTime());
+                initStreak();
+            }
+        }
+
+        // تشغيل العداد عند فتح الصفحة
+        initStreak();
+    </script>
 </body>
 </html>
