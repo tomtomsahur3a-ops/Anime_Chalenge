@@ -14,77 +14,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>طريق النور - البداية الجديدة</title>
+    <!-- استيراد خطوط عربية مزخرفة وعصرية من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
+            color: #1e1b4b;
+            line-height: 1.7;
             padding: 20px;
+            min-height: 100vh;
         }
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 20px;
         }
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         header h1 {
-            font-size: 1.8rem;
-            color: #38bdf8;
+            font-size: 2.5rem;
+            color: #6d28d9;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
             margin-bottom: 10px;
         }
+        header p {
+            font-size: 1.1rem;
+            color: #4c1d95;
+            font-weight: 600;
+        }
         .card {
-            background-color: #1e293b;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.25);
+            border-color: #8b5cf6;
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            border-right: 5px solid #38bdf8;
-        }
-        .card.warning {
-            border-right-color: #f43f5e;
-        }
-        .card.success {
-            border-right-color: #10b981;
+            margin-bottom: 15px;
         }
         .card h2 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 12px;
-            color: #e2e8f0;
+            color: #5b21b6;
+            font-weight: 700;
+        }
+        .quran-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            color: #6d28d9;
+            background: #f5f3ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            border: 1px dashed #8b5cf6;
         }
         .card p, .card li {
-            font-size: 1rem;
-            color: #94a3b8;
-            margin-bottom: 8px;
+            font-size: 1.05rem;
+            color: #334155;
+            margin-bottom: 10px;
         }
         ul {
             list-style-type: none;
         }
         ul li {
             position: relative;
-            padding-right: 20px;
-            margin-bottom: 10px;
+            padding-right: 25px;
+            margin-bottom: 12px;
         }
         ul li::before {
-            content: "•";
-            color: #38bdf8;
-            font-weight: bold;
+            content: "✨";
             position: absolute;
             right: 0;
         }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        }
         .footer {
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #64748b;
+            margin-top: 40px;
+            font-size: 0.95rem;
+            color: #6d28d9;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -94,38 +139,44 @@
         <!-- رأس الموقع -->
         <header>
             <h1>طريق النور</h1>
-            <p>بداية جديدة لقلب مطمئن</p>
+            <p>املأ حياتك إشراقاً وبداية جديدة نقية</p>
         </header>
 
         <!-- خانة الاستقبال (صدمة الأمل) -->
         <div class="card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="شروق الأمل">
             <h2>هل جئت صدفة إلى هنا؟</h2>
-            <p>لا.. بل لأن الله يريدك أن تعود إليه. اصبر ولا تقنط، فمهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك.</p>
+            <p>لا.. بل لأن الله يريدك أن تعود إليه. اصبر ولا تقنط، فمهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
         </div>
 
         <!-- خانة مرآة الواقع (الأضرار) -->
-        <div class="card warning">
-            <h2>لماذا دمرت هذه العادة حياتك؟</h2>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80" alt="تركيز ووعي">
+            <h2>لماذا تترك هذه العادة وتستعيد حياتك؟</h2>
             <ul>
-                <li><strong>ضياع التركيز والدراسة:</strong> عقلك أصبح مشتتاً وغير قادر على الاستيعاب العميق.</li>
-                <li><strong>فقدان الثقة:</strong> شعور خفي بالدونية وضعف الشخصية أمام نفسك.</li>
-                <li><strong>الظلمة الداخلية:</strong> انقباض مستمر في الصدر وبعد تام عن راحة البال.</li>
+                <li><strong>ضياع التركيز والدراسة:</strong> عقلك يستعيد طاقته وقدرته الجبارة على الحفظ والاستيعاب.</li>
+                <li><strong>فقدان الثقة:</strong> تتخلص من شعور الدونية وتولد من جديد بشخصية قوية واثقة.</li>
+                <li><strong>الظلمة الداخلية:</strong> يتبدل انقباض الصدر إلى راحة نفسية وسكينة لا توصف.</li>
             </ul>
         </div>
 
-        <!-- خانة طوق النجاة (الحلول الفورية) -->
-        <div class="card success">
+        <!-- خانة الحلول والقرآن -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1584467735811-62867bcb1615?auto=format&fit=crop&w=600&q=80" alt="قرآن ونور">
             <h2>الحل الفوري لتقطع سلسلة الإدمان:</h2>
+            <div class="quran-text">
+                { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَى لَهُمْ }
+            </div>
             <ul>
-                <li><strong>قاعدة الأماكن المكشوفة:</strong> ممنوع نهائياً استخدام الهاتف وحدك في الغرفة أو الحمام. اجلس دائماً بين أهلك أو أصدقائك.</li>
-                <li><strong>حظر أوقات الخطر:</strong> الهاتف محظور فور استيقاظك من النوم، ومحظور قبل النوم بساعة كاملة.</li>
-                <li><strong>علاج القرآن:</strong> حصن بصرك واجعل لك تعلقاً بسورة النور وتدبر آيات غض البصر.</li>
+                <li><strong>قاعدة الأماكن المكشوفة:</strong> ممنوع نهائياً استخدام الهاتف وحدك في الغرفة أو الحمام. اجلس دائماً بين أهلك.</li>
+                <li><strong>حظر أوقات الخطر:</strong> الهاتف محظور فور استيقاظك، ومحظور قبل النوم بساعة كاملة.</li>
             </ul>
+            <a href="#solutions" class="btn">ابدأ رحلة التعافي الآن</a>
         </div>
 
         <!-- التذييل -->
         <div class="footer">
-            <p>تذكر دائماً: لم يفت الأوان بعد.</p>
+            <p>✨ تذكر دائماً: لم يفت الأوان بعد لتكون الشخص الذي ترضاه ويضرض عنه ربك ✨</p>
         </div>
     </div>
 
