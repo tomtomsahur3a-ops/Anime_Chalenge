@@ -26,7 +26,7 @@
         body {
             background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
             color: #1e1b4b;
-            line-height: 1.7;
+            line-height: 1.8;
             padding: 20px;
             min-height: 100vh;
         }
@@ -62,7 +62,7 @@
         .menu-card {
             background: #ffffff;
             border-radius: 20px;
-            padding: 20px 25px;
+            padding: 22px 25px;
             margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(109, 40, 217, 0.1);
             border: 2px solid rgba(139, 92, 246, 0.2);
@@ -74,7 +74,7 @@
         }
         .menu-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(109, 40, 217, 0.25);
+            box-shadow: 0 12px 25px rgba(139, 92, 246, 0.25);
             border-color: #8b5cf6;
             background: #fbf9ff;
         }
@@ -91,7 +91,7 @@
         .content-card {
             background: #ffffff;
             border-radius: 20px;
-            padding: 25px;
+            padding: 30px;
             margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
             border: 2px solid rgba(139, 92, 246, 0.2);
@@ -99,44 +99,26 @@
         .content-card h2 {
             font-size: 1.5rem;
             color: #5b21b6;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
         }
         .content-card p, .content-card li {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #334155;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         ul {
             list-style-type: none;
         }
         ul li {
             position: relative;
-            padding-right: 25px;
-            margin-bottom: 10px;
+            padding-right: 30px;
+            margin-bottom: 15px;
         }
         ul li::before {
-            content: "✨";
+            content: "💡";
             position: absolute;
             right: 0;
-        }
-        /* شبكة الصور التوضيحية النقية داخل القسم */
-        .images-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 20px 0;
-        }
-        .images-grid img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .images-grid img.full {
-            grid-column: span 2;
-            height: 180px;
         }
         /* زر الرجوع للخلف */
         .back-btn {
@@ -145,7 +127,7 @@
             gap: 8px;
             background: #6d28d9;
             color: #fff;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
@@ -158,21 +140,22 @@
         }
         .quran-box {
             font-family: 'Amiri', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #6d28d9;
             background: #f5f3ff;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            margin: 15px 0;
-            border: 1px dashed #8b5cf6;
+            margin: 20px 0;
+            border: 2px dashed #8b5cf6;
+            line-height: 2;
         }
         /* عداد التحدي */
         .streak-box {
             text-align: center;
             background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
             color: #fff;
-            padding: 25px;
+            padding: 30px;
             border-radius: 20px;
             margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
@@ -182,7 +165,7 @@
             margin-bottom: 10px;
         }
         .counter-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
             margin: 10px 0;
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
@@ -191,11 +174,11 @@
             background: #ffffff;
             color: #6d28d9;
             border: none;
-            padding: 10px 25px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: transform 0.2s;
         }
@@ -266,19 +249,8 @@
             <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
             <div class="content-card">
                 <h2>هل جئت صدفة إلى هنا؟</h2>
-                
-                <!-- صور توضيحية نقية (طبيعة وفجر) -->
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="طبيعة هادئة">
-                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80" alt="شروق النور">
-                </div>
-
-                <p>لا.. بل لأن الله يريد بك خيرا، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
+                <p>لا.. بل لأن الله بك خير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
                 <p>مهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
-                
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=600&q=80" class="full" alt="بداية جديدة ونقاء">
-                </div>
                 <p><strong>تذكر دائماً:</strong> لم يفت الأوان بعد لتغير حياتك وتكون الشخص الذي يرضاه الله.</p>
             </div>
         </div>
@@ -288,23 +260,12 @@
             <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
             <div class="content-card">
                 <h2>مخاطر الإباحية الصريحة على حياتك</h2>
-                
-                <!-- صور توضيحية نقية ومعبرة -->
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80" alt="تركيز ووعي">
-                    <img src="https://images.unsplash.com/photo-1508873696983-2df5c920ac1c?auto=format&fit=crop&w=400&q=80" alt="تأمل وسكون">
-                </div>
-
                 <ul>
                     <li><strong>تدمير التركيز والذاكرة:</strong> عقلك يفقد قدرته على الاستيعاب العميق والتفوق الدراسي بسبب كثرة التشتت.</li>
                     <li><strong>فقدان الثقة بالنفس:</strong> تتولد لديك مشاعر الدونية وضعف الشخصية واجتناب الناس.</li>
                     <li><strong>الظلمة وانقباض الصدر:</strong> البعد التام عن راحة البال وحلاوة الإيمان والطاعة.</li>
                     <li><strong>إتلاف خلايا الدماغ العصبية:</strong> بسبب الإفراط في إفراز هرمون الدوبامين بطريقة غير طبيعية مدمرة.</li>
                 </ul>
-
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" class="full" alt="استعادة الوعي">
-                </div>
             </div>
         </div>
 
@@ -314,12 +275,6 @@
             <div class="content-card">
                 <h2>الحل الفوري لقطع الإدمان</h2>
                 
-                <!-- صور توضيحية نقية (مصحف وطبيعة) -->
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1584467735811-62867bcb1615?auto=format&fit=crop&w=400&q=80" alt="قرآن كريم">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="حياة صحية">
-                </div>
-
                 <div class="quran-box">
                     { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَى لَهُمْ }
                 </div>
@@ -327,12 +282,8 @@
                 <ul>
                     <li><strong>قاعدة الأماكن المكشوفة:</strong> ممنوع منعاً باتاً استخدام الهاتف وحدك في الغرفة المغلقة أو الحمام. اجلس دائماً بين أهلك وأصدقائك.</li>
                     <li><strong>حظر أوقات الخطر:</strong> الهاتف محظور فور استيقاظك من النوم، ومحظور قبل النوم بساعة كاملة.</li>
-                    <li><strong>تعلق بسورة النور:</strong> اجعل لك ورداً يومياً من تدبر آيات غض البصر لتكون حصنًا لقلبك.</li>
+                    <li><strong>تعلق بسورة النور:</strong> اجعل لك ورداً يومياً من تدبر آيات غض البصر لتكون حصناً لقلبك.</li>
                 </ul>
-
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" class="full" alt="حياة نقية وسليمة">
-                </div>
             </div>
         </div>
 
@@ -350,19 +301,14 @@
 
             <div class="content-card">
                 <h2>رسالة تشجيعية لك اليوم:</h2>
-                
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80" class="full" alt="نجاح وإصرار">
-                </div>
-
-                <p id="daily-quote" style="text-align: center; font-weight: bold; color: #6d28d9;"></p>
-                <p style="text-align: center; margin-top: 10px;">استمر يا بطل، الصعوبة في الأيام الأولى فقط، ثم ستحس بحلاوة الحرية والنقاء! الله معك ولا يضيع أجر من جاهد نفسه.</p>
+                <p id="daily-quote" style="text-align: center; font-weight: bold; color: #6d28d9; font-size: 1.2rem;"></p>
+                <p style="text-align: center; margin-top: 15px;">استمر يا بطل، الصعوبة في الأيام الأولى فقط، ثم ستحس بحلاوة الحرية والنقاء! الله معك ولا يضيع أجر من جاهد نفسه.</p>
             </div>
         </div>
 
         <!-- التذييل الثابت -->
         <div class="footer">
-            <p>✨ اصنع التغيير بنفسك.. لم يفت الأوان أبداً ✨</p>
+            <p>✨ اصنع التغيير بنفسك.. لا يفت الأوان أبداً ✨</p>
         </div>
     </div>
 
