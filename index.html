@@ -185,6 +185,26 @@
         .action-btn:active {
             transform: scale(0.95);
         }
+        /* زر تفعيل إشعارات الويب */
+        .notif-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #7c3aed;
+            color: #fff;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            transition: background 0.3s;
+        }
+        .notif-btn:hover {
+            background: #6d28d9;
+        }
         .footer {
             text-align: center;
             margin-top: 30px;
@@ -242,6 +262,11 @@
                 <span>←</span>
             </div>
 
+            <!-- زر تفعيل إشعارات الويب اليومية -->
+            <button class="notif-btn" onclick="requestNotificationPermission()">
+                🔔 تفعيل رسائل وتنبيهات الويب التحفيزية
+            </button>
+
         </div>
 
         <!-- 1. قسم رسالة البداية والأمل -->
@@ -249,7 +274,7 @@
             <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
             <div class="content-card">
                 <h2>هل جئت صدفة إلى هنا؟</h2>
-                <p>لا.. بل لأن الله يريد بك خيرا ، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
+                <p>لا.. بل لأن الله بك خير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
                 <p>مهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
                 <p><strong>تذكر دائماً:</strong> لم يفت الأوان بعد لتغير حياتك وتكون الشخص الذي يرضاه الله.</p>
             </div>
@@ -308,11 +333,11 @@
 
         <!-- التذييل الثابت -->
         <div class="footer">
-            <p>✨ اصنع التغيير بنفسك.. لم يفت الأوان أبداً ✨</p>
+            <p>✨ اصنع التغيير بنفسك.. لا يفت الأوان أبداً ✨</p>
         </div>
     </div>
 
-    <!-- كود JavaScript للتحكم بالصفحات والعداد -->
+    <!-- كود JavaScript للتحكم بالصفحات، العداد، وإشعارات الويب -->
     <script>
         // دالة التنقل بين الأقسام
         function showSection(sectionId) {
@@ -353,6 +378,27 @@
                 localStorage.setItem('cleanStartDate', new Date().getTime());
                 initStreak();
             }
+        }
+
+        // وظيفة تفعيل طلب إشعارات الويب
+        function requestNotificationPermission() {
+            if (!("Notification" in window)) {
+                alert("متصفحك لا يدعم إشعارات الويب للأسف.");
+                return;
+            }
+
+            Notification.requestPermission().then(function (permission) {
+                if (permission === "granted") {
+                    alert("تم تفعيل إشعارات الويب بنجاح! ستصلك رسائل تحفيزية بإذن الله.");
+                    // إرسال إشعار تجريبي فوري للتأكد
+                    new Notification("طريق النور ✨", {
+                        body: "أهلاً بك يا بطل. تذكر دائماً أن الله يراك، واصل طريق النقاء والثبات!",
+                        icon: ""
+                    });
+                } else {
+                    alert("تم رفض إذن الإشعارات. يمكنك تفعيلها لاحقاً من إعدادات المتصفح.");
+                }
+            });
         }
 
         // تشغيل العداد عند فتح الصفحة
