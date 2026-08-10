@@ -13,7 +13,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سبيل التوبة من الإباحية - التحرر من إدمان الإباحية</title>
+    <title>طريق النور - التحرر من إدمان الإباحية</title>
     <!-- خطوط عربية مزخرفة وعصرية -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -37,7 +37,7 @@
         }
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         header h1 {
             font-size: 2.3rem;
@@ -51,6 +51,35 @@
             color: #4c1d95;
             font-weight: 600;
         }
+        /* شريط التنقل السريع العلوي */
+        .quick-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+        .quick-nav::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-chip {
+            background: #ffffff;
+            color: #6d28d9;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(109, 40, 217, 0.05);
+            transition: all 0.2s;
+        }
+        .nav-chip:hover {
+            background: #7c3aed;
+            color: #fff;
+        }
         /* إخفاء وإظهار الأقسام */
         .section {
             display: none;
@@ -62,8 +91,8 @@
         .menu-card {
             background: #ffffff;
             border-radius: 20px;
-            padding: 22px 25px;
-            margin-bottom: 20px;
+            padding: 20px 22px;
+            margin-bottom: 15px;
             box-shadow: 0 8px 20px rgba(109, 40, 217, 0.1);
             border: 2px solid rgba(139, 92, 246, 0.2);
             display: flex;
@@ -80,13 +109,32 @@
         }
         .menu-card h3 {
             color: #5b21b6;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
         }
         .menu-card span {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #8b5cf6;
         }
+
+        /* تنسيق خاص بالبطاقة الذهبية اللامعة (الحل الذهبي للقرآن) */
+        .menu-card.gold-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 2px solid #f59e0b;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+        .menu-card.gold-card:hover {
+            background: linear-gradient(135deg, #fef3c7 100%, #fde68a 100%);
+            border-color: #d97706;
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
+        }
+        .menu-card.gold-card h3 {
+            color: #92400e;
+        }
+        .menu-card.gold-card span {
+            color: #d97706;
+        }
+
         /* المحتوى الداخلي للقسم */
         .content-card {
             background: #ffffff;
@@ -97,13 +145,13 @@
             border: 2px solid rgba(139, 92, 246, 0.2);
         }
         .content-card h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #5b21b6;
             margin-bottom: 20px;
             text-align: center;
         }
         .content-card p, .content-card li {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #334155;
             margin-bottom: 15px;
         }
@@ -140,10 +188,10 @@
         }
         .quran-box {
             font-family: 'Amiri', serif;
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: #6d28d9;
             background: #f5f3ff;
-            padding: 20px;
+            padding: 18px;
             border-radius: 15px;
             text-align: center;
             margin: 20px 0;
@@ -197,7 +245,7 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.1rem;
-            margin-top: 20px;
+            margin-top: 15px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
             transition: background 0.3s;
@@ -205,10 +253,34 @@
         .notif-btn:hover {
             background: #6d28d9;
         }
+        /* تذييل الموقع الاحترافي */
         .footer {
             text-align: center;
             margin-top: 30px;
-            font-size: 0.95rem;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #6d28d9;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer p {
+            font-size: 0.9rem;
             color: #6d28d9;
             font-weight: 600;
         }
@@ -223,9 +295,45 @@
             <p>ملاذك الآمن للتحرر من إدمان الإباحية والبدء من جديد</p>
         </header>
 
+        <!-- شريط التنقل السريع العلوي -->
+        <div class="quick-nav">
+            <div class="nav-chip" onclick="showSection('main-menu')">🏠 الرئيسية</div>
+            <div class="nav-chip" onclick="showSection('quran-effect-section')">📖 أثر القرآن</div>
+            <div class="nav-chip" onclick="showSection('emergency-section')">🚨 طوارئ الضعف</div>
+            <div class="nav-chip" onclick="showSection('articles-section')">📚 المقالات</div>
+            <div class="nav-chip" onclick="showSection('streak-section')">🚀 العداد</div>
+        </div>
+
         <!-- الصفحة الرئيسية (القائمة والأزرار) -->
         <div id="main-menu" class="section active">
             
+            <!-- أثر القرآن على القلب (الحل الذهبي) -->
+            <div class="menu-card gold-card" onclick="showSection('quran-effect-section')">
+                <div>
+                    <h3>⭐ الحل الذهبي: أثر القرآن على القلب (أسأل مجرب)</h3>
+                    <p style="font-size: 0.9rem; color: #b45309;">علاج الهجر الطويل لكلام الله والآيات المنجية</p>
+                </div>
+                <span>✨</span>
+            </div>
+
+            <!-- أدوات الطوارئ ولحظات الضعف -->
+            <div class="menu-card" onclick="showSection('emergency-section')">
+                <div>
+                    <h3>🚨 أدوات الطوارئ ولحظات الضعف الفورية</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">طوق نجاة سريع عندما تباغتك الشهوة</p>
+                </div>
+                <span>←</span>
+            </div>
+
+            <!-- أحدث المقالات والنصائح -->
+            <div class="menu-card" onclick="showSection('articles-section')">
+                <div>
+                    <h3>📚 أحدث المقالات والنصائح اليومية</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">فهم العميق للمشكلة وأسباب الترويج لها</p>
+                </div>
+                <span>←</span>
+            </div>
+
             <!-- الزر الأول: رسالة البداية والأمل -->
             <div class="menu-card" onclick="showSection('welcome-section')">
                 <div>
@@ -269,12 +377,77 @@
 
         </div>
 
+        <!-- أثر القرآن على القلب -->
+        <div id="quran-effect-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <div class="content-card">
+                <h2>أثر القرآن على القلب (الحل الذهبي)</h2>
+                <p>من واقع التجربة الشخصية؛ أحد أكبر وأبرز أسباب السقوط المستمر في بئر الإدمان هو <strong>الهجر الطويل لكلام الله عز وجل</strong>. عندما يبتعد القلب عن القرآن، يقسو وتستهويه الشبهات والشهوات بسهولة.</p>
+                <p>لذا، فإن العودة الصادقة لكتاب الله هي طوق النجاة الحقيقي والدواء الأسرع لإنارة البصيرة وإحياء القلب من جديد.</p>
+                
+                <h3 style="color: #6d28d9; margin-top: 20px; font-size: 1.2rem;">الآيات المنجية والتحذيرية:</h3>
+                
+                <div class="quran-box">
+                    { وَلَا تَقْرَبُوا الزِّنَىٰ ۖ إِنَّهُ كَانَ فَاحِشَةً وَسَاءَ سَبِيلًا }<br>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة الإسراء: 32]</span>
+                </div>
+
+                <div class="quran-box">
+                    { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ۚ ذَلِكَ أَزْكَىٰ لَهُمْ ۗ إِنَّ اللَّهَ خَبِيرٌ بِمَا يَصْنَعُونَ }<br>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة النور: 30]</span>
+                </div>
+
+                <div class="quran-box">
+                    { ۞ قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنْفُسِهِمْ لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ }<br>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة الزمر: 53]</span>
+                </div>
+
+                <div class="quran-box">
+                    { وَالَّذِينَ لَا يَدْعُونَ مَعَ اللَّهِ إِلَٰهًا آخَرَ وَلَا يَقْتُلُونَ النَّفْسَ الَّتِي حَرَّمَ اللَّهُ إِلَّا بِالْحَقِّ وَلَا يَزْنُونَ ۚ وَمَنْ يَفْعَلْ ذَلِكَ يَلْقَ أَثَامًا (68) يُضَاعَفْ لَهُ الْعَذَابُ يَوْمَ الْقِيَامَةِ وَيَخْلُدْ فِيهِ مُهَانًا (69) إِلَّا مَنْ تَابَ وَآمَنَ وَعَمِلَ عَمَلًا صَالِحًا فَأُولَٰئِكَ يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ ۗ وَكَانَ اللَّهُ غَفُورًا رَّحِيمًا (70) }<br>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة الفرقان: 68 إلى 70]</span>
+                </div>
+
+                <h3 style="color: #6d28d9; margin-top: 25px; font-size: 1.2rem;">سور نقترح عليك مداومة قراءتها وتدبرها:</h3>
+                <ul>
+                    <li><strong>سورة النور:</strong> لتستضيء بنور أحكامها وعفتها وغض البصر.</li>
+                    <li><strong>سورة البقرة:</strong> لطرد الشياطين وكسر قسوة القلب وتحصين النفس.</li>
+                    <li><strong>سورة التوبة:</strong> لتقوية جانب الخشية، وتجديد العزم، والتعرف على حال الصادقين.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- أدوات الطوارئ ولحظات الضعف -->
+        <div id="emergency-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <div class="content-card">
+                <h2>🚨 طوق نجاة: ماذا تفعل في لحظة الضعف المفاجئة؟</h2>
+                <p>إذا باغتتك الشهوة واشتدت الرغبة، طبق هذه الخطوات الفورية في أول 60 ثانية:</p>
+                <ul>
+                    <li><strong>الخطوة الأولى (الهروب الفوري):</strong> اترك الهاتف من يدك فوراً، وقم من مكانك واخرج من الغرفة إلى مكان فيه أشخاص أو العائلة.</li>
+                    <li><strong>الخطوة الثانية (إطفاء حرارة الشهوة):</strong> اذهب فوراً وتوضأ، فالماء البارد والوضوء يطفئان نزغات الشيطان.</li>
+                    <li><strong>الخطوة الثالثة (تغيير الوضعية):</strong> صلِّ ركعتين واقترب من الله في تلك اللحظة الصعبة، واعلم أن ثباتك فيها يكتب لك الأجر العظيم.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- أحدث المقالات والنصائح -->
+        <div id="articles-section" class="section">
+            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <div class="content-card">
+                <h2>📚 أحدث المقالات التوعوية</h2>
+                <ul>
+                    <li><strong>أسباب الترويج للعادة السرية والإباحية عالمياً:</strong> احذر من هذا الفخ الممنهج الذي يستهدف تدمير طاقات الشباب وشغلهم عن معالي الأمور.</li>
+                    <li><strong>لماذا أتعهد بالتغيير ثم أعود؟</strong> وكيف تكسر حلقة الاستسلام المفرغة وتصنع بداية حقيقية لا رجعة فيها.</li>
+                </ul>
+            </div>
+        </div>
+
         <!-- 1. قسم رسالة البداية والأمل -->
         <div id="welcome-section" class="section">
             <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
             <div class="content-card">
                 <h2>هل جئت صدفة إلى هنا؟</h2>
-                <p>لا.. بل لأن الله بك خير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
+                <p>لا.. بل لأن الله يريد لك الخير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
                 <p>مهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
                 <p><strong>تذكر دائماً:</strong> لم يفت الأوان بعد لتغير حياتك وتكون الشخص الذي يرضاه الله.</p>
             </div>
@@ -331,9 +504,16 @@
             </div>
         </div>
 
-        <!-- التذييل الثابت -->
+        <!-- التذييل الاحترافي المنظم -->
         <div class="footer">
-            <p>✨️ اصنع التغيير بنفسك.. لم يفت الأوان بعد ✨</p>
+            <div class="footer-links">
+                <a href="#" onclick="showSection('main-menu'); return false;">الرئيسية</a>
+                <a href="#" onclick="showSection('quran-effect-section'); return false;">أثر القرآن</a>
+                <a href="#" onclick="showSection('emergency-section'); return false;">طوارئ</a>
+                <a href="#" onclick="showSection('articles-section'); return false;">المقالات</a>
+                <a href="#" onclick="showSection('streak-section'); return false;">العداد</a>
+            </div>
+            <p>✨ اصنع التغيير بنفسك.. لم يفت الأوان بعد ✨</p>
         </div>
     </div>
 
