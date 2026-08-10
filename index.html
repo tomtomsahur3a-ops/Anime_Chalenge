@@ -59,6 +59,7 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
         .quick-nav::-webkit-scrollbar {
             display: none;
@@ -76,9 +77,10 @@
             box-shadow: 0 2px 8px rgba(109, 40, 217, 0.05);
             transition: all 0.2s;
         }
-        .nav-chip:hover {
+        .nav-chip:hover, .nav-chip.active-chip {
             background: #7c3aed;
             color: #fff;
+            border-color: #7c3aed;
         }
         /* إخفاء وإظهار الأقسام */
         .section {
@@ -87,6 +89,45 @@
         .section.active {
             display: block;
         }
+        /* بطاقة الصورة التعبيرية في الواجهة الرئيسية */
+        .hero-image-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.15);
+            border: 2px solid rgba(139, 92, 246, 0.25);
+            text-align: center;
+        }
+        .hero-image-card img {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        .hero-image-card h3 {
+            color: #6d28d9;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            font-weight: 900;
+        }
+        .hero-image-card p {
+            color: #4c1d95;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* صور الأقسام الداخلية */
+        .section-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         /* البطاقات والزر الرئيسي */
         .menu-card {
             background: #ffffff;
@@ -295,18 +336,28 @@
             <p>ملاذك الآمن للتحرر من إدمان الإباحية والبدء من جديد</p>
         </header>
 
-        <!-- شريط التنقل السريع العلوي -->
+        <!-- شريط التنقل السريع العلوي (يشمل الأقسام الـ 7 كاملة) -->
         <div class="quick-nav">
-            <div class="nav-chip" onclick="showSection('main-menu')">🏠 الرئيسية</div>
-            <div class="nav-chip" onclick="showSection('quran-effect-section')">📖 أثر القرآن</div>
-            <div class="nav-chip" onclick="showSection('emergency-section')">🚨 طوارئ الضعف</div>
-            <div class="nav-chip" onclick="showSection('articles-section')">📚 المقالات</div>
-            <div class="nav-chip" onclick="showSection('streak-section')">🚀 العداد</div>
+            <div class="nav-chip" id="chip-main-menu" onclick="showSection('main-menu')">🏠 الرئيسية</div>
+            <div class="nav-chip" id="chip-quran-effect-section" onclick="showSection('quran-effect-section')">⭐ الحل الذهبي للقرآن</div>
+            <div class="nav-chip" id="chip-emergency-section" onclick="showSection('emergency-section')">🚨 طوارئ الضعف</div>
+            <div class="nav-chip" id="chip-articles-section" onclick="showSection('articles-section')">📚 المقالات</div>
+            <div class="nav-chip" id="chip-welcome-section" onclick="showSection('welcome-section')">✨ رسالة الأمل</div>
+            <div class="nav-chip" id="chip-dangers-section" onclick="showSection('dangers-section')">⚠️ مخاطر الإباحية</div>
+            <div class="nav-chip" id="chip-solutions-section" onclick="showSection('solutions-section')">🛡️ الحلول العملية</div>
+            <div class="nav-chip" id="chip-streak-section" onclick="showSection('streak-section')">🚀 العداد</div>
         </div>
 
         <!-- الصفحة الرئيسية (القائمة والأزرار) -->
         <div id="main-menu" class="section active">
             
+            <!-- بطاقة الصورة التعبيرية الأولى في الواجهة الرئيسية -->
+            <div class="hero-image-card">
+                <img src="37076.jpg" alt="الانطلاق والتحرر من القيود">
+                <h3>حان الوقت لكسر القيود والانطلاق نحو النور!</h3>
+                <p>اصنع حريتك اليوم، واهزم إدمانك بكل عزيمة وإرادة صلبة.</p>
+            </div>
+
             <!-- أثر القرآن على القلب (الحل الذهبي) -->
             <div class="menu-card gold-card" onclick="showSection('quran-effect-section')">
                 <div>
@@ -420,6 +471,8 @@
         <div id="emergency-section" class="section">
             <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
             <div class="content-card">
+                <!-- صورة طوارئ الضعف (شاب ينظر للهاتف في الظلام) -->
+                <img src="37077.jpg" alt="خطر العزلة والهاتف في الظلام" class="section-img">
                 <h2>🚨 طوق نجاة: ماذا تفعل في لحظة الضعف المفاجئة؟</h2>
                 <p>إذا باغتتك الشهوة واشتدت الرغبة، طبق هذه الخطوات الفورية في أول 60 ثانية:</p>
                 <ul>
@@ -446,6 +499,8 @@
         <div id="welcome-section" class="section">
             <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
             <div class="content-card">
+                <!-- صورة رسالة الأمل والندم (شاب يمسك رأسه) -->
+                <img src="37078.jpg" alt="الندم والتوبة الصادقة" class="section-img">
                 <h2>هل جئت صدفة إلى هنا؟</h2>
                 <p>لا.. بل لأن الله يريد لك الخير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
                 <p>مهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
@@ -519,16 +574,24 @@
 
     <!-- كود JavaScript للتحكم بالصفحات، العداد، وإشعارات الويب -->
     <script>
-        // دالة التنقل بين الأقسام
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
             sections.forEach(sec => sec.classList.remove('active'));
             
             document.getElementById(sectionId).classList.add('active');
+
+            const chips = document.querySelectorAll('.quick-nav .nav-chip');
+            chips.forEach(chip => chip.classList.remove('active-chip'));
+            
+            const activeChip = document.getElementById('chip-' + sectionId);
+            if(activeChip) {
+                activeChip.classList.add('active-chip');
+                activeChip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // نظام عداد الأيام (يُحفظ في المتصفح تلقائياً)
         function initStreak() {
             let startDate = localStorage.getItem('cleanStartDate');
             if (!startDate) {
@@ -542,7 +605,6 @@
             
             document.getElementById('days-count').innerText = diffDays;
 
-            // رسائل تحفيزية متجددة
             const quotes = [
                 "«الجهاد الحقيقي هو جهاد النفس الأمارة بالسوء، واصل الصمود!»",
                 "«كل ثانية تقاوم فيها الشهوة تكتب في حسناتك وترفع قدرك.»",
@@ -560,7 +622,6 @@
             }
         }
 
-        // وظيفة تفعيل طلب إشعارات الويب
         function requestNotificationPermission() {
             if (!("Notification" in window)) {
                 alert("متصفحك لا يدعم إشعارات الويب للأسف.");
@@ -570,7 +631,6 @@
             Notification.requestPermission().then(function (permission) {
                 if (permission === "granted") {
                     alert("تم تفعيل إشعارات الويب بنجاح! ستصلك رسائل تحفيزية بإذن الله.");
-                    // إرسال إشعار تجريبي فوري للتأكد
                     new Notification("طريق النور ✨", {
                         body: "أهلاً بك يا بطل. تذكر دائماً أن الله يراك، واصل طريق النقاء والثبات!",
                         icon: ""
@@ -581,7 +641,6 @@
             });
         }
 
-        // تشغيل العداد عند فتح الصفحة
         initStreak();
     </script>
 </body>
