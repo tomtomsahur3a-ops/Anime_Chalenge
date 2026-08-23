@@ -14,51 +14,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عِفّة - منصة للتحرر من إدمان الإباحية</title>
+    
+    <!-- إعدادات الأيقونة والمعاينة عند المشاركة -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="منصة عِفَّـة - إيقاظ الضمير ومواجهة النفس">
+    <meta property="og:description" content="طريقك نحو العفة والتحصين الشخصي واليقظة الروحية.">
+    <meta property="og:image" content="logo.jpg">
+
     <!-- خطوط عربية مزخرفة وعصرية -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --gold-main: #ca8a04;
+            --gold-glow: #eab308;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
-            color: #1e1b4b;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.8;
             padding: 20px;
             min-height: 100vh;
         }
         .container {
-            max-width: 650px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
+        
+        /* الهيدر والشعار */
         header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             margin-bottom: 25px;
         }
+        .app-logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid var(--gold-main);
+            box-shadow: 0 0 25px rgba(202, 138, 4, 0.35);
+            margin-bottom: 12px;
+            object-fit: cover;
+        }
         header h1 {
-            font-size: 2.5rem;
-            color: #6d28d9;
+            font-size: 2.6rem;
+            color: var(--gold-main);
             font-weight: 900;
-            text-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+            text-shadow: 0 0 15px rgba(202, 138, 4, 0.3);
             margin-bottom: 5px;
+            font-family: 'Tajawal', sans-serif;
         }
         header p {
-            font-size: 1.1rem;
-            color: #4c1d95;
+            font-size: 1.05rem;
+            color: var(--text-sub);
             font-weight: 600;
             max-width: 550px;
             margin: 0 auto;
         }
+
         /* شريط التنقل السريع العلوي */
         .quick-nav {
             display: flex;
             gap: 8px;
             overflow-x: auto;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             margin-bottom: 20px;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
@@ -67,23 +102,24 @@
             display: none;
         }
         .nav-chip {
-            background: #ffffff;
-            color: #6d28d9;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid rgba(202, 138, 4, 0.3);
             padding: 8px 16px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 700;
             white-space: nowrap;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(109, 40, 217, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: all 0.2s;
         }
         .nav-chip:hover, .nav-chip.active-chip {
-            background: #7c3aed;
-            color: #fff;
-            border-color: #7c3aed;
+            background: var(--gold-main);
+            color: #0f172a;
+            border-color: var(--gold-glow);
         }
+
         /* إخفاء وإظهار الأقسام */
         .section {
             display: none;
@@ -91,14 +127,53 @@
         .section.active {
             display: block;
         }
+
+        /* مشغل الفيديو الجديد */
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(202, 138, 4, 0.3);
+            margin-bottom: 25px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        }
+        .video-card video {
+            width: 100%;
+            max-height: 500px;
+            display: block;
+            background-color: #000;
+        }
+
+        /* البطاقة الفلسفية الأساسية (القرار بيديك) */
+        .truth-card {
+            background: linear-gradient(135deg, rgba(202, 138, 4, 0.15) 0%, rgba(30, 41, 59, 1) 100%);
+            border-right: 5px solid var(--gold-glow);
+            border: 1px solid rgba(202, 138, 4, 0.3);
+            border-right-width: 5px;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .truth-card h3 {
+            color: var(--gold-glow);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .truth-card p {
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
         /* بطاقة الصورة التعبيرية في الواجهة الرئيسية */
         .hero-image-card {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.15);
-            border: 2px solid rgba(139, 92, 246, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(202, 138, 4, 0.25);
             text-align: center;
         }
         .hero-image-card img {
@@ -109,13 +184,13 @@
             margin-bottom: 15px;
         }
         .hero-image-card h3 {
-            color: #6d28d9;
+            color: var(--gold-glow);
             font-size: 1.25rem;
             margin-bottom: 8px;
             font-weight: 900;
         }
         .hero-image-card p {
-            color: #4c1d95;
+            color: var(--text-sub);
             font-size: 1.05rem;
             font-weight: 600;
         }
@@ -127,17 +202,17 @@
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         /* البطاقات والزر الرئيسي */
         .menu-card {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 20px 22px;
             margin-bottom: 15px;
-            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.1);
-            border: 2px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(202, 138, 4, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -146,56 +221,56 @@
         }
         .menu-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(139, 92, 246, 0.25);
-            border-color: #8b5cf6;
-            background: #fbf9ff;
+            box-shadow: 0 12px 25px rgba(202, 138, 4, 0.25);
+            border-color: var(--gold-glow);
+            background: #24334d;
         }
         .menu-card h3 {
-            color: #5b21b6;
+            color: var(--text-main);
             font-size: 1.15rem;
             font-weight: 700;
         }
         .menu-card span {
             font-size: 1.4rem;
-            color: #8b5cf6;
+            color: var(--gold-main);
         }
 
         /* تنسيق خاص بالبطاقة الذهبية اللامعة (الحل الذهبي للقرآن) */
         .menu-card.gold-card {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-            border: 2px solid #f59e0b;
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid var(--gold-main);
+            box-shadow: 0 8px 25px rgba(202, 138, 4, 0.25);
         }
         .menu-card.gold-card:hover {
-            background: linear-gradient(135deg, #fef3c7 100%, #fde68a 100%);
-            border-color: #d97706;
-            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
+            background: linear-gradient(135deg, #28374d 0%, #17233b 100%);
+            border-color: var(--gold-glow);
+            box-shadow: 0 12px 30px rgba(234, 179, 8, 0.35);
         }
         .menu-card.gold-card h3 {
-            color: #92400e;
+            color: var(--gold-glow);
         }
         .menu-card.gold-card span {
-            color: #d97706;
+            color: var(--gold-main);
         }
 
         /* المحتوى الداخلي للقسم */
         .content-card {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
-            border: 2px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(202, 138, 4, 0.2);
         }
         .content-card h2 {
             font-size: 1.4rem;
-            color: #5b21b6;
+            color: var(--gold-glow);
             margin-bottom: 20px;
             text-align: center;
         }
         .content-card p, .content-card li {
             font-size: 1.05rem;
-            color: #334155;
+            color: var(--text-main);
             margin-bottom: 15px;
         }
         ul {
@@ -211,100 +286,108 @@
             position: absolute;
             right: 0;
         }
+        
         /* زر الرجوع للخلف */
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #6d28d9;
-            color: #fff;
+            background: var(--gold-main);
+            color: #0f172a;
             padding: 10px 22px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+            box-shadow: 0 4px 12px rgba(202, 138, 4, 0.3);
             transition: background 0.3s;
         }
         .back-btn:hover {
-            background: #5b21b6;
+            background: var(--gold-glow);
         }
+        
+        /* مربع الآيات القرأنية */
         .quran-box {
             font-family: 'Amiri', serif;
             font-size: 1.35rem;
-            color: #6d28d9;
-            background: #f5f3ff;
+            color: var(--gold-glow);
+            background: #0f172a;
             padding: 18px;
             border-radius: 15px;
             text-align: center;
             margin: 20px 0;
-            border: 2px dashed #8b5cf6;
+            border: 1px solid var(--gold-main);
             line-height: 2;
         }
+
         /* عداد التحدي */
         .streak-box {
             text-align: center;
-            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid var(--gold-main);
             color: #fff;
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 25px rgba(202, 138, 4, 0.2);
         }
         .streak-box h2 {
-            color: #fff;
+            color: var(--gold-glow);
             margin-bottom: 10px;
         }
         .counter-number {
             font-size: 3.5rem;
             font-weight: 900;
+            color: var(--gold-glow);
             margin: 10px 0;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            text-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
         }
         .action-btn {
-            background: #ffffff;
-            color: #6d28d9;
+            background: var(--gold-main);
+            color: #0f172a;
             border: none;
             padding: 12px 25px;
             border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
             margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: transform 0.2s;
         }
         .action-btn:active {
             transform: scale(0.95);
         }
+
         /* زر تفعيل إشعارات الويب */
         .notif-btn {
             display: block;
             width: 100%;
             text-align: center;
-            background: #7c3aed;
-            color: #fff;
+            background: linear-gradient(90deg, var(--gold-main), var(--gold-glow));
+            color: #0f172a;
             border: none;
             padding: 14px 25px;
             border-radius: 50px;
-            font-weight: 700;
+            font-weight: 900;
             font-size: 1.1rem;
             margin-top: 15px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+            transition: transform 0.2s;
         }
         .notif-btn:hover {
-            background: #6d28d9;
+            transform: translateY(-2px);
         }
+
         /* تذييل الموقع الاحترافي */
         .footer {
             text-align: center;
             margin-top: 30px;
             padding: 20px;
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.05);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(202, 138, 4, 0.2);
         }
         .footer-links {
             display: flex;
@@ -314,7 +397,7 @@
             flex-wrap: wrap;
         }
         .footer-links a {
-            color: #6d28d9;
+            color: var(--gold-glow);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
@@ -324,7 +407,7 @@
         }
         .footer p {
             font-size: 0.9rem;
-            color: #6d28d9;
+            color: var(--text-sub);
             font-weight: 600;
         }
     </style>
@@ -334,7 +417,8 @@
     <div class="container">
         <!-- رأس الموقع الثابت -->
         <header>
-            <h1>عِفّة</h1>
+            <img src="logo.jpg" alt="شعار عِفّة" class="app-logo">
+            <h1>عِفَّـة</h1>
             <p>عِفَّة هي منصة تحارب إدمان الشباب للإباحية بعون الله في زمن صار فيه الحرام سهلا</p>
         </header>
 
@@ -353,6 +437,20 @@
         <!-- الصفحة الرئيسية (القائمة والأزرار) -->
         <div id="main-menu" class="section active">
             
+            <!-- قسم عرض الفيديو المونتاج الجديد -->
+            <div class="video-card">
+                <video controls poster="logo.jpg">
+                    <source src="video.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل هذا الفيديو.
+                </video>
+            </div>
+
+            <!-- البطاقة الفلسفية الأساسية (التي تقوم عليها فلسفة المنصة) -->
+            <div class="truth-card">
+                <h3>الحقيقة المطلقة: القرار بيديك أنت</h3>
+                <p>عزيمة التغيير والقرار النهائي لن يمنحك إياها أحد.. هي قرارك الشخصي بينك وبين نفسك أمام الله. المواقع والعدادات والنصائح هي مجرد أسباب، لكن المفتاح الحقيقي بيديك أنت فقط.</p>
+            </div>
+
             <!-- بطاقة الصورة الرئيسية للموقع (تحطيم القيود والأمل) -->
             <div class="hero-image-card">
                 <img src="674aea396ba6f0875f9b06a1f9de40a0.jpg" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x300?text=الصورة+غير+متوفرة';" alt="الانطلاق والتحرر من القيود">
@@ -364,7 +462,7 @@
             <div class="menu-card gold-card" onclick="showSection('quran-effect-section')">
                 <div>
                     <h3>⭐ الحل الذهبي: أثر القرآن على القلب (أسأل مجرب)</h3>
-                    <p style="font-size: 0.9rem; color: #b45309;">علاج الهجر الطويل لكلام الله والآيات المنجية</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">علاج الهجر الطويل لكلام الله والآيات المنجية</p>
                 </div>
                 <span>✨</span>
             </div>
@@ -373,7 +471,7 @@
             <div class="menu-card" onclick="showSection('emergency-section')">
                 <div>
                     <h3>🚨 أدوات الطوارئ ولحظات الضعف الفورية</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">طوق نجاة سريع عندما تباغتك الشهوة</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">طوق نجاة سريع عندما تباغتك الشهوة</p>
                 </div>
                 <span>←</span>
             </div>
@@ -382,7 +480,7 @@
             <div class="menu-card" onclick="showSection('articles-section')">
                 <div>
                     <h3>📚 أحدث المقالات والنصائح اليومية</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">فهم العميق للمشكلة وأسباب الترويج لها</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">فهم العميق للمشكلة وأسباب الترويج لها</p>
                 </div>
                 <span>←</span>
             </div>
@@ -391,7 +489,7 @@
             <div class="menu-card" onclick="showSection('welcome-section')">
                 <div>
                     <h3>✨ رسالة البداية والأمل</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">لماذا أنت هنا اليوم؟ اقرأ واطمئن</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">لماذا أنت هنا اليوم؟ اقرأ واطمئن</p>
                 </div>
                 <span>←</span>
             </div>
@@ -400,7 +498,7 @@
             <div class="menu-card" onclick="showSection('dangers-section')">
                 <div>
                     <h3>⚠️ مخاطر وأضرار الإباحية الصريحة</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">كيف تدمر عقلك ودراستك وحياتك؟</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">كيف تدمر عقلك ودراستك وحياتك؟</p>
                 </div>
                 <span>←</span>
             </div>
@@ -409,7 +507,7 @@
             <div class="menu-card" onclick="showSection('solutions-section')">
                 <div>
                     <h3>🛡️ الحلول العملية والشرعية لقطع الإدمان</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">خطوات صارمة وعلاج قرآني للنجاة</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">خطوات صارمة وعلاج قرآني للنجاة</p>
                 </div>
                 <span>←</span>
             </div>
@@ -418,7 +516,7 @@
             <div class="menu-card" onclick="showSection('streak-section')">
                 <div>
                     <h3>🚀 سلسلة تحدي الإقلاع والتحفيز اليومي</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">ابدأ عداد أيام النقاء وصمد أمام الشهوة</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">ابدأ عداد أيام النقاء وصمد أمام الشهوة</p>
                 </div>
                 <span>←</span>
             </div>
@@ -438,24 +536,24 @@
                 <p>من واقع التجربة الشخصية؛ أحد أكبر وأبرز أسباب السقوط المستمر في بئر الإدمان هو <strong>الهجر الطويل لكلام الله عز وجل</strong>. عندما يبتعد القلب عن القرآن، يقسو وتستهويه الشبهات والشهوات بسهولة.</p>
                 <p>لذا، فإن العودة الصادقة لكتاب الله هي طوق النجاة الحقيقي والدواء الأسرع لإنارة البصيرة وإحياء القلب من جديد.</p>
                 
-                <h3 style="color: #6d28d9; margin-top: 20px; font-size: 1.2rem;">الآيات المنجية والتحذيرية:</h3>
+                <h3 style="color: var(--gold-glow); margin-top: 20px; font-size: 1.2rem;">الآيات المنجية والتحذيرية:</h3>
                 
                 <div class="quran-box">
                     { وَلَا تَقْرَبُوا الزِّنَىٰ ۖ إِنَّهُ كَانَ فَاحِشَةً وَسَاءَ سَبِيلًا }<br>
-                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة الإسراء: 32]</span>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: var(--text-sub);">[سورة الإسراء: 32]</span>
                 </div>
 
                 <div class="quran-box">
                     { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ۚ ذَلِكَ أَزْكَىٰ لَهُمْ ۗ إِنَّ اللَّهَ خَبِيرٌ بِمَا يَصْنَعُونَ }<br>
-                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة النور: 30]</span>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: var(--text-sub);">[سورة النور: 30]</span>
                 </div>
 
                 <div class="quran-box">
                     { ۞ قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنْفُسِهِمْ لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ }<br>
-                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: #4c1d95;">[سورة الزمر: 53]</span>
+                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: var(--text-sub);">[سورة الزمر: 53]</span>
                 </div>
 
-                <h3 style="color: #6d28d9; margin-top: 25px; font-size: 1.2rem;">سور نقترح عليك مداومة قراءتها وتدبرها:</h3>
+                <h3 style="color: var(--gold-glow); margin-top: 25px; font-size: 1.2rem;">سور نقترح عليك مداومة قراءتها وتدبرها:</h3>
                 <ul>
                     <li><strong>سورة النور:</strong> لتستضيء بنور أحكامها وعفتها وغض البصر.</li>
                     <li><strong>سورة البقرة:</strong> لطرد الشياطين وكسر قسوة القلب وتحصين النفس.</li>
@@ -526,7 +624,7 @@
                 <h2>الحل الفوري لقطع الإدمان</h2>
                 
                 <div class="quran-box">
-                    { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَى لَهُمْ }
+                    { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَىٰ لَهُمْ }
                 </div>
 
                 <ul>
@@ -551,8 +649,8 @@
 
             <div class="content-card">
                 <h2>رسالة تشجيعية لك اليوم:</h2>
-                <p id="daily-quote" style="text-align: center; font-weight: bold; color: #6d28d9; font-size: 1.2rem;"></p>
-                <p style="text-align: center; margin-top: 15px;">استمر يا بطل، الصعوبة في الأيام الأولى فقط، ثم ستحس بحلاوة الحرية والنقاء! الله معك ولا يضيع أجر من جاهد نفسه.</p>
+                <p id="daily-quote" style="text-align: center; font-weight: bold; color: var(--gold-glow); font-size: 1.2rem;"></p>
+                <p style="text-align: center; margin-top: 15px; color: var(--text-sub);">استمر يا بطل، الصعوبة في الأيام الأولى فقط، ثم ستحس بحلاوة الحرية والنقاء! الله معك ولا يضيع أجر من جاهد نفسه.</p>
             </div>
         </div>
 
@@ -630,7 +728,7 @@
                     alert("تم تفعيل إشعارات الويب بنجاح! ستصلك رسائل تحفيزية بإذن الله.");
                     new Notification("عِفّة ✨", {
                         body: "أهلاً بك يا بطل. تذكر دائماً أن الله يراك، واصل طريق النقاء والثبات!",
-                        icon: ""
+                        icon: "logo.jpg"
                     });
                 } else {
                     alert("تم رفض إذن الإشعارات. يمكنك تفعيلها لاحقاً من إعدادات المتصفح.");
@@ -638,7 +736,10 @@
             });
         }
 
-        initStreak();
+        // تشغيل العداد فور تحميل الصفحة
+        window.onload = function() {
+            initStreak();
+        };
     </script>
 </body>
 </html>
