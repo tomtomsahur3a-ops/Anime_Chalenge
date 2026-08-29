@@ -125,7 +125,7 @@
             display: block;
         }
 
-        /* مشغل الفيديو التفاعلي والسلايدر */
+        /* مشغل الفيديو التفاعلي والسلايدر الثلاثي */
         .video-slider-container {
             position: relative;
             background: var(--card-bg);
@@ -169,6 +169,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            user-select: none;
         }
         .slider-btn:hover {
             background: var(--gold-main);
@@ -176,18 +177,19 @@
             transform: translateY(-50%) scale(1.1);
         }
         .slider-btn.prev {
-            right: 10px; /* سهم اليمين للانتقال للفيديو السابق/التالي حسب RTL */
+            right: 10px;
         }
         .slider-btn.next {
-            left: 10px; /* سهم اليسار */
+            left: 10px;
         }
 
-        /* مؤشرات الفيديوهات (النقاط في الأسفل) */
+        /* مؤشرات الفيديوهات الثلاثة */
         .slider-dots {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 8px;
-            padding: 10px 0;
+            padding: 12px 0;
             background: #152033;
         }
         .dot {
@@ -395,7 +397,7 @@
             font-weight: 900;
             color: var(--gold-glow);
             margin: 10px 0;
-            text-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+            text-shadow: 0 0 15px rgba(234, 138, 4, 0.4);
         }
         .action-btn {
             background: var(--gold-main);
@@ -475,7 +477,7 @@
         </header>
 
         <div class="quick-nav">
-            <div class="nav-chip" id="chip-main-menu" onclick="showSection('main-menu')">🏠 الرئيسية</div>
+            <div class="nav-chip active-chip" id="chip-main-menu" onclick="showSection('main-menu')">🏠 الرئيسية</div>
             <div class="nav-chip" id="chip-quran-effect-section" onclick="showSection('quran-effect-section')">⭐ الحل الذهبي للقرآن</div>
             <div class="nav-chip" id="chip-emergency-section" onclick="showSection('emergency-section')">🚨 طوارئ الضعف</div>
             <div class="nav-chip" id="chip-articles-section" onclick="showSection('articles-section')">📚 المقالات</div>
@@ -485,6 +487,7 @@
             <div class="nav-chip" id="chip-streak-section" onclick="showSection('streak-section')">🚀 العداد</div>
         </div>
 
+        <!-- الصفحة الرئيسية -->
         <div id="main-menu" class="section active">
             
             <div class="video-slider-container">
@@ -508,7 +511,7 @@
                 </div>
 
                 <div class="video-slide">
-                    <iframe src="https://www.youtube.com/embed/S2qT52L8kYQ" 
+                    <iframe src="https://www.youtube.com/embed/Hznyfg3N8Uo" 
                             title="فيديو منصة عِفّة - 3" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -576,166 +579,210 @@
             <div class="menu-card" onclick="showSection('solutions-section')">
                 <div>
                     <h3>🛡️ الحلول العملية والشرعية لقطع الإدمان</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-sub);">خطوات صارمة وعلاج قرآني للنجاة</p>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">خطوات واقعية لاستعادة السيطرة على حياتك</p>
                 </div>
                 <span>←</span>
             </div>
 
             <div class="menu-card" onclick="showSection('streak-section')">
                 <div>
-                    <h3>🚀 سلسلة تحدي الإقلاع والتحفيز اليومي</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-sub);">ابدأ عداد أيام النقاء وصمد أمام الشهوة</p>
+                    <h3>🚀 عداد التعافي والمتابعة</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-sub);">احسب أيام حريتك وثباتك يومًا بيوم</p>
                 </div>
                 <span>←</span>
             </div>
 
-            <button class="notif-btn" onclick="requestNotificationPermission()">
-                🔔 تفعيل رسائل وتنبيهات الويب التحفيزية
-            </button>
-
+            <button class="notif-btn" onclick="requestNotificationPermission()">🔔 تفعيل التذكيرات اليومية والتحفيز</button>
         </div>
 
+        <!-- قسم الحل الذهبي للقرآن -->
         <div id="quran-effect-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             <div class="content-card">
-                <h2>أثر القرآن على القلب (الحل الذهبي)</h2>
-                <p>من واقع التجربة الشخصية؛ أحد أكبر وأبرز أسباب السقوط المستمر في بئر الإدمان هو <strong>الهجر الطويل لكلام الله عز وجل</strong>. عندما يبتعد القلب عن القرآن، يقسو وتستهويه الشبهات والشهوات بسهولة.</p>
-                <p>لذا، فإن العودة الصادقة لكتاب الله هي طوق النجاة الحقيقي والدواء الأسرع لإنارة البصيرة وإحياء القلب من جديد.</p>
+                <h2>⭐ الحل الذهبي: أثر القرآن الكريم في شفاء القلب</h2>
                 
-                <h3 style="color: var(--gold-glow); margin-top: 20px; font-size: 1.2rem;">الآيات المنجية والتحذيرية:</h3>
+                <img src="1a72a129ef993309f3e4b7b203405c74.jpg" onerror="this.onerror=null;this.src='1787493846312.jpg';" alt="القرآن الكريم نبتة النور" class="section-img">
+
+                <p>من واقع تجربة وممارسة حقيقية: السبب الأساسي والعميق للوقوع في إدمان الإباحية والضعف المتكرر أمام الشهوات هو **الهجر الطويل لكلام الله تعالى** قراءةً وتدبرًا.</p>
                 
-                <div class="quran-box">
-                    { وَلَا تَقْرَبُوا الزِّنَىٰ ۖ إِنَّهُ كَانَ فَاحِشَةً وَسَاءَ سَبِيلًا }<br>
-                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: var(--text-sub);">[سورة الإسراء: 32]</span>
-                </div>
+                <p>إن القلب إذا خلا من كلام الله والتعلق به، أصبح أرضًا قاحلة وسهلة الاقتحام أمام الوساوس والنظرات المحرمة. القرآن ليس مجرد عبادة تؤجر عليها، بل هو إعادة تشكيل حقيقية لبنية العقل والروح.</p>
 
                 <div class="quran-box">
-                    { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ۚ ذَلِكَ أَزْكَىٰ لَهُمْ ۗ إِنَّ اللَّهَ خَبِيرٌ بِمَا يَصْنَعُونَ }<br>
-                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: var(--text-sub);">[سورة النور: 30]</span>
+                    "يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ وَهُدًى وَرَحْمَةٌ لِّلْمُؤْمِنِينَ"
                 </div>
 
-                <div class="quran-box">
-                    { ۞ قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنْفُسِهِمْ لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ }<br>
-                    <span style="font-size: 0.9rem; font-family: 'Cairo', sans-serif; color: var(--text-sub);">[سورة الزمر: 53]</span>
-                </div>
-
-                <h3 style="color: var(--gold-glow); margin-top: 25px; font-size: 1.2rem;">سور نقترح عليك مداومة قراءتها وتدبرها:</h3>
+                <h3>كيف يعالج القرآن إدمان الإباحية في عقلك؟</h3>
                 <ul>
-                    <li><strong>سورة النور:</strong> لتستضيء بنور أحكامها وعفتها وغض البصر.</li>
-                    <li><strong>سورة البقرة:</strong> لطرد الشياطين وكسر قسوة القلب وتحصين النفس.</li>
-                    <li><strong>سورة التوبة:</strong> لتقوية جانب الخشية، وتجديد العزم، والتعرف على حال الصادقين.</li>
+                    <li><strong>غسيل الرواسب الذهنية:</strong> الصور المشوهة التي تخزنها الإباحية في ذاكرتك يمحوها التكرار المستمر لتدبر آيات القرآن.</li>
+                    <li><strong>تأصيل المراقبة الإلهية:</strong> عند استحضار قوله تعالى <em>"يَعْلَمُ خَائِنَةَ الْأَعْيُنِ وَمَا تُخْفِي الصُّدُورُ"</em> يتولد لدى النفس حياء حقيقي يحجزك في لحظات الخلوة.</li>
+                    <li><strong>تغذية الروح وموازنة الدوبامين:</strong> الهدوء الذي يمنحه القرآن يقلل من حالة التوتر والضغط التي تدفعك للهرب نحو الإباحية.</li>
+                </ul>
+
+                <div class="quran-box">
+                    "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"
+                </div>
+
+                <h3>خطة عملية يومية لاستعادة العلاقة مع القرآن:</h3>
+                <ul>
+                    <li>ورد يومي لا يقل عن صفحتين أو ورقتين بتدبر وتأمل معاني الآيات.</li>
+                    <li>استماع مركز لآيات القرآن عبر السماعات أثناء المشي أو الاسترخاء بدلاً من المقاطع العشوائية.</li>
+                    <li>جعل المصحف أو تطبيق المصحف أول شيء تفتحه عند الاستيقاظ وقبل النوم.</li>
                 </ul>
             </div>
         </div>
 
+        <!-- قسم أدوات الطوارئ -->
         <div id="emergency-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             <div class="content-card">
-                <img src="d9a0b4b950b1f40a04c01edec53e3f31.jpg" onerror="this.onerror=null;this.src='1787493846312.jpg';" alt="خطر العزلة والهاتف في الظلام" class="section-img">
-                <h2>🚨 طوق نجاة: ماذا تفعل في لحظة الضعف المفاجئة؟</h2>
-                <p>إذا باغتتك الشهوة واشتدت الرغبة، طبق هذه الخطوات الفورية في أول 60 ثانية:</p>
-                <ul>
-                    <li><strong>الخطوة الأولى (الهروب الفوري):</strong> اترك الهاتف من يدك فوراً، وقم من مكانك واخرج من الغرفة إلى مكان فيه أشخاص أو العائلة.</li>
-                    <li><strong>الخطوة الثانية (إطفاء حرارة الشهوة):</strong> اذهب فوراً وتوضأ، فالماء البارد والوضوء يطفئان نزغات الشيطان.</li>
-                    <li><strong>الخطوة الثالثة (تغيير الوضعية):</strong> صلِّ ركعتين واقترب من الله في تلك اللحظة الصعبة، واعلم أن ثباتك فيها يكتب لك الأجر العظيم.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="articles-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
-            <div class="content-card">
-                <h2>📚 أحدث المقالات التوعوية</h2>
-                <ul>
-                    <li><strong>أسباب الترويج للعادة السرية والإباحية عالمياً:</strong> احذر من هذا الفخ الممنهج الذي يستهدف تدمير طاقات الشباب وشغلهم عن معالي الأمور.</li>
-                    <li><strong>لماذا أتعهد بالتغيير ثم أعود؟</strong> وكيف تكسر حلقة الاستسلام المفرغة وتصنع بداية حقيقية لا رجعة فيها.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="welcome-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
-            <div class="content-card">
-                <img src="2ddbcdbfe89586e6c7dd8d063aed6bf5.jpg" onerror="this.onerror=null;this.src='1787493846312.jpg';" alt="الندم والتوبة الصادقة" class="section-img">
-                <h2>هل جئت صدفة إلى هنا؟</h2>
-                <p>لا.. بل لأن الله يريد لك الخير، ولأن الله يريد منك أن تقترب منه وتعود إليه. اصبر ولا تقنط من رحمة الله أبداً.</p>
-                <p>مهما بلغت ذنوبك، فإن توبة صادقة تبدل السيئات حسنات، والله أشد فرحاً بتوبتك من العطش بالماء العذب.</p>
-                <p><strong>تذكر دائماً:</strong> لم يفت الأوان بعد لتغير حياتك وتكون الشخص الذي يرضاه الله.</p>
-            </div>
-        </div>
-
-        <div id="dangers-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
-            <div class="content-card">
-                <h2>مخاطر الإباحية الصريحة على حياتك</h2>
-                <ul>
-                    <li><strong>تدمير التركيز والذاكرة:</strong> عقلك يفقد قدرته على الاستيعاب العميق والتفوق الدراسي بسبب كثرة التشتت.</li>
-                    <li><strong>فقدان الثقة بالنفس:</strong> تتولد لديك مشاعر الدونية وضعف الشخصية واجتناب الناس.</li>
-                    <li><strong>الظلمة وانقباض الصدر:</strong> البعد التام عن راحة البال وحلاوة الإيمان والطاعة.</li>
-                    <li><strong>إتلاف خلايا الدماغ العصبية:</strong> بسبب الإفراط في إفراز هرمون الدوبامين بطريقة غير طبيعية مدمرة.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="solutions-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
-            <div class="content-card">
-                <h2>الحل الفوري لقطع الإدمان</h2>
+                <h2>🚨 أدوات الطوارئ ولحظات الضعف الفورية</h2>
                 
-                <div class="quran-box">
-                    { قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ذَلِكَ أَزْكَىٰ لَهُمْ }
+                <img src="780cf965935fcd7a39d482613b58be42.jpg" onerror="this.onerror=null;this.src='1787493846312.jpg';" alt="الطوارئ وكسر الدائرة" class="section-img">
+
+                <p>إذا كنت تشعر الآن برغبة ملحة أو تباغتك أفكار الضعف، نفّذ هذه الخطوات الفورية بدون تردد:</p>
+                
+                <ul>
+                    <li><strong>غير مكانك فوراً:</strong> اترك الغرفة المغلقة أو الفراش واخرج إلى مكان عام أو بجانب أسرتك.</li>
+                    <li><strong>توضأ بماء بارد:</strong> الماء يطفئ جمرة الشهوة ويهدئ الجهاز العصبي.</li>
+                    <li><strong>تمارين التنفس العميق:</strong> خذ شهيقاً عميقاً لمدة 4 ثوانٍ، واكتمه 4 ثوانٍ، ثم زفيراً في 4 ثوانٍ. كررها 5 مرات.</li>
+                    <li><strong>ادعُ بدعاء الكرب والتعوذ:</strong> قل "أعوذ بالله من الشيطان الرجيم، اللهم أجرني في مصيبتي واخلف لي خيراً منها".</li>
+                    <li><strong>قم بعمل 15 تمرين ضغط:</strong> استهلاك الطاقة الجسدية فوراً يقطع الإشارة التي يرسلها العقل للشهوة.</li>
+                </ul>
+
+                <div class="truth-card" style="margin-top: 20px;">
+                    <h3>تذكر في هذه اللحظة:</h3>
+                    <p>المتعة الزائفة تدوم لدقائق معدودة، لكن الشعور بالذنب والكسر يستمر لعدة أيام. كن أنت المنتصر اليوم!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم المقالات والنصائح -->
+        <div id="articles-section" class="section">
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
+            <div class="content-card">
+                <h2>📚 أحدث المقالات والنصائح التوعوية</h2>
+                
+                <div class="truth-card" style="margin-bottom: 25px;">
+                    <h3>لماذا يُروَّج للإباحية وبسط السيطرة؟</h3>
+                    <p>صناعة الإباحية ليست مجرد محتوى عشوائي، بل هي تجارة بمليارات الدولارات تعتمد على تدمير مراكز الإرادة في عقول الشباب وتسهيل انقيادهم وتشتيت طاقاتهم عن بناء أنفسهم وأممهم.</p>
                 </div>
 
+                <h3>مقالات هامة للتعافي:</h3>
+                
                 <ul>
-                    <li><strong>قاعدة الأماكن المكشوفة:</strong> ممنوع منعاً باتاً استخدام الهاتف وحدك في الغرفة المغلقة أو الحمام. اجلس دائماً بين أهلك وأصدقائك.</li>
-                    <li><strong>حظر أوقات الخطر:</strong> الهاتف محظور فور استيقاظك من النوم، ومحظور قبل النوم بساعة كاملة.</li>
-                    <li><strong>تعلق بسورة النور:</strong> اجعل لك ورداً يومياً من تدبر آيات غض البصر لتكون حصناً لقلبك.</li>
+                    <li><strong>حقيقة الدوبامين الزائف:</strong> كيف تدمر مشاهدة المقاطع قدرة الدماغ على الاستمتاع بالإنجازات الحقيقية في الحياة.</li>
+                    <li><strong>فخ الانتكاسة وكيف تتجاوزه:</strong> السقوط مرة لا يعني نهاية الطريق، بل هو خطوة للتعلم واكتشاف الثغرات.</li>
+                    <li><strong>قوة العادات البديلة:</strong> كيف تستبدل الوقت الضائع في التصفح بممارسة الرياضة، التعلم، أو بناء مشاريعك الخاصة.</li>
+                    <li><strong>التفكير المنطقي والعاطفي:</strong> كيف تفرق بين الاحتياج الحقيقي للعاطفة وبين الإدمان السلوكي الناتج عن الفراغ والملل.</li>
                 </ul>
             </div>
         </div>
 
+        <!-- قسم رسالة البداية -->
+        <div id="welcome-section" class="section">
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
+            <div class="content-card">
+                <h2>✨ رسالة البداية والأمل</h2>
+                
+                <p>أهلاً بك في منصة <strong>عِفَّـة</strong>. وجودك هنا اليوم هو دليل حي على أن ضميرك ما زال حياً، وأن في قلبك رغبة صادقة في التغيير والتحرر من الأغلال التي تكبلك.</p>
+
+                <p>اعلم أنك لست وحدك في هذه المعركة، وأن إدمان الإباحية ليس دليلاً على أنك شخص سيئ، بل هو فخ سلوكي ونفسي وقع فيه ملايين الشباب بسبب التسهيلات والتكنولوجيا الحديثة.</p>
+
+                <div class="quran-box">
+                    "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ"
+                </div>
+
+                <p>البداية تبدأ بقرار صريح وشفاف مع الذات. اترك الماضي خلفك، وابدأ رحلة جديدة ملؤها النور والكرامة والعزة.</p>
+            </div>
+        </div>
+
+        <!-- قسم مخاطر الإباحية -->
+        <div id="dangers-section" class="section">
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
+            <div class="content-card">
+                <h2>⚠️ مخاطر وأضرار الإباحية الصريحة</h2>
+                
+                <p>الإباحية ليست مجرد نظرة محرمة، بل هي مادة سامة تؤثر مباشرة على البنية الدماغية والنفسية والاجتماعية للإنـسان:</p>
+
+                <ul>
+                    <li><strong>تدمير التركيز والذاكرة:</strong> تؤدي لمشاكل في القشرة المخية الفصية الجبهية، مما يسبب الضبابية الذهنية وضعف القدرة على الاستيعاب الدراسي والعملي.</li>
+                    <li><strong>الموت العاطفي والضعف الجنسي:</strong> تؤدي لبرود العواطف وتشويش المفاهيم الفطرية السليمة عن الزواج وبناء الأسرة.</li>
+                    <li><strong>الشعور المستمر بالعار والذنب:</strong> تفقد الإنسان احترامه لذاته وتجعله يعيش في انطوائية وعزلة اجتماعية.</li>
+                    <li><strong>إهدار الوقت والطاقة:</strong> تسرق منك أنشط ساعات يومك وحيويتك الشبابية وتتركك مجهداً بلا طموح.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- قسم الحلول العملية -->
+        <div id="solutions-section" class="section">
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
+            <div class="content-card">
+                <h2>🛡️ الحلول العملية والشرعية لقطع الإدمان</h2>
+                
+                <p>التعافي يتطلب خطوات عملية وتغييراً في نمط الحياة اليومية:</p>
+
+                <ul>
+                    <li><strong>حظر المواقع والمشتتات:</strong> استخدام أدوات حجب المواقع الإباحية وتفعيل البحث الآمن على كافة أجهزتك الذكية.</li>
+                    <li><strong>إبعاد الهاتف أثناء النوم:</strong> لا تضع هاتفك بجوار فراشك عند النوم أبداً، واجعل شحنه خارج غرفة النوم.</li>
+                    <li><strong>ملء الفراغ اليومي:</strong> ابدأ بتعلم مهارة جديدة، ممارسة الرياضة بشكل منتظم، أو المشاركة في أعمال تطوعية ومجتمعية.</li>
+                    <li><strong>الصحبة الصالحة والبيئة النظيفة:</strong> ابتعد عن الأصدقاء والبيئات التي تشجع على المعصية والحديث في المحرمات.</li>
+                    <li><strong>الاستعانة بالصلاة والدعاء:</strong> الصلاة الخاشعة تنهى عن الفحشاء والمنكر، واحرص على أدائها في أوقاتها.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- قسم العداد -->
         <div id="streak-section" class="section">
-            <a href="#" class="back-btn" onclick="showSection('main-menu'); return false;">⬅ العودة للقائمة الرئيسية</a>
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             
             <div class="streak-box">
-                <h2>عداد أيام النقاء والتعافي</h2>
-                <p>أنت صامد منذ:</p>
-                <div class="counter-number" id="days-count">0</div>
-                <p>يوماً مباركاً بلا إباحية!</p>
-                <button class="action-btn" onclick="resetStreak()">إعادة تعيين العداد (بدء توبة جديدة)</button>
+                <h2>🚀 عداد أيام الحرية والثبات</h2>
+                <p>لقد صمدت وقاومت لمدة:</p>
+                <div class="counter-number" id="streak-days">0</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">أيام من النقاء والعزة</p>
+                
+                <button class="action-btn" onclick="resetStreak()">إعادة ضبط العداد (في حال الانتكاسة)</button>
             </div>
 
             <div class="content-card">
-                <h2>رسالة تشجيعية لك اليوم:</h2>
-                <p id="daily-quote" style="text-align: center; font-weight: bold; color: var(--gold-glow); font-size: 1.2rem;"></p>
-                <p style="text-align: center; margin-top: 15px; color: var(--text-sub);">استمر يا بطل، الصعوبة في الأيام الأولى فقط، ثم ستحس بحلاوة الحرية والنقاء! الله معك ولا يضيع أجر من جاهد نفسه.</p>
+                <h3>نصيحة بشأن العداد:</h3>
+                <p>العداد هو مجرد أداة لتشجيعك ورؤية تقدمك، لا تجعل التعافي محصوراً في أرقام. إذا سقطت يوماً، لا تصب بالإحباط، بل قم فوراً وأكمل المسيرة دون أن تفقد الأمل.</p>
             </div>
         </div>
 
+        <!-- الفوتر -->
         <div class="footer">
             <div class="footer-links">
-                <a href="#" onclick="showSection('main-menu'); return false;">الرئيسية</a>
-                <a href="#" onclick="showSection('quran-effect-section'); return false;">أثر القرآن</a>
-                <a href="#" onclick="showSection('emergency-section'); return false;">طوارئ</a>
-                <a href="#" onclick="showSection('articles-section'); return false;">المقالات</a>
+                <a href="#" onclick="showSection('main-menu'); return false;">الرئيسية</a> •
+                <a href="#" onclick="showSection('quran-effect-section'); return false;">الحل الذهبي</a> •
+                <a href="#" onclick="showSection('emergency-section'); return false;">الطوارئ</a> •
+                <a href="#" onclick="showSection('articles-section'); return false;">المقالات</a> •
                 <a href="#" onclick="showSection('streak-section'); return false;">العداد</a>
             </div>
-            <p>✨ عِفّة.. منصة تحارب إدمان الشباب للإباحية ✨</p>
+            <p>منصة عِفَّـة © 2026 - جميع الحقوق محفوظة لغايات التوعية والخير</p>
         </div>
+
     </div>
 
     <script>
-        // دالة إظهار وإخفاء الأقسام
+        // التنقل بين الأقسام وتحديد الشريحة الفعالة
         function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(sec) {
+                sec.classList.remove('active');
+            });
             
-            document.getElementById(sectionId).classList.add('active');
+            var targetSection = document.getElementById(sectionId);
+            if(targetSection) {
+                targetSection.classList.add('active');
+            }
 
-            const chips = document.querySelectorAll('.quick-nav .nav-chip');
-            chips.forEach(chip => chip.classList.remove('active-chip'));
-            
-            const activeChip = document.getElementById('chip-' + sectionId);
+            var chips = document.querySelectorAll('.nav-chip');
+            chips.forEach(function(chip) {
+                chip.classList.remove('active-chip');
+            });
+
+            var activeChip = document.getElementById('chip-' + sectionId);
             if(activeChip) {
                 activeChip.classList.add('active-chip');
                 activeChip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -744,37 +791,26 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // البرمجة الخاصة بسلايدر الفيديوهات
-        let currentVideoIndex = 0;
+        // السلايدر التفاعلي للفيديوهات
+        var currentVideoIndex = 0;
+        var slides = document.querySelectorAll('.video-slide');
+        var dots = document.querySelectorAll('.dot');
 
         function updateSlider() {
-            const slides = document.querySelectorAll('.video-slide');
-            const dots = document.querySelectorAll('.dot');
-
-            slides.forEach((slide, index) => {
-                if (index === currentVideoIndex) {
-                    slide.classList.add('active-slide');
-                } else {
-                    slide.classList.remove('active-slide');
-                }
-            });
-
-            dots.forEach((dot, index) => {
-                if (index === currentVideoIndex) {
-                    dot.classList.add('active-dot');
-                } else {
-                    dot.classList.remove('active-dot');
-                }
-            });
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active-slide');
+                dots[i].classList.remove('active-dot');
+            }
+            slides[currentVideoIndex].classList.add('active-slide');
+            dots[currentVideoIndex].classList.add('active-dot');
         }
 
         function changeVideo(direction) {
-            const slides = document.querySelectorAll('.video-slide');
             currentVideoIndex += direction;
-            if (currentVideoIndex >= slides.length) {
-                currentVideoIndex = 0;
-            } else if (currentVideoIndex < 0) {
+            if (currentVideoIndex < 0) {
                 currentVideoIndex = slides.length - 1;
+            } else if (currentVideoIndex >= slides.length) {
+                currentVideoIndex = 0;
             }
             updateSlider();
         }
@@ -784,58 +820,67 @@
             updateSlider();
         }
 
-        // عداد الأيام والرسائل
-        function initStreak() {
-            let startDate = localStorage.getItem('cleanStartDate');
+        // منطق العداد ومظاهرة الأيام
+        function getStreakDays() {
+            var startDate = localStorage.getItem('eoffa_start_date');
             if (!startDate) {
                 startDate = new Date().getTime();
-                localStorage.setItem('cleanStartDate', startDate);
+                localStorage.setItem('eoffa_start_date', startDate);
             }
-            
-            let now = new Date().getTime();
-            let diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-            if(diffDays < 0) diffDays = 0;
-            
-            document.getElementById('days-count').innerText = diffDays;
+            var now = new Date().getTime();
+            var diffTime = Math.abs(now - startDate);
+            var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
 
-            const quotes = [
-                "«الجهاد الحقيقي هو جهاد النفس الأمارة بالسوء، واصل الصمود!»",
-                "«كل ثانية تقاوم فيها الشهوة تكتب في حسناتك وترفع قدرك.»",
-                "«تخفيف تعلقك بالهاتف هو بوابتك الأولى للسلام النفسي.»",
-                "«الله يرى صدق محاولتك، فلا تستسلم أبداً مهما أخطأت وتب!»"
-            ];
-            let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById('daily-quote').innerText = randomQuote;
+        function updateStreakDisplay() {
+            var daysElem = document.getElementById('streak-days');
+            if(daysElem) {
+                daysElem.innerText = getStreakDays();
+            }
         }
 
         function resetStreak() {
-            if(confirm("هل أنت متأكد من إعادة تعيين العداد والبدء من جديد؟ تب إلى الله وانطلق بقوة!")) {
-                localStorage.setItem('cleanStartDate', new Date().getTime());
-                initStreak();
+            if (confirm("هل انت متأكد من إعادة ضبط العداد؟ لا بأس، افتح صفحة جديدة اليوم وابدأ بصدق!")) {
+                localStorage.setItem('eoffa_start_date', new Date().getTime());
+                updateStreakDisplay();
             }
         }
 
+        // طلب صلاحيات الإشعارات للتذكير التحفيزي
         function requestNotificationPermission() {
             if (!("Notification" in window)) {
-                alert("متصفحك لا يدعم إشعارات الويب للأسف.");
+                alert("متصفحك لا يدعم الإشعارات التلقائية.");
                 return;
             }
 
-            Notification.requestPermission().then(function (permission) {
-                if (permission === "granted") {
-                    alert("تم تفعيل إشعارات الويب بنجاح! ستصلك رسائل تحفيزية بإذن الله.");
-                    new Notification("عِفّة ✨", {
-                        body: "أهلاً بك يا بطل. تذكر دائماً أن الله يراك، واصل طريق النقاء والثبات!",
-                        icon: "1787493846312.jpg"
-                    });
-                } else {
-                    alert("تم رفض إذن الإشعارات. يمكنك تفعيلها لاحقاً من إعدادات المتصفح.");
-                }
-            });
+            if (Notification.permission === "granted") {
+                alert("الإشعارات مفعّلة لديك بالفعل! سنحرص على تذكيرك بالثبات والخير.");
+                sendSampleNotification();
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === "granted") {
+                        alert("تم تفعيل الإشعارات بنجاح! نسأل الله لك الثبات.");
+                        sendSampleNotification();
+                    }
+                });
+            } else {
+                alert("تم رفض صلاحية الإشعارات سابقاً من إعدادات المتصفح لديك.");
+            }
         }
 
+        function sendSampleNotification() {
+            if (Notification.permission === "granted") {
+                new Notification("منصة عِفَّـة", {
+                    body: "تذكر دائماً: 'ومن يتق الله يجعل له مخرجاً'. كن قوياً اليوم!",
+                    icon: "1787493846312.jpg"
+                });
+            }
+        }
+
+        // تشغيل العداد عند تحميل الصفحة
         window.onload = function() {
-            initStreak();
+            updateStreakDisplay();
         };
     </script>
 </body>
