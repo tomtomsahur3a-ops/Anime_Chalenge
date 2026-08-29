@@ -507,9 +507,18 @@
                     </iframe>
                 </div>
 
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/S2qT52L8kYQ" 
+                            title="فيديو منصة عِفّة - 3" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
                 <div class="slider-dots">
                     <span class="dot active-dot" onclick="goToVideo(0)"></span>
                     <span class="dot" onclick="goToVideo(1)"></span>
+                    <span class="dot" onclick="goToVideo(2)"></span>
                 </div>
             </div>
 
@@ -737,10 +746,11 @@
 
         // البرمجة الخاصة بسلايدر الفيديوهات
         let currentVideoIndex = 0;
-        const slides = document.querySelectorAll('.video-slide');
-        const dots = document.querySelectorAll('.dot');
 
         function updateSlider() {
+            const slides = document.querySelectorAll('.video-slide');
+            const dots = document.querySelectorAll('.dot');
+
             slides.forEach((slide, index) => {
                 if (index === currentVideoIndex) {
                     slide.classList.add('active-slide');
@@ -759,6 +769,7 @@
         }
 
         function changeVideo(direction) {
+            const slides = document.querySelectorAll('.video-slide');
             currentVideoIndex += direction;
             if (currentVideoIndex >= slides.length) {
                 currentVideoIndex = 0;
