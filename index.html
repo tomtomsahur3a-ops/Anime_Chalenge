@@ -125,14 +125,83 @@
             display: block;
         }
 
-        /* مشغل الفيديو التفاعلي */
-        .video-card {
+        /* مشغل الفيديو التفاعلي والسلايدر */
+        .video-slider-container {
+            position: relative;
             background: var(--card-bg);
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(202, 138, 4, 0.3);
             margin-bottom: 25px;
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        }
+        .video-slide {
+            display: none;
+            width: 100%;
+        }
+        .video-slide.active-slide {
+            display: block;
+        }
+        .video-slide iframe {
+            border-radius: 20px;
+            border: none;
+            width: 100%;
+            height: 480px;
+            display: block;
+        }
+
+        /* أزرار التنقل بين الفيديوهات */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--gold-glow);
+            border: 1px solid var(--gold-main);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .slider-btn:hover {
+            background: var(--gold-main);
+            color: #0f172a;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .slider-btn.prev {
+            right: 10px; /* سهم اليمين للانتقال للفيديو السابق/التالي حسب RTL */
+        }
+        .slider-btn.next {
+            left: 10px; /* سهم اليسار */
+        }
+
+        /* مؤشرات الفيديوهات (النقاط في الأسفل) */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0;
+            background: #152033;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #475569;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active-dot {
+            background: var(--gold-glow);
+            width: 25px;
+            border-radius: 10px;
         }
 
         /* البطاقة الفلسفية الأساسية */
@@ -418,16 +487,30 @@
 
         <div id="main-menu" class="section active">
             
-            <div class="video-card">
-                <iframe width="100%" 
-                        height="480" 
-                        src="https://www.youtube.com/embed/1pd3B74SDAE" 
-                        title="فيديو منصة عِفّة" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen 
-                        style="border-radius:20px; border:none; width:100%; min-height:480px; display:block;">
-                </iframe>
+            <div class="video-slider-container">
+                <button class="slider-btn prev" onclick="changeVideo(-1)">❮</button>
+                <button class="slider-btn next" onclick="changeVideo(1)">❯</button>
+
+                <div class="video-slide active-slide">
+                    <iframe src="https://www.youtube.com/embed/1Zyb_xOewmo" 
+                            title="فيديو منصة عِفّة - 1" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/1pd3B74SDAE" 
+                            title="فيديو منصة عِفّة - 2" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="slider-dots">
+                    <span class="dot active-dot" onclick="goToVideo(0)"></span>
+                    <span class="dot" onclick="goToVideo(1)"></span>
+                </div>
             </div>
 
             <div class="truth-card">
@@ -633,6 +716,7 @@
     </div>
 
     <script>
+        // دالة إظهار وإخفاء الأقسام
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
             sections.forEach(sec => sec.classList.remove('active'));
@@ -651,6 +735,45 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // البرمجة الخاصة بسلايدر الفيديوهات
+        let currentVideoIndex = 0;
+        const slides = document.querySelectorAll('.video-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlider() {
+            slides.forEach((slide, index) => {
+                if (index === currentVideoIndex) {
+                    slide.classList.add('active-slide');
+                } else {
+                    slide.classList.remove('active-slide');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                if (index === currentVideoIndex) {
+                    dot.classList.add('active-dot');
+                } else {
+                    dot.classList.remove('active-dot');
+                }
+            });
+        }
+
+        function changeVideo(direction) {
+            currentVideoIndex += direction;
+            if (currentVideoIndex >= slides.length) {
+                currentVideoIndex = 0;
+            } else if (currentVideoIndex < 0) {
+                currentVideoIndex = slides.length - 1;
+            }
+            updateSlider();
+        }
+
+        function goToVideo(index) {
+            currentVideoIndex = index;
+            updateSlider();
+        }
+
+        // عداد الأيام والرسائل
         function initStreak() {
             let startDate = localStorage.getItem('cleanStartDate');
             if (!startDate) {
