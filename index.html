@@ -13,12 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صَون - منصة صيانة النفس والتحرر من الإدمان</title>
     
+    <!-- تحديث أيقونة الموقع إلى الشعار الجديد H.png -->
     <link rel="icon" type="image/png" href="H.png">
     <link rel="apple-touch-icon" href="H.png">
     <meta name="theme-color" content="#09090b">
     <meta property="og:title" content="منصة صَون - إيقاظ الضمير وصيانة النفس">
     <meta property="og:description" content="طريقك نحو صيانة النفس، التحصين الشخصي، واليقظة الروحية.">
-    <meta property="og:image" content="مباركة_20260913_170810_0000.png">
+    <meta property="og:image" content="H.png">
 
     <!-- استدعاء الخطوط: Readex Pro للعناوين، Cairo للنصوص، Amiri للقرآن -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,13 +72,14 @@
         }
 
         .app-logo {
-            width: 125px;
-            height: 125px;
+            width: 130px;
+            height: 130px;
             border-radius: 28px;
             border: 2px solid var(--gold-primary);
             box-shadow: 0 0 30px var(--gold-glow);
             margin-bottom: 16px;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: #000;
             transition: transform 0.4s ease;
         }
 
@@ -452,9 +454,9 @@
     <div class="container">
         <!-- الهيدر بالشعار -->
         <header>
-            <img src="مباركة_20260913_170810_0000.png" alt="شعار صَون" class="app-logo">
+            <img src="H.png" alt="شعار صَون" class="app-logo">
             <h1>صَـون</h1>
-            <p>منصة إسلامية تهدف بعون الله إلى تغيير واقع المجتمع المسلم لإنشغالهم في الإدمان الرقمي و خاصة الإباحية</p>
+            <p>منصة تُعنى بصيانة النفس وتحرير الشباب من الإدمان بعون الله في زمن صار فيه الحرام سهلاً</p>
         </header>
 
         <!-- شريط التنقل العلوي: 1. الرئيسية | 2. الحل الذهبي للقرآن | 3. المقالات -->
@@ -595,7 +597,7 @@
             </div>
         </div>
 
-        <!-- 3. المقالات والتوجيه اليومي (يعرض 3 مقالات ديناميكياً بحسب زيارة المستخدم) -->
+        <!-- 3. المقالات والتوجيه اليومي -->
         <div id="articles-section" class="section">
             <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             <div class="content-card">
@@ -605,12 +607,12 @@
                 </p>
 
                 <div id="dynamic-articles-container">
-                    <!-- يتم تحميل المقالات والصور الـ 3 المخصصة للزيارة هنا عبر JS -->
+                    <!-- يتم تحميل المقالات والصور هنا عبر JS -->
                 </div>
             </div>
         </div>
 
-        <!-- 4. طوارئ الضعف (خالي تماماً من الصور) -->
+        <!-- 4. طوارئ الضعف -->
         <div id="emergency-section" class="section">
             <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             <div class="content-card">
@@ -843,7 +845,7 @@
             for(var i = 0; i < selectedGroup.length; i++) {
                 var item = selectedGroup[i];
                 htmlContent += '<div class="article-block">';
-                htmlContent += '  <img src="' + item.img + '" onerror="this.onerror=null;this.src=\'مباركة_20260913_170810_0000.png\';" class="section-img" alt="صورة المقال">';
+                htmlContent += '  <img src="' + item.img + '" onerror="this.onerror=null;this.src=\'H.png\';" class="section-img" alt="صورة المقال">';
                 htmlContent += '  <p>' + item.text + '</p>';
                 htmlContent += '</div>';
             }
