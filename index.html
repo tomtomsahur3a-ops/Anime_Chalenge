@@ -6,25 +6,24 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-V16XSMG3HP');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صَون - منصة صيانة النفس والتحرر من إدمان الإباحية</title>
+    <title>صَون - منصة صيانة النفس والتحرر من الإدمان</title>
     
-    <link rel="icon" type="image/png" href="منشور فيسبوك أصفر أسود عصري دعاء يوم جمعة مباركة_20260913_0000_170810.png">
-    <link rel="apple-touch-icon" href="منشور فيسبوك أصفر أسود عصري دعاء يوم جمعة مباركة_20260913_0000_170810.png">
+    <link rel="icon" type="image/png" href="مباركة_20260913_170810_0000.png">
+    <link rel="apple-touch-icon" href="مباركة_20260913_170810_0000.png">
     <meta name="theme-color" content="#09090b">
     <meta property="og:title" content="منصة صَون - إيقاظ الضمير وصيانة النفس">
     <meta property="og:description" content="طريقك نحو صيانة النفس، التحصين الشخصي، واليقظة الروحية.">
-    <meta property="og:image" content="منشور فيسبوك أصفر أسود عصري دعاء يوم جمعة مباركة_20260913_0000_170810.png">
+    <meta property="og:image" content="مباركة_20260913_170810_0000.png">
 
-    <!-- استدعاء الخطوط: Readex Pro للعناوين، Cairo للنصوص، و Amiri للآيات القرآنية -->
+    <!-- استدعاء الخطوط: Readex Pro للعناوين، Cairo للنصوص، Amiri للقرآن -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Readex+Pro:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@400;600;700;800&family=Readex+Pro:wght@500;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -72,14 +71,13 @@
         }
 
         .app-logo {
-            width: 130px;
-            height: 130px;
+            width: 125px;
+            height: 125px;
             border-radius: 28px;
             border: 2px solid var(--gold-primary);
             box-shadow: 0 0 30px var(--gold-glow);
             margin-bottom: 16px;
-            object-fit: contain;
-            background-color: #000;
+            object-fit: cover;
             transition: transform 0.4s ease;
         }
 
@@ -105,7 +103,7 @@
             max-width: 520px;
         }
 
-        /* شريط التنقل العلوي السريع */
+        /* شريط التنقل العلوي السريع مرتب حسب الأولوية */
         .quick-nav {
             display: flex;
             gap: 10px;
@@ -310,7 +308,7 @@
             background: var(--card-bg);
             border-radius: 24px;
             padding: 28px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border: 1px solid var(--card-border);
             backdrop-filter: blur(12px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -351,14 +349,27 @@
             color: var(--gold-primary);
         }
 
-        .article-image {
+        .section-img {
             width: 100%;
-            max-height: 380px;
+            max-height: 280px;
             object-fit: cover;
             border-radius: 18px;
-            margin: 16px 0;
+            margin-bottom: 16px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .article-block {
+            background: rgba(18, 18, 20, 0.7);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 22px;
+        }
+
+        .article-block p {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
         .back-btn {
@@ -375,8 +386,8 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 15px var(--gold-glow);
             transition: transform 0.2s;
-            cursor: pointer;
             border: none;
+            cursor: pointer;
         }
 
         .back-btn:hover {
@@ -385,9 +396,9 @@
 
         .quran-box {
             font-family: 'Amiri', serif;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             color: #fef08a;
-            background: rgba(9, 9, 11, 0.8);
+            background: rgba(9, 9, 11, 0.85);
             padding: 22px;
             border-radius: 18px;
             text-align: center;
@@ -397,29 +408,14 @@
             box-shadow: inset 0 0 15px rgba(234, 179, 8, 0.1);
         }
 
-        .notif-btn {
+        .quran-sub {
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+            margin-top: 8px;
             display: block;
-            width: 100%;
-            text-align: center;
-            background: var(--gold-gradient);
-            color: #09090b;
-            border: none;
-            padding: 15px;
-            border-radius: 100px;
-            font-family: 'Readex Pro', sans-serif;
-            font-weight: 800;
-            font-size: 1.05rem;
-            margin-top: 15px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px var(--gold-glow);
-            transition: transform 0.2s;
+            font-family: 'Cairo', sans-serif;
         }
 
-        .notif-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* الفوتر */
         .footer {
             text-align: center;
             margin-top: 35px;
@@ -454,23 +450,25 @@
 <body>
 
     <div class="container">
+        <!-- الهيدر بالشعار الجديد -->
         <header>
-            <img src="منشور فيسبوك أصفر أسود عصري دعاء يوم جمعة مباركة_20260913_0000_170810.png" alt="شعار صَون" class="app-logo">
+            <img src="مباركة_20260913_170810_0000.png" alt="شعار صَون" class="app-logo">
             <h1>صَـون</h1>
-            <p>منصة تُعنى بصيانة النفس وتحرير الشباب من إدمان الإباحية بعون الله في زمن صار فيه الحرام سهلا</p>
+            <p>منصة تُعنى بصيانة النفس وتحرير الشباب من الإدمان بعون الله في زمن صار فيه الحرام سهلاً</p>
         </header>
 
+        <!-- شريط التنقل العلوي: 1. الرئيسية | 2. الحل الذهبي للقرآن | 3. المقالات -->
         <div class="quick-nav">
             <div class="nav-chip active-chip" id="chip-main-menu" onclick="showSection('main-menu')">🏠 الرئيسية</div>
             <div class="nav-chip" id="chip-quran-effect-section" onclick="showSection('quran-effect-section')">⭐ الحل الذهبي للقرآن</div>
+            <div class="nav-chip" id="chip-articles-section" onclick="showSection('articles-section')">📚 المقالات والتوجيه اليومي</div>
             <div class="nav-chip" id="chip-emergency-section" onclick="showSection('emergency-section')">🚨 طوارئ الضعف</div>
-            <div class="nav-chip" id="chip-articles-section" onclick="showSection('articles-section')">📚 المقالات</div>
             <div class="nav-chip" id="chip-welcome-section" onclick="showSection('welcome-section')">✨ رسالة الأمل</div>
             <div class="nav-chip" id="chip-dangers-section" onclick="showSection('dangers-section')">⚠️ مخاطر الإباحية</div>
             <div class="nav-chip" id="chip-solutions-section" onclick="showSection('solutions-section')">🛡️ الحلول العملية</div>
         </div>
 
-        <!-- الرئيسية -->
+        <!-- 1. الرئيسية -->
         <div id="main-menu" class="section active">
             
             <div class="video-slider-container">
@@ -498,29 +496,29 @@
 
             <div class="truth-card">
                 <h3>الحقيقة المطلقة: القرار بيديك أنت</h3>
-                <p>عزيمة التغيير والقرار النهائي لن يمنحك إياها أحد.. هي قرارك الشخصي بينك وبين نفسك أمام الله. المواقع والنصائح هي مجرد أسباب، لكن المفتاح الحقيقي بيديك أنت فقط.</p>
+                <p>عزيمة التغيير والقرار النهائي لن يمنحك إياها أحد.. هي قرارك الشخصي بينك وبين نفسك أمام الله. النصائح والأسباب متوفرة، لكن المفتاح الحقيقي بيديك أنت فقط.</p>
             </div>
 
             <div class="menu-card gold-card" onclick="showSection('quran-effect-section')">
                 <div>
                     <h3>⭐ الحل الذهبي: أثر القرآن على القلب (أسأل مجرب)</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-sub);">علاج الهجر الطويل لكلام الله والآيات المنجية</p>
+                    <p style="font-size: 0.88rem; color: var(--text-sub);">علاج الهجر الطويل لكلام الله وآيات طهارة النور</p>
                 </div>
                 <span>✨</span>
+            </div>
+
+            <div class="menu-card" onclick="showSection('articles-section')">
+                <div>
+                    <h3>📚 المقالات والتوجيه اليومي (يتجدد تلقائياً)</h3>
+                    <p style="font-size: 0.88rem; color: var(--text-sub);">مقالات قصيرة تزيد وعيك وتثبت خطواتك</p>
+                </div>
+                <span>←</span>
             </div>
 
             <div class="menu-card" onclick="showSection('emergency-section')">
                 <div>
                     <h3>🚨 أدوات الطوارئ ولحظات الضعف الفورية</h3>
                     <p style="font-size: 0.88rem; color: var(--text-sub);">طوق نجاة سريع عندما تباغتك الشهوة</p>
-                </div>
-                <span>←</span>
-            </div>
-
-            <div class="menu-card" onclick="showSection('articles-section')">
-                <div>
-                    <h3>📚 أحدث المقالات والنصائح اليومية</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-sub);">الفهم العميق للمشكلة وأسباب الترويج لها</p>
                 </div>
                 <span>←</span>
             </div>
@@ -548,55 +546,79 @@
                 </div>
                 <span>←</span>
             </div>
-
-            <button class="notif-btn" onclick="requestNotificationPermission()">🔔 تفعيل التذكيرات اليومية والتحفيز</button>
         </div>
 
-        <!-- الأقسام الفرعية والمقالات الشاملة مدمجة بالصور الـ 42 -->
-
+        <!-- 2. الحل الذهبي للقرآن الكريم (مخصص حصرياً للآيات القرآنية) -->
         <div id="quran-effect-section" class="section">
             <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             <div class="content-card">
                 <h2>⭐ الحل الذهبي: أثر القرآن الكريم في شفاء القلب</h2>
                 
-                <img src="d49bb11906297374ee7bb25dfb3e4ec0.jpg" alt="الصلاة والتنشئة الإيمانية" class="article-image">
+                <img src="1a72a129ef993309f3e4b7b203405c74.jpg" onerror="this.onerror=null;this.src='مباركة_20260913_170810_0000.png';" alt="القرآن الكريم نبتة النور" class="section-img">
 
-                <p>من واقع تجربة وممارسة حقيقية: السبب الأساسي والعميق للوقوع في إدمان الإباحية والضعف المتكرر أمام الشهوات هو **الهجر الطويل لكلام الله تعالى** قراءةً وتدبرًا.</p>
+                <p>من واقع تجربة وممارسة حقيقية: السبب الأساسي والعميق للوقوع في الضعف المتكرر أمام الشهوات هو **الهجر الطويل لكلام الله تعالى** قراءةً وتدبرًا.</p>
                 
                 <p>إن القلب إذا خلا من كلام الله والتعلق به، أصبح أرضًا قاحلة وسهلة الاقتحام أمام الوساوس والنظرات المحرمة. القرآن ليس مجرد عبادة تؤجر عليها، بل هو إعادة تشكيل حقيقية لبنية العقل والروح.</p>
 
+                <!-- آيات مباركة مخصصة من سورة النور وسور الشفاء -->
                 <div class="quran-box">
-                    "يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ وَهُدًى وَرَحْمَةٌ لِّلْمُؤْمِنِينَ"
+                    "قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ ۚ ذَٰلِكَ أَزْكَىٰ لَهُمْ ۗ إِنَّ اللَّهَ خَبِيرٌ بِمَا يَصْنَعُونَ"
+                    <span class="quran-sub">[سورة النور: 30]</span>
                 </div>
 
-                <img src="e1098234ab86721590ec0198428511aa.jpg" alt="بدايات التجدد والوعي" class="article-image">
+                <div class="quran-box">
+                    "وَلْيَسْتَعْفِفِ الَّذِينَ لَا يَجِدُونَ نِكَاحًا حَتَّىٰ يُغْنِيَهُمُ اللَّهُ مِن فَضْلِهِ"
+                    <span class="quran-sub">[سورة النور: 33]</span>
+                </div>
 
                 <h3>كيف يعالج القرآن إدمان الإباحية في عقلك؟</h3>
                 <ul>
                     <li><strong>غسيل الرواسب الذهنية:</strong> الصور المشوهة التي تخزنها الإباحية في ذاكرتك يمحوها التكرار المستمر لتدبر آيات القرآن.</li>
-                    <li><strong>تأصيل المراقبة الإلهية:</strong> عند استحضار قوله تعالى <em>"يَعْلَمُ خَائِنَةَ الْأَعْيُنِ وَمَا تُخْفِي الصُّدُورُ"</em> يتولد لدى النفس حياء حقيقي يحجزك في لحظات الخلوة.</li>
-                    <li><strong>تغذية الروح وموازنة الدوبامين:</strong> الهدوء الذي يمنحه القرآن يقلل من حالة التوتر والضغط التي تدفعك للهرب نحو الإباحية.</li>
+                    <li><strong>تأصيل المراقبة الإلهية:</strong> استحضار آيات الحياء والمراقبة يعيد لبصيرتك النقاء والكرامة.</li>
+                    <li><strong>تغذية الروح وموازنة الدوبامين:</strong> السكينة التي يمنحها القرآن تقضي على التوتر والانسحاب النفسي.</li>
                 </ul>
 
                 <div class="quran-box">
+                    "يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ وَهُدًى وَرَحْمَةٌ لِّلْمُؤْمِنِينَ"
+                    <span class="quran-sub">[سورة يونس: 57]</span>
+                </div>
+
+                <div class="quran-box">
                     "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"
+                    <span class="quran-sub">[سورة الرعد: 28]</span>
                 </div>
 
                 <h3>خطة عملية يومية لاستعادة العلاقة مع القرآن:</h3>
                 <ul>
-                    <li>ورد يومي لا يقل عن صفحتين أو ورقتين بتدبر وتأمل معاني الآيات.</li>
+                    <li>ورد يومي لا يقل عن صفحتين بتدبر وتأمل معاني الآيات.</li>
                     <li>استماع مركز لآيات القرآن عبر السماعات أثناء المشي أو الاسترخاء بدلاً من المقاطع العشوائية.</li>
                     <li>جعل المصحف أو تطبيق المصحف أول شيء تفتحه عند الاستيقاظ وقبل النوم.</li>
                 </ul>
             </div>
         </div>
 
+        <!-- 3. المقالات والتوجيه اليومي (يعرض 3 مقالات ديناميكياً بحسب زيارة المستخدم) -->
+        <div id="articles-section" class="section">
+            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
+            <div class="content-card">
+                <h2>📚 المقالات والتوجيه اليومي</h2>
+                <p style="text-align: center; color: var(--text-sub); margin-bottom: 20px; font-size: 0.95rem;">
+                    مقالات مكثفة وموجهة تتغير تلقائياً لتمنحك جرعة وعي جيدة في كل دخول للموقع:
+                </p>
+
+                <div id="dynamic-articles-container">
+                    <!-- يتم تحميل المقالات والصور الـ 3 المخصصة للزيارة هنا عبر JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- باقي الأقسام التوعوية -->
         <div id="emergency-section" class="section">
             <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
             <div class="content-card">
                 <h2>🚨 أدوات الطوارئ ولحظات الضعف الفورية</h2>
                 
-                <img src="be346399c02aa00c8a666e511c5e638d.jpg" alt="البحث عن الحل والتغيير" class="article-image">
+                <img src="780cf965935fcd7a39d482613b58be42.jpg" onerror="this.onerror=null;this.src='مباركة_20260913_170810_0000.png';" alt="الطوارئ وكسر الدائرة" class="section-img">
 
                 <p>إذا كنت تشعر الآن برغبة ملحة أو تباغتك أفكار الضعف، نفّذ هذه الخطوات الفورية بدون تردد:</p>
                 
@@ -608,90 +630,10 @@
                     <li><strong>قم بعمل 15 تمرين ضغط:</strong> استهلاك الطاقة الجسدية فوراً يقطع الإشارة التي يرسلها العقل للشهوة.</li>
                 </ul>
 
-                <img src="8f49d7476bb9d819ecb1788039726341.jpg" alt="الانضباط الذاتي ومواجهة النفس" class="article-image">
-
                 <div class="truth-card" style="margin-top: 20px;">
                     <h3>تذكر في هذه اللحظة:</h3>
                     <p>المتعة الزائفة تدوم لدقائق معدودة، لكن الشعور بالذنب والكسر يستمر لعدة أيام. صُنْ نفسك وكن أنت المنتصر اليوم!</p>
                 </div>
-            </div>
-        </div>
-
-        <div id="articles-section" class="section">
-            <button class="back-btn" onclick="showSection('main-menu')">← العودة للرئيسية</button>
-            <div class="content-card">
-                <h2>📚 أحدث المقالات والنصائح التوعوية والشاملة</h2>
-                
-                <div class="truth-card" style="margin-bottom: 25px;">
-                    <h3>لماذا يُروَّج للإباحية وبسط السيطرة؟</h3>
-                    <p>صناعة الإباحية ليست مجرد محتوى عشوائي، بل هي تجارة بمليارات الدولارات تعتمد على تدمير مراكز الإرادة في عقول الشباب وتسهيل انقيادهم وتشتيت طاقاتهم عن بناء أنفسهم وأممهم.</p>
-                </div>
-
-                <!-- استعراض كافة المقالات مدعمة بـ 42 صورة -->
-
-                <h3>المقال الأول: التشتت الرقمي والإدمان في الظلام</h3>
-                <img src="2ed1bfed8ceba814fe04ce0fc669bf6f.jpg" alt="التشتت الرقمي والتركيز" class="article-image">
-                <p>إن استمرار بقاء الفرد أمام الشاشات حتى ساعات متأخرة يفتح الباب للتصفح اللاشعوري والوقوع في المحرمات.</p>
-                <img src="f43b35ee915d96b02607fa66860085a1.jpg" alt="الإدمان على الشاشات ليلاً" class="article-image">
-                <img src="b24f4e7c70c6a84d2a1389aa320141e5.jpg" alt="السهر المتأخر الأرق" class="article-image">
-                <img src="b5ab13ef76be5a8c2eaeb523bf4202d4.jpg" alt="إدمان الهاتف في الظلام" class="article-image">
-                <img src="951474278edae375a0e980eb6d6910a5.jpg" alt="السهر والمثيرات البصرية" class="article-image">
-
-                <div class="quran-box">
-                    "وَلا تَقْرَبُوا الزِّنَى إِنَّهُ كَانَ فَاحِشَةً وَسَاءَ سَبِيلاً"
-                </div>
-
-                <h3>المقال الثاني: الآثار النفسية والعزلة والندم</h3>
-                <img src="20603f27805bf7447eb595914e6d4001.jpg" alt="الضغوط النفسية والإجهاد" class="article-image">
-                <img src="a510f845a9ca49301fdc3f2bca5db866.jpg" alt="العزلة والشعور بالحزن" class="article-image">
-                <img src="ecde8b1f237f3743e8bb3356e9c49033.jpg" alt="الصراع الداخلي والتفكير" class="article-image">
-                <img src="8752c0e86fa70fdd0ea81fbd6dff616a.jpg" alt="الندم والشعور بالذنب" class="article-image">
-                <img src="a5a54db38925439cb5c50c05fe9e37eb.jpg" alt="الوحدة والانطواء" class="article-image">
-                <img src="573056b91faadaa13934ba1fc267a.jpg" alt="الإرهاق النفسي والهروب" class="article-image">
-                <img src="6bf8ad2d0d34633b3b4d45d34193eb77.jpg" alt="التفكير المفرط والقلق" class="article-image">
-
-                <div class="quran-box">
-                    "وَمَنْ أَعْرَضَ عَن ذِكْرِي فَإِنَّ لَهُ مَعِيشَةً ضَنكًا"
-                </div>
-
-                <h3>المقال الثالث: التأثير الخوارزمي واستنزاف الدوبامين</h3>
-                <img src="d3246eb7ecb9a117b96b3a0dfecaa8f6.jpg" alt="التصفح السلبي المتأخر" class="article-image">
-                <img src="88c67ce7a61d19d651523bc8ff8b2ef8.jpg" alt="استهلاك المحتوى دون هدف" class="article-image">
-                <img src="16c27fc1ec3fbafae4e68ebdbb99d084.jpg" alt="التأثير الخوارزمي والتصفح" class="article-image">
-                <img src="32c45b85a38bf5a041cb122709e9921b.jpg" alt="الاحتراق المهني والعمل ليلاً" class="article-image">
-                <img src="7f7a77b819e9cae54a9fa3bc8a4b4bb2.jpg" alt="العزلة والتفكير الانفرادي" class="article-image">
-                <img src="f4675510659a0f0237e428cfb46f4eb2.jpg" alt="الانضباط والتغيير الذاتي" class="article-image">
-                <img src="a492801ed009aee5ad5f128be4010892.jpg" alt="الحزن والانكسار" class="article-image">
-                <img src="9daefca0f2b2b184281f692dbb314986.jpg" alt="الأرق والندم ليلاً" class="article-image">
-
-                <h3>المقال الرابع: التفكك الاجتماعي والارتهان بالشاشات</h3>
-                <img src="47b77ab4ee836fcd8b827e70eb33527a.jpg" alt="الضياع والتفكير العميق" class="article-image">
-                <img src="cb3bc3c4b7ec31872df02e1bdf69a5e8.jpg" alt="الأرقوصراع الأفكار" class="article-image">
-                <img src="0a80e4612e52bb16ef83fa2be187ca0b.jpg" alt="إدمان الشاشات في الفراش" class="article-image">
-                <img src="74b8823528b100bb1166ea2030ab715a.jpg" alt="تأثير الضوء الأزرق ليلاً" class="article-image">
-                <img src="d236f6d55bb24e3962635bf7eb4565b9.jpg" alt="التصفح المفرط والهروب" class="article-image">
-                <img src="b2933748283a0026e6fefc452e897184.jpg" alt="الارتهان للهواتف الذكية" class="article-image">
-                <img src="987625143a5932bd6c90e676fa1c3214.jpg" alt="الإرهاق الرقمي أمام الشاشة" class="article-image">
-                <img src="28935c7e10bbdf72a1e0489aa5b20917.jpg" alt="العزلة والانطواء النفسي" class="article-image">
-                <img src="59d871b601f787b0a7b458d9e60271bb.jpg" alt="الشعور بالخزي والتنمر" class="article-image">
-
-                <div class="quran-box">
-                    "إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا"
-                </div>
-
-                <h3>المقال الخامس: طريق الوعي، الانضباط، والتعافي الكامل</h3>
-                <img src="b0048c6d035dd6b219486f0394e85550.jpg" alt="جلسة تواصل واجتماع" class="article-image">
-                <img src="591f2e4e1216e8e4e22ff737acfdf678.jpg" alt="التفكير المفرط والأرق" class="article-image">
-                <img src="e9a7cc11c6c6bb9434a0f88119b63523.jpg" alt="العزلة والانطواء" class="article-image">
-                <img src="1b9fd507aca55131ed0e87a3502f5a61.jpg" alt="السهر أمام الشاشات" class="article-image">
-                <img src="ad670d15fcf688f6d3629c48fefc49fc.jpg" alt="التصفح المفرط ليلاً" class="article-image">
-                <img src="1c3afcf589e3e2ae076e41d379907769.jpg" alt="الإجهاد والاحتراق" class="article-image">
-                <img src="1172d25bbf4168add2fb7bd6613445c6.jpg" alt="الاستغراق في الهاتف" class="article-image">
-                <img src="7c7c3be6532e8429d5a17e0c0a2e2c06.jpg" alt="إدمان المحتوى الرقمي" class="article-image">
-                <img src="d9a0b4b950b1f40a04c01edec53e3f31 (1).jpg" alt="التعافي والوعي الذاتي" class="article-image">
-                <img src="952293904959684d8b5891e94e81aa16.jpg" alt="استخدام الهاتف في الظلام" class="article-image">
-                <img src="2ddbcdbfe89586e6c7dd8d063aed6bf5.jpg" alt="الندم والانكسار النفسي" class="article-image">
-                <img src="062519d746f915f185bb7f1563c15f8a.jpg" alt="تصفح الهاتف في الظلام الشديد" class="article-image">
             </div>
         </div>
 
@@ -702,11 +644,7 @@
                 
                 <p>أهلاً بك في منصة <strong>صَـون</strong>. وجودك هنا اليوم هو دليل حي على أن ضميرك ما زال حياً، وأن في قلبك رغبة صادقة في التغيير والتحرر من الأغلال التي تكبلك.</p>
 
-                <p>اعلم أنك لست وحدك في هذه المعركة، وأن إدمان الإباحية ليس دليلاً على أنك شخص سيئ، بل هو فخ سلوكي ونفسي وقع فيه ملايين الشباب بسبب التسهيلات والتكنولوجيا الحديثة.</p>
-
-                <div class="quran-box">
-                    "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ"
-                </div>
+                <p>اعلم أنك لست وحدك في هذه المعركة، وأن الضعف أمام الشهوة ليس دليلاً على أنك شخص سيئ، بل هو فخ سلوكي ونفسي وقع فيه الكثير من الشباب بسبب التسهيلات والتكنولوجيا الحديثة.</p>
 
                 <p>البداية تبدأ بقرار صريح وشفاف مع الذات. اترك الماضي خلفك، وابدأ رحلة جديدة ملؤها النور والكرامة والعزة وصيانة النفس.</p>
             </div>
@@ -717,11 +655,11 @@
             <div class="content-card">
                 <h2>⚠️ مخاطر وأضرار الإباحية الصريحة</h2>
                 
-                <p>الإباحية ليست مجرد نظرة محرمة، بل هي مادة سامة تؤثر مباشرة على البنية الدماغية والنفسية والاجتماعية للإنسان:</p>
+                <p>الإباحية ليست مجرد نظرة محرمة، بل هي مادة تؤثر مباشرة على البنية الدماغية والنفسية والاجتماعية للإنسان:</p>
 
                 <ul>
-                    <li><strong>تدمير التركيز والذاكرة:</strong> تؤدي لمشاكل في القشرة المخية الفصية الجبهية، مما يسبب الضبابية الذهنية وضعف القدرة على الاستيعاب الدراسي والعملي.</li>
-                    <li><strong>الموت العاطفي والضعف الجنسي:</strong> تؤدي لبرود العواطف وتشويش المفاهيم الفطرية السليمة عن الزواج وبناء الأسرة.</li>
+                    <li><strong>تدمير التركيز والذاكرة:</strong> تؤدي لمشاكل في القشرة المخية الفصية الجبهية، مما يسبب الضبابية الذهنية وضعف القدرة على الاستيعاب.</li>
+                    <li><strong>الموت العاطفي والضعف:</strong> تؤدي لبرود العواطف وتشويش المفاهيم الفطرية السليمة عن الزواج وبناء الأسرة.</li>
                     <li><strong>الشعور المستمر بالعار والذنب:</strong> تفقد الإنسان احترامه لذاته وتجعله يعيش في انطوائية وعزلة اجتماعية.</li>
                     <li><strong>إهدار الوقت والطاقة:</strong> تسرق منك أنشط ساعات يومك وحيويتك الشبابية وتتركك مجهداً بلا طموح.</li>
                 </ul>
@@ -738,19 +676,20 @@
                 <ul>
                     <li><strong>حظر المواقع والمشتتات:</strong> استخدام أدوات حجب المواقع الإباحية وتفعيل البحث الآمن على كافة أجهزتك الذكية.</li>
                     <li><strong>إبعاد الهاتف أثناء النوم:</strong> لا تضع هاتفك بجوار فراشك عند النوم أبداً، واجعل شحنه خارج غرفة النوم.</li>
-                    <li><strong>ملء الفراغ اليومي:</strong> ابدأ بتعلم مهارة جديدة، ممارسة الرياضة بشكل منتظم، أو المشاركة في أعمال تطوعية ومجتمعية.</li>
+                    <li><strong>ملء الفراغ اليومي:</strong> ابدأ بتعلم مهارة جديدة، ممارسة الرياضة بشكل منتظم، أو المشاركة في أعمال مفيدة.</li>
                     <li><strong>الصحبة الصالحة والبيئة النظيفة:</strong> ابتعد عن الأصدقاء والبيئات التي تشجع على المعصية والحديث في المحرمات.</li>
                     <li><strong>الاستعانة بالصلاة والدعاء:</strong> الصلاة الخاشعة تنهى عن الفحشاء والمنكر، واحرص على أدائها في أوقاتها.</li>
                 </ul>
             </div>
         </div>
 
+        <!-- الفوتر -->
         <div class="footer">
             <div class="footer-links">
                 <a href="#" onclick="showSection('main-menu'); return false;">الرئيسية</a> •
                 <a href="#" onclick="showSection('quran-effect-section'); return false;">الحل الذهبي</a> •
-                <a href="#" onclick="showSection('emergency-section'); return false;">الطوارئ</a> •
-                <a href="#" onclick="showSection('articles-section'); return false;">المقالات</a>
+                <a href="#" onclick="showSection('articles-section'); return false;">المقالات</a> •
+                <a href="#" onclick="showSection('emergency-section'); return false;">الطوارئ</a>
             </div>
             <p>منصة صَـون © 2026 - جميع الحقوق محفوظة لغايات التوعية والخير</p>
         </div>
@@ -758,6 +697,7 @@
     </div>
 
     <script>
+        /* التبديل بين الأقسام */
         function showSection(sectionId) {
             var sections = document.querySelectorAll('.section');
             sections.forEach(function(sec) { sec.classList.remove('active'); });
@@ -777,6 +717,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        /* سلايدر الفيديو */
         var currentVideoIndex = 0;
         var slides = document.querySelectorAll('.video-slide');
         var dots = document.querySelectorAll('.dot');
@@ -802,35 +743,121 @@
             updateSlider();
         }
 
-        function requestNotificationPermission() {
-            if (!("Notification" in window)) {
-                alert("متصفحك لا يدعم الإشعارات التلقائية.");
-                return;
+        /* قاعدة بيانات المقالات الـ 42 كاملة وموزعة على 14 زيارة بمعدل 3 مقالات لكل زيارة */
+        var articleGroups = [
+            // الزيارة 1
+            [
+                { text: "العزلة النفسية والاستغراق في الشاشات ليلاً لا يعنيان النهاية؛ إنها إشارة من العقل لوجود خلل في نمط حياتك يحتاج إلى معالجة قبل الانسحاب الكامل.", img: "062519d746f915f185bb7f1563c15f8a.jpg" },
+                { text: "التراجع المستمر وتكرار الخطأ يولد شعوراً بالذنب، لكن المواجهة الذاتية هي أول خطوات الاستعادة للسيطرة.", img: "30dc3a0f7a781f9e00dc9f0a4c5cefd6.jpg" },
+                { text: "الانزواء في زوايا الغرفة يمنح إحساساً زائفاً بالأمان، بينما الحل يكمن في الخروج والتفاعل التدريجي مع الواقع.", img: "ba3588ec2e43672770854fe606a22c3d.jpg" }
+            ],
+            // الزيارة 2
+            [
+                { text: "السهر المفرط وتصفح الشاشات متأخراً يسلب عقلك القدرة على التفكير المتزن في اليوم التالي.", img: "0b8555da8adf16a80b27bd13c113c135.jpg" },
+                { text: "التعرض المستمر للإضاءة الزرقاء في الظلام يدخل العقل في حالة تنشيط كاذب يعطل دورة النوم الطبيعية.", img: "350e2652a115925038cf1e8724d1df23.jpg" },
+                { text: "استخدام الشاشات كهروب من المشاعر المحزنة يضاعف التوتر ولا يحل المشكلة الأصلية.", img: "a4513580895039a2589957f35357fa47.jpg" }
+            ],
+            // الزيارة 3
+            [
+                { text: "الإرهاق الذهني أمام الكمبيوتر إشارة صريحة لوجوب إيقاف العمل وأخذ قسط حقيقي من الراحة.", img: "8cb8501ee36c0acd11e1d703fde29a34.jpg" },
+                { text: "لحظة الصدمة باستيعاب حجم الوقت المهدور هي نقطة التحول الحقيقية لإعادة تنظيم حياتك.", img: "47fda604c74f90e5499b4636b80a9f60.jpg" },
+                { text: "التخفي الرقمي وتغطية وجهك يعكسان رغبة في الاختباء من التحديات بدلاً من حلها.", img: "a5540dcff332324ef1f8a95cf27474de.jpg" }
+            ],
+            // الزيارة 4
+            [
+                { text: "الأرق المتكرر نتاج تراكم العادات السلبية؛ ضبط البيئة المحيطة يعيد لجسدك توازنه.", img: "9582a6bd049e490288d4ef43a59154e8.jpg" },
+                { text: "الاعتماد الكامل على الحاسوب كمؤنس لوحدتك يزيد من جفاء العلاقات الاجتماعية الواقعية.", img: "95bb04897ed48ba2e9717f2a7d2d19e7.jpg" },
+                { text: "الغرق في التفكير الفردي داخل الغرف المعتمة يصنع عوائق وهمية تمنعك من التقدم.", img: "d4c59ac7efe0803789ecff39dd0ac5df.jpg" }
+            ],
+            // الزيارة 5
+            [
+                { text: "التواصل مع الآخرين ومشاركة الحديث البنّاء يقطع سلسلات التفكير السلبي والانعزال.", img: "39034b4cb199ca8830af2de207812bcc.jpg" },
+                { text: "طلب النصيحة والاستماع لمن هم أكبر خبرة يختصر عليك طريقاً طويلاً من التخبط.", img: "3e253db07019f5e7ccfedcb4075bc318.jpg" },
+                { text: "العودة للتجمعات العائلية والصحبة الصالحة يعيد شحن الطاقة النفسية بأسلوب طبيعي.", img: "122f9d6828715b920337cc2629b15d30.jpg" }
+            ],
+            // الزيارة 6
+            [
+                { text: "محاولة السيطرة على المشاعر دون تفريغها تؤدي إلى انفجار نفسي مفاجئ؛ تحدث واستمع.", img: "ec8f04af6e9ac92ddd2ea5565b0cdfe1.jpg" },
+                { text: "الخروج إلى الطبيعة والتأمل في المساحات المفتوحة يقلل من حدة التوتر العصبي.", img: "89b3a550a8774325983194f53010cd55.jpg" },
+                { text: "تنظيم جداول النوم واليقظة يعيد ترتيب إفراز الهرمونات المسؤولة عن تحسين المزاج.", img: "c0e02774d7c67a548a0065ca599a297b.jpg" }
+            ],
+            // الزيارة 7
+            [
+                { text: "المواجهة الصريحة مع النفس في لحظات الهدوء والظلام هي بداية طريق التغيير الفعلي.", img: "1eb0e85b83122701faa74e30d2e03aa9.jpg" },
+                { text: "استبدال عادة التصفح قبل النوم بقراءة أو تأمل هادئ يضمن لك نوماً عميقاً.", img: "a240eec3652d7282c625d257914000f0.jpg" },
+                { text: "تجنب التواجد في الغرف المعتمة لفترات طويلة لمنع تحفيز مشاعر الكآبة.", img: "f26b596e858c4a1f7590c849a68bb3e2.jpg" }
+            ],
+            // الزيارة 8
+            [
+                { text: "التخلص من التطبيقات والمشتتات الرقمية التي تستهلك الوقت دون فائدة ملموسة.", img: "d3956d904827334a17e995cdc8d532e0.jpg" },
+                { text: "إدراك أن المشاعر السلبية مؤقتة وتزول بمجرد البدء في الحركة وتغيير المكان.", img: "d71ec74e5b0b67b73ddda125092e9bb9.jpg" },
+                { text: "استبدال الإدمان الرقمي بهوايات عملية وتطبيقات مهارية تبني الذات.", img: "f464fa7185ea2ac200e08ccb0f71e0f2.jpg" }
+            ],
+            // الزيارة 9
+            [
+                { text: "وضع الحدود الصارمة لاستخدام الأجهزة الذكية خلال فترات المساء.", img: "0de36ea16608ac4158e1bde9bfc963c4.jpg" },
+                { text: "استثمر وقت فراغك في بناء العلاقات الأسرية ومشاركة الأنشطة اليومية.", img: "ce89551d70b1ba237cb022201f80b68d.jpg" },
+                { text: "ممارسة التمارين الرياضية لتفريغ الشحنات السلبية وتجديد الدورة الدموية.", img: "ab0259f1b31b63db4c2d70d6be3eedb4.jpg" }
+            ],
+            // الزيارة 10
+            [
+                { text: "التعلم الدائم والاستفادة من تجارب الآخرين يمنع الوقوع في الأخطاء المتكررة.", img: "2c6bca79b7739a59d45debaccaccea17.jpg" },
+                { text: "التحرر من عقدة الذنب والتفكير في الخطوات المستقبليّة بدلاً من حسرة الماضي.", img: "b8b96ccbc362167620615429e7d1069a.jpg" },
+                { text: "ضبط البيئة المحيطة بك ليصبح التغيير أسهل والعزيمة أقوى.", img: "eee573056b91faadaa13934ba1fc267a.jpg" }
+            ],
+            // الزيارة 11
+            [
+                { text: "بناء الصداقات الإيجابية الداعمة التي تعينك على طريق التعافي والتطور.", img: "b0048c6d035dd6b219486f0394e85550.jpg" },
+                { text: "فهم أن رحلة التغيير تتطلب الصبر والتدرج ولا تحدث بين ليلة وضحاها.", img: "591f2e4e1216e8e4e22ff737acfdf678.jpg" },
+                { text: "الابتعاد عن البيئات الإلكترونية المحبطة أو المسببة للانتكاس.", img: "e9a7cc11c6c6bb9434a0f88119b63523.jpg" }
+            ],
+            // الزيارة 12
+            [
+                { text: "تعزيز التركيز البصري والذهني بعيداً عن تشتت الشاشات المتعددة.", img: "8f49d7476bb9d819ecb1788039726341.jpg" },
+                { text: "استعادة التوازن البيولوجي للجسم بالنوم المبكر والاستيقاظ المبكر.", img: "1b9fd507aca55131ed0e87a3502f5a61.jpg" },
+                { text: "استغلال الأوقات الفاصلة في اليوم في التسبيح والتأمل والهدوء النفسي.", img: "ad670d15fcf688f6d3629c48fefc49fc.jpg" }
+            ],
+            // الزيارة 13
+            [
+                { text: "التخلص من الإجهاد الإلكتروني بمنح البصر والذهن فترات راحة منتظمة.", img: "1c3afcf589e3e2ae076e41d379907769.jpg" },
+                { text: "تقبل المشاعر ومعالجتها بالوعي بدلاً من كبتها أو الهروب منها للشاشات.", img: "1172d25bbf4168add2fb7bd6613445c6.jpg" },
+                { text: "تقييم التقدم الإيجابي الذي حققته في رحلة تعافيك والاحتفاء به.", img: "7c7c3be6532e8429d5a17e0c0a2e2c06.jpg" }
+            ],
+            // الزيارة 14
+            [
+                { text: "الالتزام بالروتين الجديد الحامي لك من العودة إلى مربع الانطواء الأول.", img: "d9a0b4b950b1f40a04c01edec53e3f31 (1).jpg" },
+                { text: "جعل الأجهزة الإلكترونية أدوات للإنتاج والتعلم لا لمنصات هدر الوقت.", img: "ee5f289642bc32fb2ee8fd6aaf33cac8.jpg" },
+                { text: "الوصول لمرحلة الاستقرار النفسي والتوازن التام بين العالم الرقمي والحياة الواقعية.", img: "952293904959684d8b5891e94e81aa16.jpg" }
+            ]
+        ];
+
+        /* إدارة عرض المقالات بناء على عدد الزيارات المخزنة في متصفح الزائر */
+        function loadArticlesForCurrentVisit() {
+            var visitCount = parseInt(localStorage.getItem('sawn_visit_count') || '0');
+            var currentGroupIndex = visitCount % articleGroups.length;
+            
+            // رفع العداد ليكون مهيئاً للزيارة القادمة
+            localStorage.setItem('sawn_visit_count', visitCount + 1);
+
+            var selectedGroup = articleGroups[currentGroupIndex];
+            var container = document.getElementById('dynamic-articles-container');
+            if(!container) return;
+
+            var htmlContent = "";
+            for(var i = 0; i < selectedGroup.length; i++) {
+                var item = selectedGroup[i];
+                htmlContent += '<div class="article-block">';
+                htmlContent += '  <img src="' + item.img + '" onerror="this.onerror=null;this.src=\'مباركة_20260913_170810_0000.png\';" class="section-img" alt="صورة المقال">';
+                htmlContent += '  <p>' + item.text + '</p>';
+                htmlContent += '</div>';
             }
 
-            if (Notification.permission === "granted") {
-                alert("الإشعارات مفعّلة لديك بالفعل!");
-                sendSampleNotification();
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then(function (permission) {
-                    if (permission === "granted") {
-                        alert("تم تفعيل الإشعارات بنجاح!");
-                        sendSampleNotification();
-                    }
-                });
-            } else {
-                alert("تم رفض صلاحية الإشعارات سابقاً من إعدادات المتصفح.");
-            }
+            container.innerHTML = htmlContent;
         }
 
-        function sendSampleNotification() {
-            if (Notification.permission === "granted") {
-                new Notification("منصة صَـون", {
-                    body: "تذكر دائماً: 'ومن يتق الله يجعل له مخرجاً'. صُنْ نفسك وكن قوياً اليوم!",
-                    icon: "منشور فيسبوك أصفر أسود عصري دعاء يوم جمعة مباركة_20260913_0000_170810.png"
-                });
-            }
-        }
+        window.onload = function() {
+            loadArticlesForCurrentVisit();
+        };
     </script>
 </body>
 </html>
