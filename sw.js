@@ -1,5 +1,5 @@
-const CACHE = 'sawn-v1';
-const CORE = ['./', 'index.html', 'app.js', 'manifest.json', 'H.png'];
+const CACHE = 'sawn-v4';
+const CORE = ['./', 'index.html', 'app.html', 'app.js', 'manifest.json', 'H.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
@@ -25,5 +25,3 @@ self.addEventListener('fetch', e => {
       }).catch(() => cached);
       return cached || fresh;
     })
-  );
-});
