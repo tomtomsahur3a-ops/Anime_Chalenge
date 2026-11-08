@@ -1,4 +1,4 @@
-const CACHE = 'sawn-v5';
+const CACHE = 'sawn-v8';
 const CORE = ['./', 'index.html', 'app.html', 'app.js', 'manifest.json', 'H.png'];
 
 self.addEventListener('install', e => {
