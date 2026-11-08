@@ -35,3 +35,91 @@
     if (t && Date.now() - t < 3 * 864e5) return;
     var ios = isIOS() && !installEvt;
     if (!installEvt && !ios) return;
+    banner = document.createElement('div');
+    banner.id = 'install-banner';
+    banner.innerHTML =
+      '<img src="icon-192.png" alt="">' +
+      '<div class="ib-t"><b>ثبّت تطبيق صَون</b><span>' +
+      (ios ? 'اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية»' : 'أسرع وأخف، ويعمل بدون إنترنت') +
+      '</span></div>' +
+      (ios ? '' : '<button class="ib-go">تثبيت</button>') +
+      '<button class="ib-x" aria-label="إغلاق">✕</button>';
+    document.body.appendChild(banner);
+    var go = banner.querySelector('.ib-go');
+    if (go) go.onclick = function () {
+      if (!installEvt) return;
+      installEvt.prompt();
+      installEvt.userChoice.then(function (c) { installEvt = null; hideBanner(c.outcome !== 'accepted'); renderStreak(); });
+    };
+    banner.querySelector('.ib-x').onclick = function () { hideBanner(true); };
+    setTimeout(function () { if (banner) banner.classList.add('show'); }, 50);
+  }
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); installEvt = e; renderStreak(); setTimeout(showBanner, 1200);
+  });
+  window.addEventListener('appinstalled', function () { installEvt = null; hideBanner(false); renderStreak(); });
+
+  // ===== عداد أيام التعافي (يُحفظ في جوال المستخدم فقط) =====
+  var box = document.createElement('div');
+  box.className = 'truth-card';
+  box.id = 'streak-card';
+  box.style.textAlign = 'center';
+
+  function days() {
+    var s = parseInt(store('sawn_streak_start'), 10);
+    return s ? Math.max(0, Math.floor((Date.now() - s) / 864e5)) : null;
+  }
+  function btn(label, fn) {
+    var b = document.createElement('button');
+    b.className = 'back-btn';
+    b.style.margin = '8px 4px 0';
+    b.textContent = label;
+    b.onclick = fn;
+    return b;
+  }
+  function renderStreak() {
+    box.innerHTML = '';
+    var d = days();
+    var h = document.createElement('h3');
+    h.textContent = '🔥 عدّاد أيام الصيانة';
+    box.appendChild(h);
+    if (d === null) {
+      var p = document.createElement('p');
+      p.textContent = 'ابدأ اليوم عدّاداً يخصّك وحدك. بياناتك تبقى في جوالك ولا تُرسل لأحد.';
+      box.appendChild(p);
+      box.appendChild(btn('ابدأ العدّ الآن', function () { store('sawn_streak_start', String(Date.now())); renderStreak(); }));
+    } else {
+      var n = document.createElement('div');
+      n.style.cssText = 'font-size:3rem;font-weight:900;color:#eab308;line-height:1.2';
+      n.textContent = d;
+      box.appendChild(n);
+      var t = document.createElement('p');
+      t.textContent = d === 0 ? 'بدايتك اليوم، وأول خطوة هي الأصعب. ثبّتك الله.' : 'يوم من الصيانة بحمد الله. واصل، وأنت أقوى مما تظن.';
+      box.appendChild(t);
+      box.appendChild(btn('بدأت من جديد', function () {
+        if (confirm('هل تريد بدء عدّاد جديد؟ والله يقبل التوبة ويحب العبد الذي يعود إليه.')) {
+          store('sawn_streak_start', String(Date.now())); renderStreak();
+        }
+      }));
+    }
+    if (installEvt && !isStandalone()) {
+      box.appendChild(btn('📲 ثبّت صَون كتطبيق', function () { showBannerForce(); }));
+    }
+  }
+  function showBannerForce() {
+    store('sawn_inst_dis', null);
+    if (installEvt) { installEvt.prompt(); installEvt.userChoice.then(function () { installEvt = null; renderStreak(); }); }
+  }
+
+  var home = document.getElementById('main-menu');
+  if (home) home.insertBefore(box, home.firstChild);
+  renderStreak();
+
+  if (isIOS()) setTimeout(showBanner, 1500);
+
+  // عمل التطبيق بدون إنترنت
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
+})();
