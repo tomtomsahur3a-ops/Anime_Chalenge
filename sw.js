@@ -1,4 +1,4 @@
-const CACHE = 'sawn-v4';
+const CACHE = 'sawn-v5';
 const CORE = ['./', 'index.html', 'app.html', 'app.js', 'manifest.json', 'H.png'];
 
 self.addEventListener('install', e => {
@@ -13,6 +13,7 @@ self.addEventListener('activate', e => {
   );
 });
 
+// يعرض النسخة المخزنة فوراً ويحدّثها في الخلفية
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
