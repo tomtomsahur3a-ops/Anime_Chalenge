@@ -13,7 +13,6 @@ self.addEventListener('activate', e => {
   );
 });
 
-// يعرض النسخة المخزنة فوراً ويحدّثها في الخلفية
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
@@ -25,3 +24,5 @@ self.addEventListener('fetch', e => {
       }).catch(() => cached);
       return cached || fresh;
     })
+  );
+});
