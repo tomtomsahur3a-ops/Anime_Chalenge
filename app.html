@@ -120,12 +120,38 @@ body{padding:calc(16px + env(safe-area-inset-top,0px)) 15px calc(30px + env(safe
 .danger{background:#7f1d1d!important;color:#fff!important;box-shadow:none!important}
 .chk{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:.98rem}
 .chk input{width:20px;height:20px;accent-color:#eab308}
+
+/* ===== 1.1 : لمعان وظلال ===== */
+button{-webkit-tap-highlight-color:transparent}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes shimmer{to{background-position:-220% 0}}
+@keyframes sweep{0%{transform:translateX(-160%) skewX(-20deg)}35%,100%{transform:translateX(260%) skewX(-20deg)}}
+.shine,.top h1{background-image:linear-gradient(110deg,#ca8a04 0%,#eab308 30%,#fef9c3 50%,#eab308 70%,#ca8a04 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 7s linear infinite}
+.top img{box-shadow:0 0 18px rgba(234,179,8,.28)}
+.icon-btn{display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(234,179,8,.12)}
+.icon-btn img{width:26px;height:26px;filter:drop-shadow(0 0 6px rgba(234,179,8,.45))}
+.tile{position:relative;overflow:hidden;animation:rise .55s ease backwards}
+.tile .tic{width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(234,179,8,.38));transition:transform .2s ease,filter .2s ease}
+.tile:active .tic{transform:scale(1.1);filter:drop-shadow(0 0 18px rgba(234,179,8,.65))}
+.tile.hot .tic{filter:drop-shadow(0 1px 5px rgba(255,255,255,.4))}
+.tile.hot::after,.back-btn:not(.danger)::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);animation:sweep 6s ease-in-out infinite;pointer-events:none}
+.back-btn{position:relative;overflow:hidden}
+.pad-grid{gap:16px;padding:0 6px}
+.pad-grid button{height:auto;width:78px;aspect-ratio:1;justify-self:center;border-radius:50%;border:1.5px solid rgba(234,179,8,.55);background:radial-gradient(circle at 30% 25%,rgba(234,179,8,.16),rgba(24,24,27,.95) 70%);box-shadow:0 0 14px rgba(234,179,8,.12);font-family:'Readex Pro',sans-serif;transition:transform .12s,box-shadow .12s}
+.pad-grid button:active{background:var(--gold-gradient);color:#09090b;box-shadow:0 0 26px rgba(234,179,8,.65);transform:scale(.94)}
+.pad-dots i{width:16px;height:16px;transition:all .15s}
+.pad-dots i.on{background:var(--gold-gradient);box-shadow:0 0 10px rgba(234,179,8,.75)}
+#pad-card img,#onb-card img{filter:drop-shadow(0 0 14px rgba(234,179,8,.4))}
+.upd{position:fixed;left:14px;right:14px;top:calc(12px + env(safe-area-inset-top,0px));max-width:520px;margin:0 auto;z-index:150;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-radius:20px;background:rgba(24,24,27,.97);border:1px solid var(--gold-primary);box-shadow:0 10px 30px rgba(0,0,0,.6),0 0 24px rgba(234,179,8,.2);transform:translateY(-160%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.upd.show{transform:translateY(0)}
+.upd .back-btn{margin:0;padding:8px 16px;font-size:.85rem;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="container">
 <section id="pg-home" class="page active">
-<div class="top"><img src="icon-192.png" alt="شعار صَون"><h1>صَـون</h1><button class="icon-btn" onclick="go('settings')" aria-label="الإعدادات">⚙️</button></div>
+<div class="top"><img src="icon-192.png" alt="شعار صَون"><h1>صَـون</h1><button class="icon-btn" onclick="go('settings')" aria-label="الإعدادات"><img src="settings.png" alt=""></button></div>
 <div class="truth-card" id="streak" style="text-align:center"></div>
 <div class="grid" id="grid"></div>
 </section>
@@ -228,7 +254,7 @@ body{padding:calc(16px + env(safe-area-inset-top,0px)) 15px calc(30px + env(safe
 <script>
 var $=function(i){return document.getElementById(i)};
 function st(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){return null}}
-function vib(){try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}}
+function vib(p){try{navigator.vibrate&&navigator.vibrate(p||10)}catch(e){}}
 function toast(t){var e=$('toast');e.textContent=t;e.classList.add('show');setTimeout(function(){e.classList.remove('show')},2200)}
 function mkBtn(label,fn,cls){var b=document.createElement('button');b.className='back-btn'+(cls?' '+cls:'');b.textContent=label;b.onclick=fn;return b}
 
@@ -242,7 +268,7 @@ function route(){
   if(id==='daily')renderDaily();
   window.scrollTo(0,0);
 }
-function go(p){vib();location.hash=p}
+function go(p){vib(12);location.hash=p}
 function goHome(){vib();location.hash='home'}
 window.addEventListener('hashchange',route);
 
@@ -256,7 +282,7 @@ function renderStreak(){
     p.textContent='ابدأ اليوم عدّاداً يخصّك وحدك. بياناتك تبقى في جوالك فقط.';b.appendChild(p);
     b.appendChild(mkBtn('ابدأ العدّ الآن',function(){st('sawn_streak_start',String(Date.now()));renderStreak()}));
   }else{
-    var n=document.createElement('div');n.style.cssText='font-size:3rem;font-weight:900;color:#eab308;line-height:1.2';n.textContent=d;b.appendChild(n);
+    var n=document.createElement('div');n.className='shine';n.style.cssText='font-size:3rem;font-weight:900;line-height:1.2';n.textContent=d;b.appendChild(n);
     p.textContent=d===0?'بدايتك اليوم، وأول خطوة هي الأصعب. ثبّتك الله.':'يوم من الصيانة بحمد الله. واصل، وأنت أقوى مما تظن.';b.appendChild(p);
     b.appendChild(mkBtn('بدأت من جديد',function(){if(confirm('هل تريد بدء عدّاد جديد؟ والله يقبل التوبة ويحب العبد الذي يعود إليه.')){st('sawn_streak_start',String(Date.now()));renderStreak()}}));
   }
@@ -353,9 +379,9 @@ function openPad(title,sub,cb,o){
   drawDots();$('pad').classList.add('show');
 }
 function closePad(){$('pad').classList.remove('show');padCb=null;padVal='';drawDots()}
-function padShake(msg){var c=$('pad-card');c.classList.add('shake');$('pad-sub').textContent=msg||'';setTimeout(function(){c.classList.remove('shake')},400)}
+function padShake(msg){vib([45,70,45]);var c=$('pad-card');c.classList.add('shake');$('pad-sub').textContent=msg||'';setTimeout(function(){c.classList.remove('shake')},400)}
 function padKey(k){
-  vib();
+  vib(8);
   if(k==='<')padVal=padVal.slice(0,-1);
   else if(padVal.length<4)padVal+=k;
   drawDots();
@@ -364,7 +390,7 @@ function padKey(k){
 function lockNow(){
   if(!st('sawn_pin'))return;
   openPad('أدخل الرقم السري','',function(v){
-    hashPin(v).then(function(h){if(h===st('sawn_pin')){closePad()}else{padShake('رقم غير صحيح')}});
+    hashPin(v).then(function(h){if(h===st('sawn_pin')){closePad();vib([14,50,22])}else{padShake('رقم غير صحيح')}});
   },{forgot:true});
 }
 function setupPin(done){
@@ -442,7 +468,7 @@ function renderSettings(){
     try{var o=JSON.parse(t);if(o.s)st('sawn_streak_start',String(o.s));if(o.t)st('sawn_ntypes',JSON.stringify(o.t));renderStreak();renderSettings();toast('تمت الاستعادة')}catch(e){toast('النص غير صالح')}
   })));
   c.appendChild(row('مسح كل بياناتي','يحذف العداد والإعدادات والقفل',mkBtn('مسح',function(){if(confirm('سيتم مسح كل بياناتك في التطبيق. هل أنت متأكد؟'))wipeAll()},'danger')));
-  c.appendChild(row('عن التطبيق','صَون - الإصدار 1.0'));
+  c.appendChild(row('عن التطبيق','صَون - الإصدار 1.1'));
 }
 
 /* ===== شاشة الترحيب ===== */
@@ -458,20 +484,32 @@ function onbFinish(){st('sawn_onboarded','1');$('onb').classList.remove('show')}
 function onbStep2(){onbShow('التذكيرات','تصلك رسائل تذكير وتثبيت بإذن الله. يلزم السماح بالإشعارات.',[['تفعيل التذكيرات',function(){enableNotif(onbFinish)}],['لاحقاً',onbFinish]])}
 function onbStep1(){onbShow('أهلاً بك في صَون','قبل أن نبدأ: يمكنك حماية تطبيقك برقم سري من 4 أرقام.',[['إنشاء رقم سري',function(){setupPin(onbStep2)}],['تخطي',onbStep2]])}
 
+/* ===== نافذة التحديث ===== */
+function showUpdate(){
+  if($('upd'))return;
+  var b=document.createElement('div');b.id='upd';b.className='upd';
+  var t=document.createElement('span');t.textContent='يتوفر إصدار جديد من صَون';
+  b.appendChild(t);b.appendChild(mkBtn('تحديث الآن',function(){location.reload()}));
+  document.body.appendChild(b);setTimeout(function(){b.classList.add('show')},50);
+}
+
 /* ===== التشغيل ===== */
 window.addEventListener('load',function(){
   var g=$('grid');
-  [['🚨','الطوارئ','emergency',1],['📚','المقالات','articles'],['⭐','الحل الذهبي','quran'],['✨','رسالة الأمل','welcome'],['⚠️','المخاطر','dangers'],['🛡️','الحلول العملية','solutions'],['💬','رسالة اليوم','daily'],['▶️','قناة يوتيوب','yt']].forEach(function(t){
+  [['emergency-dark','الطوارئ','emergency',1],['articles','المقالات','articles'],['quran','الحل الذهبي','quran'],['hope','رسالة الأمل','welcome'],['dangers','المخاطر','dangers'],['solutions','الحلول العملية','solutions'],['daily','رسالة اليوم','daily'],['youtube','قناة يوتيوب','yt']].forEach(function(t,idx){
     var e=document.createElement(t[2]==='yt'?'a':'div');e.className='tile'+(t[3]?' hot':'');
-    var i=document.createElement('span');i.className='ti';i.textContent=t[0];
+    e.style.animationDelay=(idx*70)+'ms';
+    var i=document.createElement('img');i.className='tic';i.src=t[0]+'.png';i.alt='';
     var l=document.createElement('span');l.textContent=t[1];e.appendChild(i);e.appendChild(l);
-    if(t[2]==='yt'){e.href='https://www.youtube.com/@SOWN_account';e.target='_blank';e.rel='noopener';e.onclick=vib}
-    else e.onclick=function(){go(t[2])};
+    if(t[2]==='yt'){e.href='https://www.youtube.com/@SOWN_account';e.target='_blank';e.rel='noopener';e.onclick=function(){vib(14)}}
+    else e.onclick=function(){vib(14);go(t[2])};
     g.appendChild(e);
   });
   renderStreak();loadArticles();route();
   if(st('sawn_pin'))lockNow();else if(!st('sawn_onboarded'))onbStep1();
-  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').then(function(reg){
+    reg.addEventListener('updatefound',function(){var w=reg.installing;if(!w)return;w.addEventListener('statechange',function(){if(w.state==='installed'&&navigator.serviceWorker.controller)showUpdate()})});
+  }).catch(function(){})}
 });
 </script>
 </body>
