@@ -6,6 +6,20 @@
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-V16XSMG3HP');
 </script>
+<!-- OneSignal SDK -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "aae69e71-6f3d-45d1-bdf3-3c972e4a4bf9",
+      safari_web_id: "",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>صَون - منصة صيانة النفس والتحرر من الإدمان</title>
@@ -281,7 +295,7 @@ var articleGroups=[
 [{text:"بناء الصداقات الإيجابية الداعمة التي تعينك على طريق التعافي والتطور.",img:"b0048c6d035dd6b219486f0394e85550.jpg"},{text:"فهم أن رحلة التغيير تتطلب الصبر والتدرج ولا تحدث بين ليلة وضحاها.",img:"591f2e4e1216e8e4e22ff737acfdf678.jpg"},{text:"الابتعاد عن البيئات الإلكترونية المحبطة أو المسببة للانتكاس.",img:"e9a7cc11c6c6bb9434a0f88119b63523.jpg"}],
 [{text:"تعزيز التركيز البصري والذهني بعيداً عن تشتت الشاشات المتعددة.",img:"8f49d7476bb9d819ecb1788039726341.jpg"},{text:"استعادة التوازن البيولوجي للجسم بالنوم المبكر والاستيقاظ المبكر.",img:"1b9fd507aca55131ed0e87a3502f5a61.jpg"},{text:"استغلال الأوقات الفاصلة في اليوم في التسبيح والتأمل والهدوء النفسي.",img:"ad670d15fcf688f6d3629c48fefc49fc.jpg"}],
 [{text:"التخلص من الإجهاد الإلكتروني بمنح البصر والذهن فترات راحة منتظمة.",img:"1c3afcf589e3e2ae076e41d379907769.jpg"},{text:"تقبل المشاعر ومعالجتها بالوعي بدلاً من كبتها أو الهروب منها للشاشات.",img:"1172d25bbf4168add2fb7bd6613445c6.jpg"},{text:"تقييم التقدم الإيجابي الذي حققته في رحلة تعافيك والاحتفاء به.",img:"7c7c3be6532e8429d5a17e0c0a2e2c06.jpg"}],
-[{text:"الالتزام بالروتين الجديد الحامي لك من العودة إلى مربع الانطواء الأول.",img:"d9a0b4b950b1f40a04c01edec53e3f31 (1).jpg"},{text:"جعل الأجهزة الإلكترونية أدوات للإنتاج والتعلم لا لمنصات هدر الوقت.",img:"ee5f289642bc32fb2ee8fd6aaf33cac8.jpg"},{text:"الوصول لمرحلة الاستقرار النفسي والتوازن التام بين العالم الرقمي والحياة الواقعية.",img:"952293904959684d8b5891e94e81aa16.jpg"}]
+[{text:"الالزام بالروتين الجديد الحامي لك من العودة إلى مربع الانطواء الأول.",img:"d9a0b4b950b1f40a04c01edec53e3f31 (1).jpg"},{text:"جعل الأجهزة الإلكترونية أدوات للإنتاج والتعلم لا لمنصات هدر الوقت.",img:"ee5f289642bc32fb2ee8fd6aaf33cac8.jpg"},{text:"الوصول لمرحلة الاستقرار النفسي والتوازن التام بين العالم الرقمي والحياة الواقعية.",img:"952293904959684d8b5891e94e81aa16.jpg"}]
 ];
 
 function loadArticlesForCurrentVisit(){
