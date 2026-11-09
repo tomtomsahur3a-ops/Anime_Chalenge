@@ -146,7 +146,27 @@ button{-webkit-tap-highlight-color:transparent}
 .upd.show{transform:translateY(0)}
 .upd .back-btn{margin:0;padding:8px 16px;font-size:.85rem;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== 1.3 : التكرار ===== */
+.fq{display:flex;gap:10px;justify-content:space-between;margin:8px 0 14px}
+.fqb{flex:1;max-width:82px;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(234,179,8,.55);background:radial-gradient(circle at 30% 25%,rgba(234,179,8,.16),rgba(24,24,27,.95) 70%);color:#eab308;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:'Readex Pro',sans-serif;box-shadow:0 0 12px rgba(234,179,8,.12);transition:transform .12s,box-shadow .12s}
+.fqb b{font-size:1.55rem;line-height:1;font-weight:800}
+.fqb small{font-size:.62rem;color:#a1a1aa;margin-top:2px}
+.fqb.on{background:var(--gold-gradient);color:#09090b;box-shadow:0 0 20px rgba(234,179,8,.55)}
+.fqb.on small{color:#09090b}
+.fqb:active{transform:scale(.94)}
+.sub-h{font-size:.9rem;color:#a1a1aa;margin-top:8px}
 </style>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+window.OneSignalDeferred=window.OneSignalDeferred||[];
+OneSignalDeferred.push(async function(OneSignal){
+  try{
+    await OneSignal.init({appId:"aae69e71-6f3d-45d1-bdf3-3c972e4a4bf9",serviceWorkerPath:"Anime_Chalenge/push/onesignal/OneSignalSDKWorker.js",serviceWorkerParam:{scope:"/Anime_Chalenge/push/onesignal/"},notifyButton:{enable:false}});
+    if(window.syncPush)syncPush();
+  }catch(e){}
+});
+</script>
 </head>
 <body>
 <div class="container">
@@ -426,13 +446,46 @@ document.addEventListener('visibilitychange',function(){
 });
 
 /* ===== الإشعارات ===== */
-function enableNotif(cb){
-  if(!('Notification' in window)){toast('جهازك لا يدعم الإشعارات هنا');if(cb)cb();return}
-  Notification.requestPermission().then(function(r){
-    toast(r==='granted'?'تم تفعيل الإشعارات':'لم يتم السماح بالإشعارات');
-    if($('pg-settings').classList.contains('active'))renderSettings();
-    if(cb)cb();
+var FQ=[['60','1','ساعة'],['120','2','ساعتين'],['240','4','4 ساعات'],['1440','24','يومياً']];
+function getFreq(){return st('sawn_freq')||'240'}
+function getQH(){var q=st('sawn_qh');return q===null?'1':q}
+function osDo(fn){if(window.OneSignalDeferred){OneSignalDeferred.push(function(OS){try{fn(OS)}catch(e){}})}}
+function syncPush(){
+  osDo(function(OS){
+    var t=getTypes(),tz=Math.round(-new Date().getTimezoneOffset()/60);
+    OS.User.addTags({freq:getFreq(),qh:getQH(),tz:String(tz),dua:String(t.dua?1:0),god:String(t.god?1:0),future:String(t.future?1:0)});
   });
+}
+function freqPicker(){
+  var w=document.createElement('div');w.className='fq';
+  FQ.forEach(function(f){
+    var b=document.createElement('button');b.className='fqb'+(getFreq()===f[0]?' on':'');
+    var n=document.createElement('b');n.textContent=f[1];var l=document.createElement('small');l.textContent=f[2];
+    b.appendChild(n);b.appendChild(l);
+    b.onclick=function(){st('sawn_freq',f[0]);vib('tap');w.querySelectorAll('.fqb').forEach(function(x){x.classList.remove('on')});b.classList.add('on');syncPush()};
+    w.appendChild(b);
+  });
+  return w;
+}
+function enableNotif(cb){
+  var fired=false;
+  function done(ok){toast(ok?'تم تفعيل الإشعارات':'لم يتم السماح بالإشعارات');if($('pg-settings').classList.contains('active'))renderSettings();if(cb)cb(ok)}
+  function fallback(){
+    if(!('Notification' in window)){toast('جهازك لا يدعم الإشعارات هنا');if(cb)cb(false);return}
+    Notification.requestPermission().then(function(r){done(r==='granted')});
+  }
+  if(window.OneSignalDeferred){
+    setTimeout(function(){if(!fired){fired=true;fallback()}},4000);
+    OneSignalDeferred.push(async function(OS){
+      if(fired)return;fired=true;
+      try{
+        await OS.Notifications.requestPermission();
+        var ok=!!OS.Notifications.permission;
+        if(ok){try{await OS.User.PushSubscription.optIn()}catch(e){}syncPush()}
+        done(ok);
+      }catch(e){fallback()}
+    });
+  }else fallback();
 }
 function notifStatus(){
   if(!('Notification' in window))return 'غير مدعومة على هذا الجهاز';
@@ -440,7 +493,7 @@ function notifStatus(){
 }
 var NT=[['dua','ثبّتك الله'],['god','تذكير بالله تعالى'],['future','تذكير بالمستقبل والهدف']];
 function getTypes(){try{return JSON.parse(st('sawn_ntypes'))||{dua:1,god:1,future:1}}catch(e){return{dua:1,god:1,future:1}}}
-function setType(k,on){var t=getTypes();t[k]=on?1:0;st('sawn_ntypes',JSON.stringify(t))}
+function setType(k,on){var t=getTypes();t[k]=on?1:0;st('sawn_ntypes',JSON.stringify(t));syncPush()}
 
 /* ===== الإعدادات ===== */
 function row(title,sub,btn){
@@ -453,6 +506,13 @@ function renderSettings(){
   var c=$('settings-box');c.innerHTML='';
   c.appendChild(row('الإشعارات','الحالة: '+notifStatus(),mkBtn('تفعيل',function(){enableNotif()})));
   var tw=document.createElement('div');tw.style.padding='4px 0 14px';
+  var h1=document.createElement('div');h1.className='sub-h';h1.textContent='تكرار الرسائل';tw.appendChild(h1);
+  tw.appendChild(freqPicker());
+  var ql=document.createElement('label');ql.className='chk';
+  var qi=document.createElement('input');qi.type='checkbox';qi.checked=getQH()==='1';
+  qi.onchange=function(){st('sawn_qh',qi.checked?'1':'0');syncPush()};
+  var qs=document.createElement('span');qs.textContent='ساعات الهدوء (من 11 مساءً إلى 5 فجراً)';ql.appendChild(qi);ql.appendChild(qs);tw.appendChild(ql);
+  var h2=document.createElement('div');h2.className='sub-h';h2.textContent='نوع الرسائل';tw.appendChild(h2);
   var ty=getTypes();
   NT.forEach(function(x){
     var l=document.createElement('label');l.className='chk';
@@ -461,7 +521,7 @@ function renderSettings(){
     var s=document.createElement('span');s.textContent=x[1];l.appendChild(i);l.appendChild(s);tw.appendChild(l);
   });
   var note=document.createElement('div');note.className='sm';note.style.color='#a1a1aa';note.style.fontSize='.82rem';
-  note.textContent='اختيارك محفوظ. يبدأ وصول هذه الرسائل تلقائياً بعد ربط خدمة الإشعارات في تحديث قادم بإذن الله.';
+  note.textContent='تفضيلاتك محفوظة في جوالك. تبدأ الرسائل التلقائية قريباً بإذن الله، وتصلك وفق ما اخترت.';
   tw.appendChild(note);c.appendChild(tw);
   c.appendChild(row('الاهتزاز','المستوى: '+VN[vlvl()],mkBtn('تغيير',function(){st('sawn_vib',String((vlvl()+1)%4));renderSettings();vib('tap')})));
   var on=!!st('sawn_pin');
@@ -475,7 +535,7 @@ function renderSettings(){
     try{var o=JSON.parse(t);if(o.s)st('sawn_streak_start',String(o.s));if(o.t)st('sawn_ntypes',JSON.stringify(o.t));renderStreak();renderSettings();toast('تمت الاستعادة')}catch(e){toast('النص غير صالح')}
   })));
   c.appendChild(row('مسح كل بياناتي','يحذف العداد والإعدادات والقفل',mkBtn('مسح',function(){if(confirm('سيتم مسح كل بياناتك في التطبيق. هل أنت متأكد؟'))wipeAll()},'danger')));
-  c.appendChild(row('عن التطبيق','صَون - الإصدار 1.2'));
+  c.appendChild(row('عن التطبيق','صَون - الإصدار 1.3'));
 }
 
 /* ===== شاشة الترحيب ===== */
@@ -488,7 +548,11 @@ function onbShow(title,text,btns){
   $('onb').classList.add('show');
 }
 function onbFinish(){st('sawn_onboarded','1');$('onb').classList.remove('show')}
-function onbStep2(){onbShow('التذكيرات','تصلك رسائل تذكير وتثبيت بإذن الله. يلزم السماح بالإشعارات.',[['تفعيل التذكيرات',function(){enableNotif(onbFinish)}],['لاحقاً',onbFinish]])}
+function onbStep3(){
+  onbShow('كم مرة تصلك الرسائل؟','اختر ما يناسبك، وتقدر تغيّره لاحقاً من الإعدادات.',[['تم',onbFinish]]);
+  var c=$('onb-card'),b=c.querySelector('button');c.insertBefore(freqPicker(),b);syncPush();
+}
+function onbStep2(){onbShow('التذكيرات','تصلك رسائل تذكير وتثبيت بإذن الله. يلزم السماح بالإشعارات.',[['تفعيل التذكيرات',function(){enableNotif(function(ok){ok?onbStep3():onbFinish()})}],['لاحقاً',onbFinish]])}
 function onbStep1(){onbShow('أهلاً بك في صَون','قبل أن نبدأ: يمكنك حماية تطبيقك برقم سري من 4 أرقام.',[['إنشاء رقم سري',function(){setupPin(onbStep2)}],['تخطي',onbStep2]])}
 
 /* ===== نافذة التحديث ===== */
