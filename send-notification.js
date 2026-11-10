@@ -1,43 +1,11 @@
+// إرسال رسالة صَون عبر OneSignal (يعمل كل ساعة من GitHub Actions)
 const fs = require('fs');
-const https = require('https');
 
-// 1. قراءة ملف الآيات والأدعية من المشروع
-const rawData = fs.readFileSync('messages.json', 'utf8');
-const messages = JSON.parse(rawData);
+const APP_ID = process.env.ONESIGNAL_APP_ID;
+const KEY = process.env.ONESIGNAL_REST_API_KEY;
+const FORCE = process.env.FORCE === '1';   // تشغيل يدوي تجريبي: يرسل للجميع فوراً
 
-// 2. اختيار آية أو دعاء عشوائياً من القائمة
-const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+if (!APP_ID || !KEY) { console.error('ناقص: ONESIGNAL_APP_ID أو ONESIGNAL_REST_API_KEY في Secrets'); process.exit(1); }
 
-// 3. إعداد بيانات الطلب الموجه لـ OneSignal API
-const data = JSON.stringify({
-  app_id: process.env.ONESIGNAL_APP_ID,
-  included_segments: ["Total Subscriptions"], // إرسال لكل المشتركين
-  headings: { "ar": randomMessage.title || "✦ تذكرة من منصة صَون" },
-  contents: { "ar": randomMessage.text }
-});
-
-const options = {
-  hostname: 'onesignal.com',
-  path: '/api/v1/notifications',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-    'Authorization': `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
-  }
-};
-
-// 4. تنفيذ طلب الإرسال
-const req = https.request(options, (res) => {
-  let responseBody = '';
-  res.on('data', (chunk) => { responseBody += chunk; });
-  res.on('end', () => {
-    console.log("Notification sent successfully:", responseBody);
-  });
-});
-
-req.on('error', (e) => {
-  console.error("Error sending notification:", e);
-});
-
-req.write(data);
-req.end();
+const messages = JSON.parse(fs.readFileSync('messages.json', 'utf8'));
+const now = process.env.TEST_NOW ? new Date(process.env.TEST_NOW) : new Date();
