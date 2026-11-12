@@ -36,7 +36,7 @@ async function send(target, label) {
     contents: { en: body, ar: body },
     url: 'https://tomtomsahur3a-ops.github.io/Anime_Chalenge/app.html',
     web_push_topic: 'sown',
-    ttl: 3600
+    ttl: 21600
   }, target);
   for (const scheme of ['Key', 'Basic']) {
     const res = await fetch('https://api.onesignal.com/notifications?c=push', {
